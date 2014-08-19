@@ -1,7 +1,7 @@
 Onboard
 ==================
 
-Onboard provides developers with a quick and easy means to create a beautiful, engaging, and useful onboarding experience.
+Onboard provides developers with a quick and easy means to create a beautiful, engaging, and useful onboarding experience with only a few lines of code.
 
 
 Usage
@@ -9,7 +9,7 @@ Usage
 
 Drop the OnboardingViewController and OnboardingContentViewController header and implementation files into your project, import them into your AppDelegate, and you're ready to create an awesome onboarding experience for your users!
 
-Create individual pages by creating an OnboardingContentViewController, providing it a title, body, image, text for an action button, and within the action block
+Create individual pages by creating an OnboardingContentViewController, providing it a title, body, image, text for an action button, and within the action block handle whatever you want to do when the users press the button. If you don't want a button, you can leave both the button text and action handler nil.
 
 ```js
 OnboardingContentViewController *firstPage = [[OnboardingContentViewController alloc] initWithTitle:@"Page Title" body:@"Page body goes here." image:[UIImage imageNamed:@"icon"] buttonText:@"Text For Button" action:^{
