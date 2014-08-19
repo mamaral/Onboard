@@ -37,14 +37,14 @@
     
     CGFloat viewWidth = CGRectGetWidth(self.view.frame);
     CGFloat horizontalCenter = viewWidth / 2;
-    CGFloat labelWidth = viewWidth * 0.9;
+    CGFloat contentWidth = viewWidth * 0.9;
     CGFloat padding = 20;
     
     UIImageView *imageView = [[UIImageView alloc] initWithImage:_image];
     [imageView setFrame:CGRectMake((viewWidth / 2) - (100 / 2), 4 * padding , 100, 100)];
     [self.view addSubview:imageView];
     
-    UILabel *mainTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(padding, CGRectGetMaxY(imageView.frame) + padding, labelWidth, 0)];
+    UILabel *mainTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(padding, CGRectGetMaxY(imageView.frame) + padding, contentWidth, 0)];
     mainTextLabel.text = _titleText;
     mainTextLabel.textColor = [UIColor whiteColor];
     mainTextLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:38];
@@ -54,7 +54,7 @@
     mainTextLabel.center = CGPointMake(horizontalCenter, mainTextLabel.center.y);
     [self.view addSubview:mainTextLabel];
     
-    UILabel *subTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(padding, CGRectGetMaxY(mainTextLabel.frame) + padding, labelWidth, 0)];
+    UILabel *subTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(padding, CGRectGetMaxY(mainTextLabel.frame) + padding, contentWidth, 0)];
     subTextLabel.text = _body;
     subTextLabel.textColor = [UIColor whiteColor];
     subTextLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:28];
@@ -66,7 +66,7 @@
     
     // create the action button
     if (_buttonText) {
-        UIButton *actionButton = [[UIButton alloc] initWithFrame:CGRectMake((CGRectGetMaxX(self.view.frame) / 2) - (labelWidth / 2), CGRectGetMaxY(self.view.frame) - 100 - padding, labelWidth, 50)];
+        UIButton *actionButton = [[UIButton alloc] initWithFrame:CGRectMake((CGRectGetMaxX(self.view.frame) / 2) - (contentWidth / 2), CGRectGetMaxY(self.view.frame) - 100 - padding, contentWidth, 50)];
         actionButton.titleLabel.font = [UIFont systemFontOfSize:24];
         [actionButton setTitle:_buttonText forState:UIControlStateNormal];
         [actionButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
