@@ -121,16 +121,11 @@
 		273D50B419A1A34F00E38DB2 /* Onboard */ = {
 			isa = PBXGroup;
 			children = (
-				273D50BD19A1A34F00E38DB2 /* AppDelegate.h */,
-				273D50BE19A1A34F00E38DB2 /* AppDelegate.m */,
+				275280F219A45909007FBD47 /* Demo */,
 				273D50DD19A1A49C00E38DB2 /* OnboardingViewController.h */,
 				273D50DE19A1A49C00E38DB2 /* OnboardingViewController.m */,
 				273D50E019A1A4BF00E38DB2 /* OnboardingContentViewController.h */,
 				273D50E119A1A4BF00E38DB2 /* OnboardingContentViewController.m */,
-				2789AD6B19A2DE53002117FE /* blue.png */,
-				2789AD6C19A2DE53002117FE /* red.png */,
-				2789AD6D19A2DE53002117FE /* yellow.png */,
-				2789AD6119A2D95E002117FE /* street.png */,
 				273D50C019A1A34F00E38DB2 /* Images.xcassets */,
 				273D50B519A1A34F00E38DB2 /* Supporting Files */,
 			);
@@ -164,6 +159,19 @@
 				273D50D019A1A34F00E38DB2 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		275280F219A45909007FBD47 /* Demo */ = {
+			isa = PBXGroup;
+			children = (
+				273D50BD19A1A34F00E38DB2 /* AppDelegate.h */,
+				273D50BE19A1A34F00E38DB2 /* AppDelegate.m */,
+				2789AD6B19A2DE53002117FE /* blue.png */,
+				2789AD6C19A2DE53002117FE /* red.png */,
+				2789AD6D19A2DE53002117FE /* yellow.png */,
+				2789AD6119A2D95E002117FE /* street.png */,
+			);
+			name = Demo;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
