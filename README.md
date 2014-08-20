@@ -25,7 +25,7 @@ OnboardingViewController *onboardingVC = [[OnboardingViewController alloc] initW
 
 ```
 
-With only a few lines of code you have an beautiful, end-to-end onboarding process that will get your users excited to use your awesome application.
+With only a few lines of code you have a beautiful, end-to-end onboarding process that will get your users excited to use your awesome application.
 
 
 ![demo](onboard_demo.gif)
