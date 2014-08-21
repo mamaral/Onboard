@@ -31,6 +31,12 @@ With only a few lines of code you have a beautiful, end-to-end onboarding proces
 ![demo](onboard_demo.gif)
 
 
+Notes
+=====
+
+I'm not currently supporting landscape at the moment, so I would recommend either using this in an application that only supports portrait, or wrapping it in a subclassed UINavigationController that only supports portrait.
+
+
 Community
 =====
 
