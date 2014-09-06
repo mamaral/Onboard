@@ -19,6 +19,8 @@ static CGFloat const kPageControlHeight = 35;
     _backgroundImage = backgroundImage;
     _viewControllers = contents;
     
+    _shouldMaskBackground = YES;
+    
     return self;
 }
 
@@ -40,10 +42,14 @@ static CGFloat const kPageControlHeight = 35;
     [backgroundImageView setImage:_backgroundImage];
     [self.view addSubview:backgroundImageView];
     
+    UIView *backgroundMaskView;
+    
     // this view will sit between the image and the buttons that sit on top to darken it a bit
-    UIView *backgroundMaskView = [[UIView alloc] initWithFrame:_pageVC.view.frame];
-    backgroundMaskView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.6];
-    [_pageVC.view addSubview:backgroundMaskView];
+    if (self.shouldMaskBackground) {
+        backgroundMaskView = [[UIView alloc] initWithFrame:_pageVC.view.frame];
+        backgroundMaskView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.6];
+        [_pageVC.view addSubview:backgroundMaskView];
+    }
     
     [_pageVC setViewControllers:@[[_viewControllers firstObject]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
     _pageVC.view.backgroundColor = [UIColor clearColor];

@@ -15,6 +15,8 @@
     NSArray *_viewControllers;
 }
 
+@property (nonatomic) BOOL shouldMaskBackground;
+
 - (id)initWithBackgroundImage:(UIImage *)backgroundImage contents:(NSArray *)contents;
 
 @end
