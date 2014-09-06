@@ -16,6 +16,7 @@
 }
 
 @property (nonatomic) BOOL shouldMaskBackground;
+@property (nonatomic) BOOL shouldBlurBackground;
 
 ////////////////////////////////////////////////////////////////////
 // These are convenience properties for content view customization, so you

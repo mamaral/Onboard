@@ -63,6 +63,8 @@
     }];
     
     OnboardingViewController *onboardingVC = [[OnboardingViewController alloc] initWithBackgroundImage:[UIImage imageNamed:@"milky_way.jpg"] contents:@[firstPage, secondPage, thirdPage, fourthPage]];
+    onboardingVC.shouldMaskBackground = NO;
+    onboardingVC.shouldBlurBackground = YES;
     
     [self.nc presentViewController:onboardingVC animated:YES completion:nil];
 }
