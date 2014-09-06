@@ -37,6 +37,10 @@ static CGFloat const kMainPageControlHeight = 35;
     _buttonText = buttonText;
     _actionHandler = action ?: ^{};
     
+    self.fontName = kDefaultOnboardingFont;
+    self.titleFontSize = kOnboardingTitleFontSize;
+    self.bodyFontSize = kOnboardingBodyFontSize;
+    
     return self;
 }
 
@@ -67,7 +71,7 @@ static CGFloat const kMainPageControlHeight = 35;
     UILabel *mainTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(kDefaultOnboardingPadding, CGRectGetMaxY(imageView.frame) + kDefaultOnboardingPadding, contentWidth, 0)];
     mainTextLabel.text = _titleText;
     mainTextLabel.textColor = [UIColor whiteColor];
-    mainTextLabel.font = [UIFont fontWithName:kDefaultOnboardingFont size:kOnboardingTitleFontSize];
+    mainTextLabel.font = [UIFont fontWithName:self.fontName size:self.titleFontSize];
     mainTextLabel.numberOfLines = 0;
     mainTextLabel.textAlignment = NSTextAlignmentCenter;
     [mainTextLabel sizeToFit];
@@ -78,7 +82,7 @@ static CGFloat const kMainPageControlHeight = 35;
     UILabel *subTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(kDefaultOnboardingPadding, CGRectGetMaxY(mainTextLabel.frame) + kDefaultOnboardingPadding, contentWidth, 0)];
     subTextLabel.text = _body;
     subTextLabel.textColor = [UIColor whiteColor];
-    subTextLabel.font = [UIFont fontWithName:kDefaultOnboardingFont size:kOnboardingBodyFontSize];
+    subTextLabel.font = [UIFont fontWithName:self.fontName size:self.bodyFontSize];
     subTextLabel.numberOfLines = 0;
     subTextLabel.textAlignment = NSTextAlignmentCenter;
     [subTextLabel sizeToFit];

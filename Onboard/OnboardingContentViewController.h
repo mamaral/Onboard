@@ -16,6 +16,10 @@
     dispatch_block_t _actionHandler;
 }
 
+@property (nonatomic, retain) NSString *fontName;
+@property (nonatomic) CGFloat titleFontSize;
+@property (nonatomic) CGFloat bodyFontSize;
+
 - (id)initWithTitle:(NSString *)title body:(NSString *)body image:(UIImage *)image buttonText:(NSString *)buttonText action:(dispatch_block_t)action;
 
 @end
