@@ -16,6 +16,8 @@
     dispatch_block_t _actionHandler;
 }
 
+@property (nonatomic) CGFloat iconSize;
+
 @property (nonatomic, retain) NSString *fontName;
 @property (nonatomic) CGFloat titleFontSize;
 @property (nonatomic) CGFloat bodyFontSize;

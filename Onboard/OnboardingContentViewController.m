@@ -37,6 +37,7 @@ static CGFloat const kMainPageControlHeight = 35;
     _buttonText = buttonText;
     _actionHandler = action ?: ^{};
     
+    self.iconSize = kImageViewSize;
     self.fontName = kDefaultOnboardingFont;
     self.titleFontSize = kOnboardingTitleFontSize;
     self.bodyFontSize = kOnboardingBodyFontSize;
@@ -64,7 +65,7 @@ static CGFloat const kMainPageControlHeight = 35;
     
     // create the image view with the appropriate image, size, and center in on screen
     UIImageView *imageView = [[UIImageView alloc] initWithImage:_image];
-    [imageView setFrame:CGRectMake(horizontalCenter - (kImageViewSize / 2), kVerticalPadding, kImageViewSize, kImageViewSize)];
+    [imageView setFrame:CGRectMake(horizontalCenter - (self.iconSize / 2), kVerticalPadding, self.iconSize, self.iconSize)];
     [self.view addSubview:imageView];
     
     // create and configure the main text label
