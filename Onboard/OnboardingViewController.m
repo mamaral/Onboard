@@ -10,15 +10,18 @@
 #import "OnboardingContentViewController.h"
 
 static CGFloat const kPageControlHeight = 35;
+static CGFloat const kBackgroundMaskAlpha = 0.6;
 
 @implementation OnboardingViewController
 
 - (id)initWithBackgroundImage:(UIImage *)backgroundImage contents:(NSArray *)contents {
     self = [super init];
 
+    // store the passed in backgroujd image and view controllers array
     _backgroundImage = backgroundImage;
     _viewControllers = contents;
     
+    // we want the background masked by default
     _shouldMaskBackground = YES;
     
     return self;
@@ -27,30 +30,35 @@ static CGFloat const kPageControlHeight = 35;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // now that the view has loaded, we can generate the content
     [self generateView];
 }
 
 - (void)generateView {
+    // create our page view controller
     _pageVC = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
     _pageVC.view.frame = self.view.frame;
     _pageVC.view.backgroundColor = [UIColor whiteColor];
     _pageVC.delegate = self;
     _pageVC.dataSource = self;
     
+    // create the background image view and set it to aspect fill so it isn't skewed
     UIImageView *backgroundImageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
     backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
     [backgroundImageView setImage:_backgroundImage];
     [self.view addSubview:backgroundImageView];
     
+    // as long as the shouldMaskBackground setting hasn't been set to NO, we want to
+    // create a partially opaque view and add it on top of the image view, so that it
+    // darkens it a bit for better contrast
     UIView *backgroundMaskView;
-    
-    // this view will sit between the image and the buttons that sit on top to darken it a bit
     if (self.shouldMaskBackground) {
         backgroundMaskView = [[UIView alloc] initWithFrame:_pageVC.view.frame];
-        backgroundMaskView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.6];
+        backgroundMaskView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:kBackgroundMaskAlpha];
         [_pageVC.view addSubview:backgroundMaskView];
     }
     
+    // more page controller setup
     [_pageVC setViewControllers:@[[_viewControllers firstObject]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
     _pageVC.view.backgroundColor = [UIColor clearColor];
     [self addChildViewController:_pageVC];
@@ -59,6 +67,7 @@ static CGFloat const kPageControlHeight = 35;
     [_pageVC.view sendSubviewToBack:backgroundMaskView];
     [_pageVC.view sendSubviewToBack:backgroundImageView];
     
+    // create and configure the the page control
     _pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.view.frame) - kPageControlHeight, self.view.frame.size.width, kPageControlHeight)];
     _pageControl.numberOfPages = _viewControllers.count;
     [self.view addSubview:_pageControl];
@@ -67,23 +76,25 @@ static CGFloat const kPageControlHeight = 35;
 
 #pragma mark - Page view controller data source
 
-- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
-    if (viewController == [_viewControllers lastObject]) {
-        return nil;
-    }
-    else {
-        NSInteger nextPageIndex = [_viewControllers indexOfObject:viewController] + 1;
-        return _viewControllers[nextPageIndex];
-    }
-}
-
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController {
+    // return the previous view controller unless we're at the beginning of the list
     if (viewController == [_viewControllers firstObject]) {
         return nil;
     }
     else {
         NSInteger priorPageIndex = [_viewControllers indexOfObject:viewController] - 1;
         return _viewControllers[priorPageIndex];
+    }
+}
+
+- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
+    // return the next view controller in the array unless we're at the end of the list
+    if (viewController == [_viewControllers lastObject]) {
+        return nil;
+    }
+    else {
+        NSInteger nextPageIndex = [_viewControllers indexOfObject:viewController] + 1;
+        return _viewControllers[nextPageIndex];
     }
 }
 

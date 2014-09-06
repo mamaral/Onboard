@@ -11,6 +11,8 @@
 static NSString * const kDefaultOnboardingFont = @"Helvetica-Light";
 
 static CGFloat const kContentWidthMultiplier = 0.9;
+static CGFloat const kImageViewSize = 100;
+static CGFloat const kVerticalPadding = 60;
 static CGFloat const kDefaultOnboardingPadding = 20;
 static CGFloat const kOnboardingTitleFontSize = 38;
 static CGFloat const kOnboardingBodyFontSize = 28;
@@ -26,6 +28,9 @@ static CGFloat const kMainPageControlHeight = 35;
 - (id)initWithTitle:(NSString *)title body:(NSString *)body image:(UIImage *)image buttonText:(NSString *)buttonText action:(dispatch_block_t)action {
     self = [super init];
 
+    // hold onto the passed in parameters, and set the action block to an empty block
+    // in case we were passed nil, so we don't have to nil-check the block later before
+    // calling
     _titleText = title;
     _body = body;
     _image = image;
@@ -38,20 +43,27 @@ static CGFloat const kMainPageControlHeight = 35;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // now that the view has loaded we can generate the content
     [self generateView];
 }
 
 - (void)generateView {
+    // we want our background to be clear so we can see through it to the image provided
     self.view.backgroundColor = [UIColor clearColor];
     
+    // do some calculation for some common values we'll need, namely the width of the view,
+    // the center of the width, and the content width we want to fill up, which is some
+    // fraction of the view width we set in the multipler constant
     CGFloat viewWidth = CGRectGetWidth(self.view.frame);
     CGFloat horizontalCenter = viewWidth / 2;
     CGFloat contentWidth = viewWidth * kContentWidthMultiplier;
     
+    // create the image view with the appropriate image, size, and center in on screen
     UIImageView *imageView = [[UIImageView alloc] initWithImage:_image];
-    [imageView setFrame:CGRectMake((viewWidth / 2) - (100 / 2), 4 * kDefaultOnboardingPadding , 100, 100)];
+    [imageView setFrame:CGRectMake(horizontalCenter - (kImageViewSize / 2), kVerticalPadding, kImageViewSize, kImageViewSize)];
     [self.view addSubview:imageView];
     
+    // create and configure the main text label
     UILabel *mainTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(kDefaultOnboardingPadding, CGRectGetMaxY(imageView.frame) + kDefaultOnboardingPadding, contentWidth, 0)];
     mainTextLabel.text = _titleText;
     mainTextLabel.textColor = [UIColor whiteColor];
@@ -62,6 +74,7 @@ static CGFloat const kMainPageControlHeight = 35;
     mainTextLabel.center = CGPointMake(horizontalCenter, mainTextLabel.center.y);
     [self.view addSubview:mainTextLabel];
     
+    // create and configure the sub text label
     UILabel *subTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(kDefaultOnboardingPadding, CGRectGetMaxY(mainTextLabel.frame) + kDefaultOnboardingPadding, contentWidth, 0)];
     subTextLabel.text = _body;
     subTextLabel.textColor = [UIColor whiteColor];
@@ -86,6 +99,7 @@ static CGFloat const kMainPageControlHeight = 35;
 #pragma mark - action button callback
 
 - (void)handleButtonPressed {
+    // simply call the provided action handler
     _actionHandler();
 }
 
