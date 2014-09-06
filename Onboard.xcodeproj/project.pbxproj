@@ -30,6 +30,13 @@
 		2789AD6E19A2DE53002117FE /* blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 2789AD6B19A2DE53002117FE /* blue.png */; };
 		2789AD6F19A2DE53002117FE /* red.png in Resources */ = {isa = PBXBuildFile; fileRef = 2789AD6C19A2DE53002117FE /* red.png */; };
 		2789AD7019A2DE53002117FE /* yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 2789AD6D19A2DE53002117FE /* yellow.png */; };
+		27B4BCE719BB5D9B0066EC81 /* cone.png in Resources */ = {isa = PBXBuildFile; fileRef = 27B4BCE119BB5D9B0066EC81 /* cone.png */; };
+		27B4BCE819BB5D9B0066EC81 /* headphones.png in Resources */ = {isa = PBXBuildFile; fileRef = 27B4BCE219BB5D9B0066EC81 /* headphones.png */; };
+		27B4BCE919BB5D9B0066EC81 /* layers.png in Resources */ = {isa = PBXBuildFile; fileRef = 27B4BCE319BB5D9B0066EC81 /* layers.png */; };
+		27B4BCEA19BB5D9B0066EC81 /* shark.png in Resources */ = {isa = PBXBuildFile; fileRef = 27B4BCE419BB5D9B0066EC81 /* shark.png */; };
+		27B4BCEB19BB5D9B0066EC81 /* testtube.png in Resources */ = {isa = PBXBuildFile; fileRef = 27B4BCE519BB5D9B0066EC81 /* testtube.png */; };
+		27B4BCED19BB5F6E0066EC81 /* purple.png in Resources */ = {isa = PBXBuildFile; fileRef = 27B4BCEC19BB5F6E0066EC81 /* purple.png */; };
+		27B4BCEF19BB60660066EC81 /* coffee.png in Resources */ = {isa = PBXBuildFile; fileRef = 27B4BCEE19BB60660066EC81 /* coffee.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +79,13 @@
 		2789AD6B19A2DE53002117FE /* blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue.png; sourceTree = "<group>"; };
 		2789AD6C19A2DE53002117FE /* red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red.png; sourceTree = "<group>"; };
 		2789AD6D19A2DE53002117FE /* yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellow.png; sourceTree = "<group>"; };
+		27B4BCE119BB5D9B0066EC81 /* cone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cone.png; sourceTree = "<group>"; };
+		27B4BCE219BB5D9B0066EC81 /* headphones.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = headphones.png; sourceTree = "<group>"; };
+		27B4BCE319BB5D9B0066EC81 /* layers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = layers.png; sourceTree = "<group>"; };
+		27B4BCE419BB5D9B0066EC81 /* shark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shark.png; sourceTree = "<group>"; };
+		27B4BCE519BB5D9B0066EC81 /* testtube.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testtube.png; sourceTree = "<group>"; };
+		27B4BCEC19BB5F6E0066EC81 /* purple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = purple.png; sourceTree = "<group>"; };
+		27B4BCEE19BB60660066EC81 /* coffee.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coffee.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +115,13 @@
 		270CB0B419BABF8C00F051B3 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				27B4BCEE19BB60660066EC81 /* coffee.png */,
+				27B4BCEC19BB5F6E0066EC81 /* purple.png */,
+				27B4BCE119BB5D9B0066EC81 /* cone.png */,
+				27B4BCE219BB5D9B0066EC81 /* headphones.png */,
+				27B4BCE319BB5D9B0066EC81 /* layers.png */,
+				27B4BCE419BB5D9B0066EC81 /* shark.png */,
+				27B4BCE519BB5D9B0066EC81 /* testtube.png */,
 				270CB0B519BAC2CE00F051B3 /* milky_way.jpg */,
 				2789AD6B19A2DE53002117FE /* blue.png */,
 				2789AD6C19A2DE53002117FE /* red.png */,
@@ -272,13 +293,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27B4BCEB19BB5D9B0066EC81 /* testtube.png in Resources */,
+				27B4BCE919BB5D9B0066EC81 /* layers.png in Resources */,
+				27B4BCE819BB5D9B0066EC81 /* headphones.png in Resources */,
 				270CB0C519BAC93700F051B3 /* space3.png in Resources */,
+				27B4BCED19BB5F6E0066EC81 /* purple.png in Resources */,
 				273D50B919A1A34F00E38DB2 /* InfoPlist.strings in Resources */,
+				27B4BCEA19BB5D9B0066EC81 /* shark.png in Resources */,
 				2789AD7019A2DE53002117FE /* yellow.png in Resources */,
 				270CB0C319BAC93700F051B3 /* space1.png in Resources */,
 				273D50C119A1A34F00E38DB2 /* Images.xcassets in Resources */,
 				270CB0C619BAC93700F051B3 /* space4.png in Resources */,
+				27B4BCE719BB5D9B0066EC81 /* cone.png in Resources */,
 				2789AD6219A2D95E002117FE /* street.png in Resources */,
+				27B4BCEF19BB60660066EC81 /* coffee.png in Resources */,
 				270CB0B619BAC2CE00F051B3 /* milky_way.jpg in Resources */,
 				270CB0C419BAC93700F051B3 /* space2.png in Resources */,
 				2789AD6F19A2DE53002117FE /* red.png in Resources */,
