@@ -50,6 +50,28 @@ onboardingVC.bottomPadding = 20;
 
 ![demo](Screenshots/key.png)
 
+Blurring and Masking
+=============
+
+By default, the image you use for the background will have a mask applied over it, darkening it a bit. This is to add a little bit of contrast so the text can more easily be seen. This can easily be disabled if your image is already edited or looks fine as-is:
+
+```js
+onboardingVC.shouldMaskBackground = NO; // defaults to YES
+```
+
+We can also apply a blur to your background image:
+
+```js
+onboardingVC.shouldBlurBackground = YES; // defaults to NO
+```
+
+You can tweak these settings however you'd like to get some pretty cool effects:
+
+![demo](Screenshots/normal.png)
+![demo](Screenshots/dark.png)
+![demo](Screenshots/lightblur.png)
+![demo](Screenshots/darkblur.png)
+
 
 Samples
 =============

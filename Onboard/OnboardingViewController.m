@@ -191,7 +191,7 @@ static CGFloat const kDefaultSaturationDeltaFactor = 1.8;
         return;
     }
     
-    UIColor *tintColor = [UIColor clearColor];
+    UIColor *tintColor = [UIColor colorWithWhite:0.7 alpha:0.3];
     CGFloat blurRadius = kDefaultBlurRadius;
     CGFloat saturationDeltaFactor = kDefaultSaturationDeltaFactor;
     CGRect imageRect = { CGPointZero, _backgroundImage.size };
