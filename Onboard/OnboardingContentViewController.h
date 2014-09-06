@@ -22,6 +22,11 @@
 @property (nonatomic) CGFloat titleFontSize;
 @property (nonatomic) CGFloat bodyFontSize;
 
+@property (nonatomic) CGFloat topPadding;
+@property (nonatomic) CGFloat underIconPadding;
+@property (nonatomic) CGFloat underTitlePadding;
+@property (nonatomic) CGFloat bottomPadding;
+
 - (id)initWithTitle:(NSString *)title body:(NSString *)body image:(UIImage *)image buttonText:(NSString *)buttonText action:(dispatch_block_t)action;
 
 @end

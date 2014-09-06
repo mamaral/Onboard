@@ -17,7 +17,7 @@ static CGFloat const kBackgroundMaskAlpha = 0.6;
 - (id)initWithBackgroundImage:(UIImage *)backgroundImage contents:(NSArray *)contents {
     self = [super init];
 
-    // store the passed in backgroujd image and view controllers array
+    // store the passed in background image and view controllers array
     _backgroundImage = backgroundImage;
     _viewControllers = contents;
     
@@ -74,10 +74,61 @@ static CGFloat const kBackgroundMaskAlpha = 0.6;
 }
 
 
+#pragma mark - Convenience setters for content pages
+
+- (void)setIconSize:(CGFloat)iconSize {
+    for (OnboardingContentViewController *contentVC in _viewControllers) {
+        contentVC.iconSize = iconSize;
+    }
+}
+
+- (void)setFontName:(NSString *)fontName {
+    for (OnboardingContentViewController *contentVC in _viewControllers) {
+        contentVC.fontName = fontName;
+    }
+}
+
+- (void)setTitleFontSize:(CGFloat)titleFontSize {
+    for (OnboardingContentViewController *contentVC in _viewControllers) {
+        contentVC.titleFontSize = titleFontSize;
+    }
+}
+
+- (void)setBodyFontSize:(CGFloat)bodyFontSize {
+    for (OnboardingContentViewController *contentVC in _viewControllers) {
+        contentVC.bodyFontSize = bodyFontSize;
+    }
+}
+
+- (void)setTopPadding:(CGFloat)topPadding {
+    for (OnboardingContentViewController *contentVC in _viewControllers) {
+        contentVC.topPadding = topPadding;
+    }
+}
+
+- (void)setUnderIconPadding:(CGFloat)underIconPadding {
+    for (OnboardingContentViewController *contentVC in _viewControllers) {
+        contentVC.underIconPadding = underIconPadding;
+    }
+}
+
+- (void)setUnderTitlePadding:(CGFloat)underTitlePadding {
+    for (OnboardingContentViewController *contentVC in _viewControllers) {
+        contentVC.underTitlePadding = underTitlePadding;
+    }
+}
+
+- (void)setBottomPadding:(CGFloat)bottomPadding {
+    for (OnboardingContentViewController *contentVC in _viewControllers) {
+        contentVC.bottomPadding = bottomPadding;
+    }
+}
+
+
 #pragma mark - Page view controller data source
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController {
-    // return the previous view controller unless we're at the beginning of the list
+    // return the previous view controller in the array unless we're at the beginning
     if (viewController == [_viewControllers firstObject]) {
         return nil;
     }
@@ -88,7 +139,7 @@ static CGFloat const kBackgroundMaskAlpha = 0.6;
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
-    // return the next view controller in the array unless we're at the end of the list
+    // return the next view controller in the array unless we're at the end
     if (viewController == [_viewControllers lastObject]) {
         return nil;
     }
