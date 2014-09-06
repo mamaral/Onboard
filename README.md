@@ -65,7 +65,7 @@ We can also apply a blur to your background image:
 onboardingVC.shouldBlurBackground = YES; // defaults to NO
 ```
 
-You can tweak these settings however you'd like to get some pretty cool effects:
+You can tweak these settings in a few different combinations to get your desired effect:
 
 ![demo](Screenshots/normal.png)
 ![demo](Screenshots/dark.png)
