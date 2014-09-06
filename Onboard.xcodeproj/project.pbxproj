@@ -88,6 +88,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		270CB0B419BABF8C00F051B3 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				2789AD6B19A2DE53002117FE /* blue.png */,
+				2789AD6C19A2DE53002117FE /* red.png */,
+				2789AD6D19A2DE53002117FE /* yellow.png */,
+				2789AD6119A2D95E002117FE /* street.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 		273D50A219A1A34F00E38DB2 = {
 			isa = PBXGroup;
 			children = (
@@ -166,10 +177,7 @@
 			children = (
 				273D50BD19A1A34F00E38DB2 /* AppDelegate.h */,
 				273D50BE19A1A34F00E38DB2 /* AppDelegate.m */,
-				2789AD6B19A2DE53002117FE /* blue.png */,
-				2789AD6C19A2DE53002117FE /* red.png */,
-				2789AD6D19A2DE53002117FE /* yellow.png */,
-				2789AD6119A2D95E002117FE /* street.png */,
+				270CB0B419BABF8C00F051B3 /* Images */,
 			);
 			name = Demo;
 			sourceTree = "<group>";
