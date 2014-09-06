@@ -30,6 +30,30 @@ With only a few lines of code you have a beautiful, end-to-end onboarding proces
 
 ![demo](onboard_demo.gif)
 
+
+Customization
+=============
+
+The content pages can be customized by setting the provided padding, font, and size properties on either the pages individually (if you want something different on each) or on the OnboardingViewController itself, which will pass those properties to all of the content view controllers.
+
+```js
+OnboardingViewController *onboardingVC = [[OnboardingViewController alloc] initWithBackgroundImage:yourImage contents:yourContentsArray];
+onboardingVC.fontName = @"Helvetica-Light";
+onboardingVC.titleFontSize = 28;
+onboardingVC.bodyFontSize = 22;
+onboardingVC.topPadding = 20;
+onboardingVC.underIconPadding = 10;
+onboardingVC.underTitlePadding = 15;
+onboardingVC.bottomPadding = 20;
+
+```
+
+![demo](Screenshots/key.png)
+
+
+Samples
+=============
+
 ![demo](Screenshots/space1.png)
 ![demo](Screenshots/space2.png)
 ![demo](Screenshots/space3.png)
