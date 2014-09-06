@@ -19,9 +19,17 @@
     
     UIViewController *mainVC = [UIViewController new];
     mainVC.title = @"Main Application";
-    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:mainVC];
-    self.window.rootViewController = nc;
+    self.nc = [[UINavigationController alloc] initWithRootViewController:mainVC];
+    self.window.rootViewController = self.nc;
     
+    // obviously, only do one of these at a time
+    [self showFirstDemo];
+//    [self showSecondDemo];
+    
+    return YES;
+}
+
+- (void)showFirstDemo {
     OnboardingContentViewController *firstPage = [[OnboardingContentViewController alloc] initWithTitle:@"What A Beautiful Photo" body:@"This city background image is so beautiful." image:[UIImage imageNamed:@"blue"] buttonText:@"Enable Location Services" action:^{
         [[[UIAlertView alloc] initWithTitle:nil message:@"Here you can prompt users for various application permissions." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
     }];
@@ -31,14 +39,30 @@
     }];
     
     OnboardingContentViewController *thirdPage = [[OnboardingContentViewController alloc] initWithTitle:@"Seriously Though" body:@"Kudos to the photographer." image:[UIImage imageNamed:@"yellow"] buttonText:@"Get Started" action:^{
-        [nc dismissViewControllerAnimated:YES completion:nil];
+        [self.nc dismissViewControllerAnimated:YES completion:nil];
     }];
     
     OnboardingViewController *onboardingVC = [[OnboardingViewController alloc] initWithBackgroundImage:[UIImage imageNamed:@"street"] contents:@[firstPage, secondPage, thirdPage]];
     
-    [nc presentViewController:onboardingVC animated:YES completion:nil];
+    [self.nc presentViewController:onboardingVC animated:YES completion:nil];
+}
+
+- (void)showSecondDemo {
+    OnboardingContentViewController *firstPage = [[OnboardingContentViewController alloc] initWithTitle:@"It's one small step for a man..." body:@"The first man on the moon, Buzz Aldrin, only had one photo taken of him while on the lunar surface due to an unexpected call from Dick Nixon." image:[UIImage imageNamed:@"space1"] buttonText:nil action:nil];
+    firstPage.bodyFontSize = 25;
     
-    return YES;
+    OnboardingContentViewController *secondPage = [[OnboardingContentViewController alloc] initWithTitle:@"The Drake Equation" body:@"In 1961, Frank Drake proposed a probabilistic formula to help estimate the number of potential active and radio-capable extraterrestrial civilizations in the Milky Way Galaxy." image:[UIImage imageNamed:@"space2"] buttonText:nil action:nil];
+    secondPage.bodyFontSize = 24;
+    
+    OnboardingContentViewController *thirdPage = [[OnboardingContentViewController alloc] initWithTitle:@"Cold Welding" body:@"Two pieces of metal without any coating on them will form into one piece in the vacuum of space." image:[UIImage imageNamed:@"space3"] buttonText:nil action:nil];
+    
+    OnboardingContentViewController *fourthPage = [[OnboardingContentViewController alloc] initWithTitle:@"Goodnight Moon" body:@"Every year the moon moves about 3.8cm further away from the Earth." image:[UIImage imageNamed:@"space4"] buttonText:@"See Ya Later!" action:^{
+        [self.nc dismissViewControllerAnimated:YES completion:nil];
+    }];
+    
+    OnboardingViewController *onboardingVC = [[OnboardingViewController alloc] initWithBackgroundImage:[UIImage imageNamed:@"milky_way.jpg"] contents:@[firstPage, secondPage, thirdPage, fourthPage]];
+    
+    [self.nc presentViewController:onboardingVC animated:YES completion:nil];
 }
 
 @end
