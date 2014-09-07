@@ -89,6 +89,24 @@ static CGFloat const kDefaultSaturationDeltaFactor = 1.8;
     }
 }
 
+- (void)setTitleTextColor:(UIColor *)titleTextColor {
+    for (OnboardingContentViewController *contentVC in _viewControllers) {
+        contentVC.titleTextColor = titleTextColor;
+    }
+}
+
+- (void)setBodyTextColor:(UIColor *)bodyTextColor {
+    for (OnboardingContentViewController *contentVC in _viewControllers) {
+        contentVC.bodyTextColor = bodyTextColor;
+    }
+}
+
+- (void)setButtonTextColor:(UIColor *)buttonTextColor {
+    for (OnboardingContentViewController *contentVC in _viewControllers) {
+        contentVC.buttonTextColor = buttonTextColor;
+    }
+}
+
 - (void)setFontName:(NSString *)fontName {
     for (OnboardingContentViewController *contentVC in _viewControllers) {
         contentVC.fontName = fontName;

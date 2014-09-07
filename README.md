@@ -86,6 +86,15 @@ Samples
 ![demo](Screenshots/purple3.png)
 ![demo](Screenshots/purple4.png)
 
+![demo](Screenshots/yellow1.png)
+![demo](Screenshots/yellow2.png)
+![demo](Screenshots/yellow3.png)
+![demo](Screenshots/yellow4.png)
+
+![demo](Screenshots/city1.png)
+![demo](Screenshots/city2.png)
+![demo](Screenshots/city3.png)
+
 
 Notes
 =====

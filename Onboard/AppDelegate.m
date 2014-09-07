@@ -26,6 +26,7 @@
     [self showFirstDemo];
 //    [self showSecondDemo];
 //    [self showThirdDemo];
+//    [self showFourthDemo];
     
     application.statusBarStyle = UIStatusBarStyleLightContent;
     return YES;
@@ -84,6 +85,31 @@
     onboardingVC.shouldMaskBackground = NO;
     onboardingVC.iconSize = 160;
     onboardingVC.fontName = @"HelveticaNeue-Thin";
+    
+    [self.nc presentViewController:onboardingVC animated:YES completion:nil];
+}
+
+- (void)showFourthDemo {
+    OnboardingContentViewController *firstPage = [[OnboardingContentViewController alloc] initWithTitle:@"\"If you can't explain it simply, you don't know it well enough.\"" body:@"                 - Einsten" image:[UIImage imageNamed:@""] buttonText:nil action:nil];
+    
+    OnboardingContentViewController *secondPage = [[OnboardingContentViewController alloc] initWithTitle:@"\"If you wish to make an apple pie from scratch, you must first invent the universe.\"" body:@"                 - Sagan" image:nil buttonText:nil action:nil];
+    secondPage.topPadding = 0;
+    
+    OnboardingContentViewController *thirdPage = [[OnboardingContentViewController alloc] initWithTitle:@"\"That which can be asserted without evidence, can be dismissed without evidence.\"" body:@"                 - Hitchens" image:nil buttonText:nil action:nil];
+    thirdPage.titleFontSize = 33;
+    thirdPage.bodyFontSize = 25;
+    
+    OnboardingContentViewController *fourthPage = [[OnboardingContentViewController alloc] initWithTitle:@"\"Scientists have become the bearers of the torch of discovery in our quest for knowledge.\"" body:@"                 - Hawking" image:nil buttonText:nil action:^{
+        [self.nc dismissViewControllerAnimated:YES completion:nil];
+    }];
+    fourthPage.titleFontSize = 28;
+    fourthPage.bodyFontSize = 24;
+    
+    OnboardingViewController *onboardingVC = [[OnboardingViewController alloc] initWithBackgroundImage:[UIImage imageNamed:@"yellowbg"] contents:@[firstPage, secondPage, thirdPage, fourthPage]];
+    onboardingVC.shouldMaskBackground = NO;
+    onboardingVC.titleTextColor = [UIColor colorWithRed:57/255.0 green:57/255.0 blue:57/255.0 alpha:1.0];;
+    onboardingVC.bodyTextColor = [UIColor colorWithRed:244/255.0 green:64/255.0 blue:40/255.0 alpha:1.0];
+    onboardingVC.fontName = @"HelveticaNeue-Italic";
     
     [self.nc presentViewController:onboardingVC animated:YES completion:nil];
 }

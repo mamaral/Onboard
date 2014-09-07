@@ -25,6 +25,10 @@
 // rather than having to individually set the same values on each
 @property (nonatomic) CGFloat iconSize;
 
+@property (nonatomic, retain) UIColor *titleTextColor;
+@property (nonatomic, retain) UIColor *bodyTextColor;
+@property (nonatomic, retain) UIColor *buttonTextColor;
+
 @property (nonatomic, retain) NSString *fontName;
 @property (nonatomic) CGFloat titleFontSize;
 @property (nonatomic) CGFloat bodyFontSize;
