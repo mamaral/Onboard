@@ -41,4 +41,8 @@
 
 - (id)initWithBackgroundImage:(UIImage *)backgroundImage contents:(NSArray *)contents;
 
+
+// Getters for tests only
+- (NSArray *)contentViewControllers;
+
 @end

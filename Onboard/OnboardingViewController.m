@@ -323,4 +323,11 @@ static CGFloat const kDefaultSaturationDeltaFactor = 1.8;
     _backgroundImage = outputImage;
 }
 
+
+#pragma mark - Getters for unit tests
+
+- (NSArray *)contentViewControllers {
+    return _viewControllers;
+}
+
 @end
