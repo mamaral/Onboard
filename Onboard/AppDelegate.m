@@ -15,24 +15,21 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
-    
-    UIViewController *mainVC = [UIViewController new];
-    mainVC.title = @"Main Application";
-    self.nc = [[UINavigationController alloc] initWithRootViewController:mainVC];
-    self.window.rootViewController = self.nc;
     
     // obviously, only do one of these at a time
-    [self showFirstDemo];
-//    [self showSecondDemo];
-//    [self showThirdDemo];
-//    [self showFourthDemo];
+    self.window.rootViewController = [self generateFirstDemoVC];
+//    self.window.rootViewController = [self generateSecondDemoVC];
+//    self.window.rootViewController = [self generateThirdDemoVC];
+//    self.window.rootViewController = [self generateFourthDemoVC];
     
     application.statusBarStyle = UIStatusBarStyleLightContent;
+    
+    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 
-- (void)showFirstDemo {
+- (OnboardingViewController *)generateFirstDemoVC {
     OnboardingContentViewController *firstPage = [[OnboardingContentViewController alloc] initWithTitle:@"What A Beautiful Photo" body:@"This city background image is so beautiful." image:[UIImage imageNamed:@"blue"] buttonText:@"Enable Location Services" action:^{
         [[[UIAlertView alloc] initWithTitle:nil message:@"Here you can prompt users for various application permissions." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
     }];
@@ -41,16 +38,13 @@
         [[[UIAlertView alloc] initWithTitle:nil message:@"Prompt users to do other cool things on startup." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
     }];
     
-    OnboardingContentViewController *thirdPage = [[OnboardingContentViewController alloc] initWithTitle:@"Seriously Though" body:@"Kudos to the photographer." image:[UIImage imageNamed:@"yellow"] buttonText:@"Get Started" action:^{
-        [self.nc dismissViewControllerAnimated:YES completion:nil];
-    }];
+    OnboardingContentViewController *thirdPage = [[OnboardingContentViewController alloc] initWithTitle:@"Seriously Though" body:@"Kudos to the photographer." image:[UIImage imageNamed:@"yellow"] buttonText:@"Get Started" action:nil];
     
     OnboardingViewController *onboardingVC = [[OnboardingViewController alloc] initWithBackgroundImage:[UIImage imageNamed:@"street"] contents:@[firstPage, secondPage, thirdPage]];
-    
-    [self.nc presentViewController:onboardingVC animated:YES completion:nil];
+    return onboardingVC;
 }
 
-- (void)showSecondDemo {
+- (OnboardingViewController *)generateSecondDemoVC {
     OnboardingContentViewController *firstPage = [[OnboardingContentViewController alloc] initWithTitle:@"It's one small step for a man..." body:@"The first man on the moon, Buzz Aldrin, only had one photo taken of him while on the lunar surface due to an unexpected call from Dick Nixon." image:[UIImage imageNamed:@"space1"] buttonText:nil action:nil];
     firstPage.bodyFontSize = 25;
     
@@ -59,37 +53,31 @@
     
     OnboardingContentViewController *thirdPage = [[OnboardingContentViewController alloc] initWithTitle:@"Cold Welding" body:@"Two pieces of metal without any coating on them will form into one piece in the vacuum of space." image:[UIImage imageNamed:@"space3"] buttonText:nil action:nil];
     
-    OnboardingContentViewController *fourthPage = [[OnboardingContentViewController alloc] initWithTitle:@"Goodnight Moon" body:@"Every year the moon moves about 3.8cm further away from the Earth." image:[UIImage imageNamed:@"space4"] buttonText:@"See Ya Later!" action:^{
-        [self.nc dismissViewControllerAnimated:YES completion:nil];
-    }];
+    OnboardingContentViewController *fourthPage = [[OnboardingContentViewController alloc] initWithTitle:@"Goodnight Moon" body:@"Every year the moon moves about 3.8cm further away from the Earth." image:[UIImage imageNamed:@"space4"] buttonText:@"See Ya Later!" action:nil];
     
     OnboardingViewController *onboardingVC = [[OnboardingViewController alloc] initWithBackgroundImage:[UIImage imageNamed:@"milky_way.jpg"] contents:@[firstPage, secondPage, thirdPage, fourthPage]];
     onboardingVC.shouldMaskBackground = NO;
     onboardingVC.shouldBlurBackground = YES;
-    
-    [self.nc presentViewController:onboardingVC animated:YES completion:nil];
+    return onboardingVC;
 }
 
-- (void)showThirdDemo {
+- (OnboardingViewController *)generateThirdDemoVC {
     OnboardingContentViewController *firstPage = [[OnboardingContentViewController alloc] initWithTitle:@"Organize" body:@"Everything has its place. We take care of the housekeeping for you. " image:[UIImage imageNamed:@"layers"] buttonText:nil action:nil];
     
     OnboardingContentViewController *secondPage = [[OnboardingContentViewController alloc] initWithTitle:@"Relax" body:@"Grab a nice beverage, sit back, and enjoy the experience." image:[UIImage imageNamed:@"coffee"] buttonText:nil action:nil];
     
     OnboardingContentViewController *thirdPage = [[OnboardingContentViewController alloc] initWithTitle:@"Rock Out" body:@"Import your favorite tunes and jam out while you browse." image:[UIImage imageNamed:@"headphones"] buttonText:nil action:nil];
     
-    OnboardingContentViewController *fourthPage = [[OnboardingContentViewController alloc] initWithTitle:@"Experiment" body:@"Try new things, explore different combinations, and see what you come up with!" image:[UIImage imageNamed:@"testtube"] buttonText:@"Let's Get Started" action:^{
-        [self.nc dismissViewControllerAnimated:YES completion:nil];
-    }];
+    OnboardingContentViewController *fourthPage = [[OnboardingContentViewController alloc] initWithTitle:@"Experiment" body:@"Try new things, explore different combinations, and see what you come up with!" image:[UIImage imageNamed:@"testtube"] buttonText:@"Let's Get Started" action:nil];
     
     OnboardingViewController *onboardingVC = [[OnboardingViewController alloc] initWithBackgroundImage:[UIImage imageNamed:@"purple"] contents:@[firstPage, secondPage, thirdPage, fourthPage]];
     onboardingVC.shouldMaskBackground = NO;
     onboardingVC.iconSize = 160;
     onboardingVC.fontName = @"HelveticaNeue-Thin";
-    
-    [self.nc presentViewController:onboardingVC animated:YES completion:nil];
+    return onboardingVC;
 }
 
-- (void)showFourthDemo {
+- (OnboardingViewController *)generateFourthDemoVC {
     OnboardingContentViewController *firstPage = [[OnboardingContentViewController alloc] initWithTitle:@"\"If you can't explain it simply, you don't know it well enough.\"" body:@"                 - Einsten" image:[UIImage imageNamed:@""] buttonText:nil action:nil];
     
     OnboardingContentViewController *secondPage = [[OnboardingContentViewController alloc] initWithTitle:@"\"If you wish to make an apple pie from scratch, you must first invent the universe.\"" body:@"                 - Sagan" image:nil buttonText:nil action:nil];
@@ -99,9 +87,7 @@
     thirdPage.titleFontSize = 33;
     thirdPage.bodyFontSize = 25;
     
-    OnboardingContentViewController *fourthPage = [[OnboardingContentViewController alloc] initWithTitle:@"\"Scientists have become the bearers of the torch of discovery in our quest for knowledge.\"" body:@"                 - Hawking" image:nil buttonText:nil action:^{
-        [self.nc dismissViewControllerAnimated:YES completion:nil];
-    }];
+    OnboardingContentViewController *fourthPage = [[OnboardingContentViewController alloc] initWithTitle:@"\"Scientists have become the bearers of the torch of discovery in our quest for knowledge.\"" body:@"                 - Hawking" image:nil buttonText:nil action:nil];
     fourthPage.titleFontSize = 28;
     fourthPage.bodyFontSize = 24;
     
@@ -110,8 +96,7 @@
     onboardingVC.titleTextColor = [UIColor colorWithRed:57/255.0 green:57/255.0 blue:57/255.0 alpha:1.0];;
     onboardingVC.bodyTextColor = [UIColor colorWithRed:244/255.0 green:64/255.0 blue:40/255.0 alpha:1.0];
     onboardingVC.fontName = @"HelveticaNeue-Italic";
-    
-    [self.nc presentViewController:onboardingVC animated:YES completion:nil];
+    return onboardingVC;
 }
 
 @end
