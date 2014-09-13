@@ -7,6 +7,14 @@ Onboard provides developers with a quick and easy means to create a beautiful, e
 Usage
 =====
 
+Cocoapods
+--------
+I'm still new to implementing my own pods, so bear with me! Adding the following to your podfile and running `pod install` should do the trick:
+
+`pod 'Onboard', :git => 'https://github.com/mamaral/Onboard.git'`
+
+Manual
+------
 Drop the OnboardingViewController and OnboardingContentViewController header and implementation files into your project, import them into your AppDelegate, and you're ready to create an awesome onboarding experience for your users!
 
 Create individual pages by creating an OnboardingContentViewController, providing it a title, body, image, text for an action button, and within the action block handle whatever you want to do when the users press the button. If you don't want a button, you can leave both the button text and action handler nil.
