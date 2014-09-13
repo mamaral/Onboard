@@ -11,18 +11,38 @@ Drop the OnboardingViewController and OnboardingContentViewController header and
 
 Create individual pages by creating an OnboardingContentViewController, providing it a title, body, image, text for an action button, and within the action block handle whatever you want to do when the users press the button. If you don't want a button, you can leave both the button text and action handler nil.
 
+Objective-C
+-------
+
 ```js
 OnboardingContentViewController *firstPage = [[OnboardingContentViewController alloc] initWithTitle:@"Page Title" body:@"Page body goes here." image:[UIImage imageNamed:@"icon"] buttonText:@"Text For Button" action:^{
     // do something here when users press the button, like ask for location services permissions, register for push notifications, connect to social media, or finish the onboarding process
 }];
+```
 
+Swift
+-------
+
+```js
+let firstPage: OnboardingContentViewController = OnboardingContentViewController(title: "Page Title", body: "Page Body.", image: UIImage(named: "icon"), buttonText: "Button Text") {
+    // do something here when the user presses the button
+}
 ```
 
 Then create the OnboardingViewController by providing a background image and an array of OnboardingContentViewControllers you just created. You can then present the view modally and get the onboarding process started!
 
+Objective-C
+-------
+
 ```js
 OnboardingViewController *onboardingVC = [[OnboardingViewController alloc] initWithBackgroundImage:[UIImage imageNamed:@"background"] contents:@[firstPage, secondPage, thirdPage]];
+```
 
+Swift
+-------
+
+```js
+let onboardingVC: OnboardingViewController = OnboardingViewController(backgroundImage: UIImage(named: "background"), contents: [firstPage, secondPage, thirdPage])
 ```
 
 With only a few lines of code you have a beautiful, end-to-end onboarding process that will get your users excited to use your awesome application.
