@@ -25,17 +25,10 @@
 }
 
 - (void)testContentViewControllers {
-    // create some content view controllers, create an onboaring view controller with an array of these
-    // view controllers, get the view controllers after the controller was initialized, and make sure their
-    // contents are correct
-    OnboardingContentViewController *contentVC1 = [[OnboardingContentViewController alloc] initWithTitle:@"Title 1" body:@"Body 1" image:nil buttonText:nil action:nil];
-    OnboardingContentViewController *contentVC2 = [[OnboardingContentViewController alloc] initWithTitle:@"Title 2" body:@"Body 2" image:nil buttonText:nil action:nil];
-    OnboardingContentViewController *contentVC3 = [[OnboardingContentViewController alloc] initWithTitle:@"Title 3" body:@"Body 3" image:nil buttonText:nil action:nil];
-    OnboardingContentViewController *contentVC4 = [[OnboardingContentViewController alloc] initWithTitle:@"Title 4" body:@"Body 4" image:nil buttonText:nil action:nil];
-    
-    NSArray *contents = @[contentVC1, contentVC2, contentVC3, contentVC4];
+    // This tests that when we create an onboarding view controller with an array of content
+    // view controllers at init-time, the view controllers are correctly set.
+    NSArray *contents = [self generateStockContentVCS];
     OnboardingViewController *onboardingVC = [[OnboardingViewController alloc] initWithBackgroundImage:nil contents:contents];
-    
     NSArray *contentsFromController = [onboardingVC contentViewControllers];
     
     for (NSInteger index = 0; index < contents.count; index++) {
@@ -43,6 +36,61 @@
         OnboardingContentViewController *passedContentVC = contentsFromController[index];
         XCTAssertEqualObjects(originalContentVC, passedContentVC, @"The content view controllers from the controller don't match.");
     }
+}
+
+- (void)testConvenienceSetters {
+    // This tests that when we use the convenience setter methods on the master onboaring view controller,
+    // the properties correctly trickle down to each of the child content view controllers.
+    OnboardingViewController *onboardingVC = [[OnboardingViewController alloc] initWithBackgroundImage:nil contents:[self generateStockContentVCS]];
+    
+    CGFloat testIconSize = 80;
+    onboardingVC.iconSize = testIconSize;
+    
+    UIColor *testColor = [UIColor purpleColor];
+    onboardingVC.titleTextColor = testColor;
+    onboardingVC.bodyTextColor = testColor;
+    onboardingVC.buttonTextColor = testColor;
+    
+    NSString *testFontName = @"Helvetica-LightOblique";
+    onboardingVC.fontName = testFontName;
+    
+    CGFloat testFontSize = 12;
+    onboardingVC.titleFontSize = testFontSize;
+    onboardingVC.bodyFontSize = testFontSize;
+    
+    CGFloat testPadding = 22;
+    onboardingVC.topPadding = testPadding;
+    onboardingVC.underIconPadding = testPadding;
+    onboardingVC.underTitlePadding = testPadding;
+    onboardingVC.bottomPadding = testPadding;
+    
+    NSArray *contentsFromController = [onboardingVC contentViewControllers];
+    
+    for (OnboardingContentViewController *contentVC in contentsFromController) {
+        XCTAssert(contentVC.iconSize == testIconSize, @"The content view controller's icon size is invalid.");
+        XCTAssert(contentVC.titleTextColor == testColor, @"The content view controller's title text color is invalid.");
+        XCTAssert(contentVC.bodyTextColor == testColor, @"The content view controller's body text color is invalid.");
+        XCTAssert(contentVC.buttonTextColor == testColor, @"The content view controller's button test color is invalid.");
+        XCTAssert([contentVC.fontName isEqualToString:testFontName], @"The content view controller's font name is invalid.");
+        XCTAssert(contentVC.titleFontSize == testFontSize, @"The content view controller's title fotn size is invalid.");
+        XCTAssert(contentVC.bodyFontSize == testFontSize, @"The content view controller's body font size is invalid.");
+        XCTAssert(contentVC.topPadding == testPadding, @"The content view controller's top padding is invalid.");
+        XCTAssert(contentVC.underIconPadding == testPadding, @"The content view controller's under icon padding is invalid.");
+        XCTAssert(contentVC.underTitlePadding == testPadding, @"The content view controller's under title padding is invalid.");
+        XCTAssert(contentVC.bottomPadding == testPadding, @"The content view controller's bottom padding is invalid.");
+    }
+}
+
+
+#pragma mark - Test utilities
+
+- (NSArray *)generateStockContentVCS {
+    // Create and return an array of content view controllers.
+    OnboardingContentViewController *contentVC1 = [[OnboardingContentViewController alloc] initWithTitle:@"T1" body:@"B1" image:nil buttonText:nil action:nil];
+    OnboardingContentViewController *contentVC2 = [[OnboardingContentViewController alloc] initWithTitle:@"T2" body:@"B2" image:nil buttonText:nil action:nil];
+    OnboardingContentViewController *contentVC3 = [[OnboardingContentViewController alloc] initWithTitle:@"T3" body:@"B3" image:nil buttonText:nil action:nil];
+    OnboardingContentViewController *contentVC4 = [[OnboardingContentViewController alloc] initWithTitle:@"T4" body:@"B4" image:nil buttonText:nil action:nil];
+    return @[contentVC1, contentVC2, contentVC3, contentVC4];
 }
 
 @end
