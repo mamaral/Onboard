@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		274CE78E19C3D70E00AF90AE /* OnboardingContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274CE78D19C3D70E00AF90AE /* OnboardingContentViewController.swift */; };
+		274CE79019C3D72500AF90AE /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274CE78F19C3D72500AF90AE /* OnboardingViewController.swift */; };
 		2778ED4619C292BD00FF402D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2778ED4519C292BD00FF402D /* AppDelegate.swift */; };
 		2778ED4D19C292BD00FF402D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2778ED4C19C292BD00FF402D /* Images.xcassets */; };
 		2778ED5C19C292BD00FF402D /* OnboardSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2778ED5B19C292BD00FF402D /* OnboardSwiftTests.swift */; };
-		2778ED6619C2931500FF402D /* OnboardingContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2778ED6519C2931500FF402D /* OnboardingContentViewController.swift */; };
-		27D7ED0319C3CA5E00A8438B /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D7ED0219C3CA5E00A8438B /* OnboardingViewController.swift */; };
 		27D7ED0D19C3CCDE00A8438B /* blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 27D7ED0A19C3CCDE00A8438B /* blue.png */; };
 		27D7ED0E19C3CCDE00A8438B /* red.png in Resources */ = {isa = PBXBuildFile; fileRef = 27D7ED0B19C3CCDE00A8438B /* red.png */; };
 		27D7ED0F19C3CCDE00A8438B /* yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 27D7ED0C19C3CCDE00A8438B /* yellow.png */; };
@@ -30,6 +30,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		274CE78D19C3D70E00AF90AE /* OnboardingContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingContentViewController.swift; sourceTree = "<group>"; };
+		274CE78F19C3D72500AF90AE /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		2778ED4019C292BD00FF402D /* OnboardSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnboardSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2778ED4419C292BD00FF402D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2778ED4519C292BD00FF402D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -37,8 +39,6 @@
 		2778ED5519C292BD00FF402D /* OnboardSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OnboardSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2778ED5A19C292BD00FF402D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2778ED5B19C292BD00FF402D /* OnboardSwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardSwiftTests.swift; sourceTree = "<group>"; };
-		2778ED6519C2931500FF402D /* OnboardingContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingContentViewController.swift; sourceTree = "<group>"; };
-		27D7ED0219C3CA5E00A8438B /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OnboardingViewController.swift; path = ../OnboardingViewController.swift; sourceTree = "<group>"; };
 		27D7ED0A19C3CCDE00A8438B /* blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue.png; sourceTree = "<group>"; };
 		27D7ED0B19C3CCDE00A8438B /* red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red.png; sourceTree = "<group>"; };
 		27D7ED0C19C3CCDE00A8438B /* yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellow.png; sourceTree = "<group>"; };
@@ -86,8 +86,8 @@
 			isa = PBXGroup;
 			children = (
 				2778ED4519C292BD00FF402D /* AppDelegate.swift */,
-				27D7ED0219C3CA5E00A8438B /* OnboardingViewController.swift */,
-				2778ED6519C2931500FF402D /* OnboardingContentViewController.swift */,
+				274CE78F19C3D72500AF90AE /* OnboardingViewController.swift */,
+				274CE78D19C3D70E00AF90AE /* OnboardingContentViewController.swift */,
 				27D7ED1219C3D21F00A8438B /* Images */,
 				2778ED4319C292BD00FF402D /* Supporting Files */,
 			);
@@ -235,9 +235,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2778ED6619C2931500FF402D /* OnboardingContentViewController.swift in Sources */,
 				2778ED4619C292BD00FF402D /* AppDelegate.swift in Sources */,
-				27D7ED0319C3CA5E00A8438B /* OnboardingViewController.swift in Sources */,
+				274CE79019C3D72500AF90AE /* OnboardingViewController.swift in Sources */,
+				274CE78E19C3D70E00AF90AE /* OnboardingContentViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
