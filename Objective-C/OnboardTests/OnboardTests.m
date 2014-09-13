@@ -38,6 +38,13 @@
     }
 }
 
+- (void)testDefaultValues {
+    // This tests that the default values on the onboarding view controller are set properly.
+    OnboardingViewController *onboardingVC = [[OnboardingViewController alloc] initWithBackgroundImage:nil contents:nil];
+    XCTAssertTrue(onboardingVC.shouldMaskBackground, @"The background should be masked by default.");
+    XCTAssertFalse(onboardingVC.shouldBlurBackground, @"The background should not be blurred by default.");
+}
+
 - (void)testConvenienceSetters {
     // This tests that when we use the convenience setter methods on the master onboaring view controller,
     // the properties correctly trickle down to each of the child content view controllers.
