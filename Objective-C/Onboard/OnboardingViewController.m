@@ -24,8 +24,10 @@ static CGFloat const kDefaultSaturationDeltaFactor = 1.8;
     _backgroundImage = backgroundImage;
     _viewControllers = contents;
     
-    // we want the background masked by default
-    _shouldMaskBackground = YES;
+    // set the default properties
+    self.shouldMaskBackground = YES;
+    self.shouldBlurBackground = NO;
+    self.shouldFadeTransitions = NO;
     
     return self;
 }
@@ -65,8 +67,11 @@ static CGFloat const kDefaultSaturationDeltaFactor = 1.8;
         [_pageVC.view addSubview:backgroundMaskView];
     }
     
+    // set the initial current page as the first page provided
+    _currentPage = [_viewControllers firstObject];
+    
     // more page controller setup
-    [_pageVC setViewControllers:@[[_viewControllers firstObject]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+    [_pageVC setViewControllers:@[_currentPage] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
     _pageVC.view.backgroundColor = [UIColor clearColor];
     [self addChildViewController:_pageVC];
     [self.view addSubview:_pageVC.view];
@@ -78,6 +83,22 @@ static CGFloat const kDefaultSaturationDeltaFactor = 1.8;
     _pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.view.frame) - kPageControlHeight, self.view.frame.size.width, kPageControlHeight)];
     _pageControl.numberOfPages = _viewControllers.count;
     [self.view addSubview:_pageControl];
+    
+    // if we want to fade the transitions, we need to tap into the underlying scrollview
+    // so we can set ourself as the delegate, this is sort of hackish but the only current
+    // solution I am aware of using a page view controller
+    if (self.shouldFadeTransitions) {
+        for (UIView *view in _pageVC.view.subviews) {
+            if ([view isKindOfClass:[UIScrollView class]]) {
+                [(UIScrollView *)view setDelegate:self];
+            }
+        }
+        
+        // set ourself as the delegate on all of the content views
+        for (OnboardingContentViewController *contentVC in _viewControllers) {
+            contentVC.delegate = self;
+        }
+    }
 }
 
 
@@ -193,6 +214,37 @@ static CGFloat const kDefaultSaturationDeltaFactor = 1.8;
 - (void)moveToPageForViewController:(UIViewController *)viewController {
     [_pageVC setViewControllers:@[viewController] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
     [_pageControl setCurrentPage:[_viewControllers indexOfObject:viewController]];
+}
+
+
+#pragma mark - Page scroll status
+
+- (void)setCurrentPage:(OnboardingContentViewController *)currentPage {
+    _currentPage = currentPage;
+}
+
+- (void)setNextPage:(OnboardingContentViewController *)nextPage {
+    _upcomingPage = nextPage;
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    // calculate the percent complete of the transition of the current page given the
+    // scrollview's offset and the width of the screen
+    CGFloat percentComplete = fabs(scrollView.contentOffset.x - self.view.frame.size.width) / self.view.frame.size.width;
+    
+    // these cases have some funk results given the way this method is called, like stuff
+    // just disappearing, so we want to do nothing in these cases
+    if (_upcomingPage == _currentPage || percentComplete == 0) {
+        return;
+    }
+    
+    // set the next page's alpha to be the percent complete, so if we're 90% of the way
+    // scrolling towards the next page, its content's alpha should be 90%
+    [_upcomingPage updateAlphas:percentComplete];
+    
+    // set the current page's alpha to the difference between 100% and this percent value,
+    // so we're 90% scrolling towards the next page, the current content's alpha sshould be 10%
+    [_currentPage updateAlphas:1.0 - percentComplete];
 }
 
 
