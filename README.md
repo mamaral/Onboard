@@ -93,6 +93,12 @@ We can also apply a blur to your background image:
 onboardingVC.shouldBlurBackground = YES; // defaults to NO
 ```
 
+Apply a fade effect to the icons, text, and buttons, while transitioning between pages. Contents fade out as you scroll away, and the contents for the next page fade in as they scroll in.
+
+```js
+onboardingVC.shouldFadeTransitions = YES; // defaults to NO
+```
+
 You can tweak these settings in a few different combinations to get your desired effect:
 
 ![demo](Screenshots/normal.png)
