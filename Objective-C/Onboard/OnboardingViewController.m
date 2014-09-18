@@ -11,9 +11,13 @@
 @import Accelerate;
 
 static CGFloat const kPageControlHeight = 35;
+static CGFloat const kSkipButtonWidth = 100;
+static CGFloat const kSkipButtonHeight = 44;
 static CGFloat const kBackgroundMaskAlpha = 0.6;
 static CGFloat const kDefaultBlurRadius = 20;
 static CGFloat const kDefaultSaturationDeltaFactor = 1.8;
+
+static NSString * const kSkipButtonText = @"Skip";
 
 @implementation OnboardingViewController
 
@@ -28,6 +32,9 @@ static CGFloat const kDefaultSaturationDeltaFactor = 1.8;
     self.shouldMaskBackground = YES;
     self.shouldBlurBackground = NO;
     self.shouldFadeTransitions = NO;
+    
+    self.allowSkipping = NO;
+    self.skipHandler = ^{};
     
     return self;
 }
@@ -84,6 +91,14 @@ static CGFloat const kDefaultSaturationDeltaFactor = 1.8;
     _pageControl.numberOfPages = _viewControllers.count;
     [self.view addSubview:_pageControl];
     
+    if (self.allowSkipping) {
+        _skipButton = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.view.frame) - kSkipButtonWidth, CGRectGetMaxY(self.view.frame) - kSkipButtonHeight, kSkipButtonWidth, kSkipButtonHeight)];
+        [_skipButton setTitle:kSkipButtonText forState:UIControlStateNormal];
+        [_skipButton setTintColor:[UIColor whiteColor]];
+        [_skipButton addTarget:self action:@selector(handleSkipButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:_skipButton];
+    }
+    
     // if we want to fade the transitions, we need to tap into the underlying scrollview
     // so we can set ourself as the delegate, this is sort of hackish but the only current
     // solution I am aware of using a page view controller
@@ -99,6 +114,13 @@ static CGFloat const kDefaultSaturationDeltaFactor = 1.8;
             contentVC.delegate = self;
         }
     }
+}
+
+
+#pragma mark - Skipping
+
+- (void)handleSkipButtonPressed {
+    self.skipHandler();
 }
 
 

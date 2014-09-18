@@ -41,6 +41,14 @@
     OnboardingContentViewController *thirdPage = [[OnboardingContentViewController alloc] initWithTitle:@"Seriously Though" body:@"Kudos to the photographer." image:[UIImage imageNamed:@"yellow"] buttonText:@"Get Started" action:nil];
     
     OnboardingViewController *onboardingVC = [[OnboardingViewController alloc] initWithBackgroundImage:[UIImage imageNamed:@"street"] contents:@[firstPage, secondPage, thirdPage]];
+
+    // If you want to allow skipping the onboarding process, enable skipping and set a block to be executed
+    // when the user hits the skip button.
+    onboardingVC.allowSkipping = YES;
+    onboardingVC.skipHandler = ^{
+        NSLog(@"End the onboarding process here.");
+    };
+    
     return onboardingVC;
 }
 

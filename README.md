@@ -78,7 +78,7 @@ onboardingVC.bottomPadding = 20;
 
 ![demo](Screenshots/key.png)
 
-Blurring and Masking
+Blurring, Masking, and Fading
 =============
 
 By default, the image you use for the background will have a mask applied over it, darkening it a bit. This is to add a little bit of contrast so the text can more easily be seen. This can easily be disabled if your image is already edited or looks fine as-is:
@@ -97,6 +97,18 @@ Apply a fade effect to the icons, text, and buttons, while transitioning between
 
 ```js
 onboardingVC.shouldFadeTransitions = YES; // defaults to NO
+```
+
+Skipping
+=============
+
+If you want to allow users to skip the onboarding process, enable skipping on the onboarding view controller and set a block to be executed when the skip button is pressed.
+
+```js
+onboardingVC.allowSkipping = YES;
+onboardingVC.skipHandler = ^{
+    // Dismiss, fade out, etc...
+};
 ```
 
 You can tweak these settings in a few different combinations to get your desired effect:

@@ -14,14 +14,20 @@
     UIPageViewController *_pageVC;
     UIPageControl *_pageControl;
     NSArray *_viewControllers;
+    UIButton *_skipButton;
     
     OnboardingContentViewController *_currentPage;
     OnboardingContentViewController *_upcomingPage;
 }
 
+// Masking, blurring, fading, etc.
 @property (nonatomic) BOOL shouldMaskBackground;
 @property (nonatomic) BOOL shouldBlurBackground;
 @property (nonatomic) BOOL shouldFadeTransitions;
+
+// Skipping
+@property (nonatomic) BOOL allowSkipping;
+@property (nonatomic, strong) dispatch_block_t skipHandler;
 
 ////////////////////////////////////////////////////////////////////
 // These are convenience properties for content view customization, so you
