@@ -128,7 +128,20 @@ static NSString * const kSkipButtonText = @"Skip";
 
 - (void)setIconSize:(CGFloat)iconSize {
     for (OnboardingContentViewController *contentVC in _viewControllers) {
-        contentVC.iconSize = iconSize;
+        contentVC.iconWidth = iconSize;
+        contentVC.iconHeight = iconSize;
+    }
+}
+
+- (void)setIconWidth:(CGFloat)iconWidth {
+    for (OnboardingContentViewController *contentVC in _viewControllers) {
+        contentVC.iconWidth = iconWidth;
+    }
+}
+
+- (void)setIconHeight:(CGFloat)iconHeight {
+    for (OnboardingContentViewController *contentVC in _viewControllers) {
+        contentVC.iconHeight = iconHeight;
     }
 }
 
