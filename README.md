@@ -4,6 +4,9 @@ Onboard
 Onboard provides developers with a quick and easy means to create a beautiful, engaging, and useful onboarding experience with only a few lines of code.
 
 
+![demo](onboard_demo.gif)
+
+
 Usage
 =====
 
@@ -54,9 +57,6 @@ let onboardingVC: OnboardingViewController = OnboardingViewController(background
 ```
 
 With only a few lines of code you have a beautiful, end-to-end onboarding process that will get your users excited to use your awesome application.
-
-
-![demo](onboard_demo.gif)
 
 
 Customization
