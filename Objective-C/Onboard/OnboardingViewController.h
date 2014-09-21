@@ -34,7 +34,10 @@
 // can set these properties on the master onboarding view controller and
 // it will make sure they trickle down to each content view controller,
 // rather than having to individually set the same values on each
-@property (nonatomic) CGFloat iconSize;
+
+@property (nonatomic) CGFloat iconSize; // set this if you want the icon to have the same width and height for all contents
+@property (nonatomic) CGFloat iconHeight;
+@property (nonatomic) CGFloat iconWidth;
 
 @property (nonatomic, retain) UIColor *titleTextColor;
 @property (nonatomic, retain) UIColor *bodyTextColor;
@@ -48,6 +51,7 @@
 @property (nonatomic) CGFloat underIconPadding;
 @property (nonatomic) CGFloat underTitlePadding;
 @property (nonatomic) CGFloat bottomPadding;
+
 ////////////////////////////////////////////////////////////////////
 
 - (id)initWithBackgroundImage:(UIImage *)backgroundImage contents:(NSArray *)contents;

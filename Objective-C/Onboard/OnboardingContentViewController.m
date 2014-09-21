@@ -44,7 +44,8 @@ static CGFloat const kMainPageControlHeight = 35;
     _actionHandler = action ?: ^{};
     
     // setup the initial default properties
-    self.iconSize = kDefaultImageViewSize;
+    self.iconHeight = kDefaultImageViewSize;
+    self.iconWidth = kDefaultImageViewSize;
     self.fontName = kDefaultOnboardingFont;
     self.titleFontSize = kDefaultTitleFontSize;
     self.bodyFontSize = kDefaultBodyFontSize;
@@ -99,7 +100,7 @@ static CGFloat const kMainPageControlHeight = 35;
     
     // create the image view with the appropriate image, size, and center in on screen
     _imageView = [[UIImageView alloc] initWithImage:_image];
-    [_imageView setFrame:CGRectMake(horizontalCenter - (self.iconSize / 2), self.topPadding, self.iconSize, self.iconSize)];
+    [_imageView setFrame:CGRectMake(horizontalCenter - (self.iconWidth / 2), self.topPadding, self.iconWidth, self.iconHeight)];
     [self.view addSubview:_imageView];
     
     // create and configure the main text label sitting underneath the icon with the provided padding

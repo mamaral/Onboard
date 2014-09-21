@@ -25,7 +25,8 @@
 
 @property (nonatomic, weak) OnboardingViewController *delegate;
 
-@property (nonatomic) CGFloat iconSize;
+@property (nonatomic) CGFloat iconHeight;
+@property (nonatomic) CGFloat iconWidth;
 
 @property (nonatomic, retain) UIColor *titleTextColor;
 @property (nonatomic, retain) UIColor *bodyTextColor;
