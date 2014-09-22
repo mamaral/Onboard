@@ -10,23 +10,63 @@
 #import "OnboardingViewController.h"
 #import "OnboardingContentViewController.h"
 
+static NSString * const kUserHasOnboardedKey = @"user_has_onboarded";
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
     
-    // obviously, only do one of these at a time
-    self.window.rootViewController = [self generateFirstDemoVC];
-//    self.window.rootViewController = [self generateSecondDemoVC];
-//    self.window.rootViewController = [self generateThirdDemoVC];
-//    self.window.rootViewController = [self generateFourthDemoVC];
+    // determine if the user has onboarded yet or not
+    BOOL userHasOnboarded = [[NSUserDefaults standardUserDefaults] boolForKey:kUserHasOnboardedKey];
+    
+    // if the user has already onboarded, just set up the normal root view controller
+    // for the application, but don't animate it because there's no transition in this case
+    if (userHasOnboarded) {
+        [self setupNormalRootViewControllerAnimated:NO];
+    }
+    
+    // otherwise set the root view controller to the onboarding view controller
+    else {
+        self.window.rootViewController = [self generateFirstDemoVC];
+        //    self.window.rootViewController = [self generateSecondDemoVC];
+        //    self.window.rootViewController = [self generateThirdDemoVC];
+        //    self.window.rootViewController = [self generateFourthDemoVC];
+    }
     
     application.statusBarStyle = UIStatusBarStyleLightContent;
     
     [self.window makeKeyAndVisible];
     
     return YES;
+}
+
+- (void)setupNormalRootViewControllerAnimated:(BOOL)animated {
+    // create whatever your root view controller is going to be, in this case just a simple view controller
+    // wrapped in a navigation controller
+    UIViewController *mainVC = [UIViewController new];
+    mainVC.title = @"Main Application";
+    
+    // if we want to animate the transition, do it
+    if (animated) {
+        [UIView transitionWithView:self.window duration:0.5 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+            self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:mainVC];
+        } completion:nil];
+    }
+    
+    // otherwise just set the root view controller normally without animation
+    else {
+        self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:mainVC];
+    }
+}
+
+- (void)handleOnboardingCompletion {
+    // set that we have completed onboarding so we only do it once
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kUserHasOnboardedKey];
+    
+    // animate the transition to the main application
+    [self setupNormalRootViewControllerAnimated:YES];
 }
 
 - (OnboardingViewController *)generateFirstDemoVC {
@@ -38,7 +78,9 @@
         [[[UIAlertView alloc] initWithTitle:nil message:@"Prompt users to do other cool things on startup." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
     }];
     
-    OnboardingContentViewController *thirdPage = [[OnboardingContentViewController alloc] initWithTitle:@"Seriously Though" body:@"Kudos to the photographer." image:[UIImage imageNamed:@"yellow"] buttonText:@"Get Started" action:nil];
+    OnboardingContentViewController *thirdPage = [[OnboardingContentViewController alloc] initWithTitle:@"Seriously Though" body:@"Kudos to the photographer." image:[UIImage imageNamed:@"yellow"] buttonText:@"Get Started" action:^{
+        [self handleOnboardingCompletion];
+    }];
     
     OnboardingViewController *onboardingVC = [[OnboardingViewController alloc] initWithBackgroundImage:[UIImage imageNamed:@"street"] contents:@[firstPage, secondPage, thirdPage]];
 
@@ -46,7 +88,7 @@
     // when the user hits the skip button.
     onboardingVC.allowSkipping = YES;
     onboardingVC.skipHandler = ^{
-        NSLog(@"End the onboarding process here.");
+        [self handleOnboardingCompletion];
     };
     
     return onboardingVC;
