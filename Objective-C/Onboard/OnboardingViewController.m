@@ -165,7 +165,15 @@ static NSString * const kSkipButtonText = @"Skip";
 
 - (void)setFontName:(NSString *)fontName {
     for (OnboardingContentViewController *contentVC in _viewControllers) {
-        contentVC.fontName = fontName;
+        contentVC.titleFontName = fontName;
+        contentVC.bodyFontName = fontName;
+        contentVC.buttonFontName = fontName;
+    }
+}
+
+- (void)setTitleFontName:(NSString *)fontName {
+    for (OnboardingContentViewController *contentVC in _viewControllers) {
+        contentVC.titleFontName = fontName;
     }
 }
 
@@ -175,9 +183,27 @@ static NSString * const kSkipButtonText = @"Skip";
     }
 }
 
+- (void)setBodyFontName:(NSString *)fontName {
+    for (OnboardingContentViewController *contentVC in _viewControllers) {
+        contentVC.bodyFontName = fontName;
+    }
+}
+
 - (void)setBodyFontSize:(CGFloat)bodyFontSize {
     for (OnboardingContentViewController *contentVC in _viewControllers) {
         contentVC.bodyFontSize = bodyFontSize;
+    }
+}
+
+- (void)setButtonFontName:(NSString *)fontName {
+    for (OnboardingContentViewController *contentVC in _viewControllers) {
+        contentVC.buttonFontName = fontName;
+    }
+}
+
+- (void)setButtonFontSize:(CGFloat)bodyFontSize {
+    for (OnboardingContentViewController *contentVC in _viewControllers) {
+        contentVC.buttonFontSize = bodyFontSize;
     }
 }
 

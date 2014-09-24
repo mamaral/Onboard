@@ -43,9 +43,16 @@
 @property (nonatomic, strong) UIColor *bodyTextColor;
 @property (nonatomic, strong) UIColor *buttonTextColor;
 
-@property (nonatomic, strong) NSString *fontName;
+@property (nonatomic, strong) NSString *fontName; // to set the same font for everything
+
+@property (nonatomic, strong) NSString *titleFontName;
 @property (nonatomic) CGFloat titleFontSize;
+
+@property (nonatomic, strong) NSString *bodyFontName;
 @property (nonatomic) CGFloat bodyFontSize;
+
+@property (nonatomic, strong) NSString *buttonFontName;
+@property (nonatomic) CGFloat buttonFontSize;
 
 @property (nonatomic) CGFloat topPadding;
 @property (nonatomic) CGFloat underIconPadding;

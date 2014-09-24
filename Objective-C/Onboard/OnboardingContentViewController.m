@@ -21,6 +21,7 @@ static CGFloat const kDefaultUnderTitlePadding = 30;
 static CGFloat const kDefaultBottomPadding = 0;
 static CGFloat const kDefaultTitleFontSize = 38;
 static CGFloat const kDefaultBodyFontSize = 28;
+static CGFloat const kDefaultButtonFontSize = 24;
 
 static CGFloat const kActionButtonHeight = 50;
 static CGFloat const kMainPageControlHeight = 35;
@@ -43,16 +44,29 @@ static CGFloat const kMainPageControlHeight = 35;
     _buttonText = buttonText;
     _actionHandler = action ?: ^{};
     
-    // setup the initial default properties
+    // default icon properties
     self.iconHeight = kDefaultImageViewSize;
     self.iconWidth = kDefaultImageViewSize;
-    self.fontName = kDefaultOnboardingFont;
+    
+    // default title properties
+    self.titleFontName = kDefaultOnboardingFont;
     self.titleFontSize = kDefaultTitleFontSize;
+    
+    // default body properties
+    self.bodyFontName = kDefaultOnboardingFont;
     self.bodyFontSize = kDefaultBodyFontSize;
+    
+    // default button properties
+    self.buttonFontName = kDefaultOnboardingFont;
+    self.buttonFontSize = kDefaultButtonFontSize;
+    
+    // default padding values
     self.topPadding = kDefaultTopPadding;
     self.underIconPadding = kDefaultUnderIconPadding;
     self.underTitlePadding = kDefaultUnderTitlePadding;
     self.bottomPadding = kDefaultBottomPadding;
+    
+    // default colors
     self.titleTextColor = DEFAULT_TEXT_COLOR;
     self.bodyTextColor = DEFAULT_TEXT_COLOR;
     self.buttonTextColor = DEFAULT_TEXT_COLOR;
@@ -107,7 +121,7 @@ static CGFloat const kMainPageControlHeight = 35;
     _mainTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_imageView.frame) + self.underIconPadding, contentWidth, 0)];
     _mainTextLabel.text = _titleText;
     _mainTextLabel.textColor = self.titleTextColor;
-    _mainTextLabel.font = [UIFont fontWithName:self.fontName size:self.titleFontSize];
+    _mainTextLabel.font = [UIFont fontWithName:self.titleFontName size:self.titleFontSize];
     _mainTextLabel.numberOfLines = 0;
     _mainTextLabel.textAlignment = NSTextAlignmentCenter;
     [_mainTextLabel sizeToFit];
@@ -118,7 +132,7 @@ static CGFloat const kMainPageControlHeight = 35;
     _subTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_mainTextLabel.frame) + self.underTitlePadding, contentWidth, 0)];
     _subTextLabel.text = _body;
     _subTextLabel.textColor = self.bodyTextColor;
-    _subTextLabel.font = [UIFont fontWithName:self.fontName size:self.bodyFontSize];
+    _subTextLabel.font = [UIFont fontWithName:self.bodyFontName size:self.bodyFontSize];
     _subTextLabel.numberOfLines = 0;
     _subTextLabel.textAlignment = NSTextAlignmentCenter;
     [_subTextLabel sizeToFit];
@@ -128,7 +142,7 @@ static CGFloat const kMainPageControlHeight = 35;
     // create the action button if we were given button text
     if (_buttonText) {
         _actionButton = [[UIButton alloc] initWithFrame:CGRectMake((CGRectGetMaxX(self.view.frame) / 2) - (contentWidth / 2), CGRectGetMaxY(self.view.frame) - kMainPageControlHeight - kActionButtonHeight - self.bottomPadding, contentWidth, kActionButtonHeight)];
-        _actionButton.titleLabel.font = [UIFont systemFontOfSize:24];
+        _actionButton.titleLabel.font = [UIFont fontWithName:self.buttonFontName size:self.buttonFontSize];
         [_actionButton setTitle:_buttonText forState:UIControlStateNormal];
         [_actionButton setTitleColor:self.buttonTextColor forState:UIControlStateNormal];
         [_actionButton addTarget:self action:@selector(handleButtonPressed) forControlEvents:UIControlEventTouchUpInside];
