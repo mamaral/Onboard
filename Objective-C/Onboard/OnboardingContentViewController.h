@@ -28,9 +28,9 @@
 @property (nonatomic) CGFloat iconHeight;
 @property (nonatomic) CGFloat iconWidth;
 
-@property (nonatomic, retain) UIColor *titleTextColor;
-@property (nonatomic, retain) UIColor *bodyTextColor;
-@property (nonatomic, retain) UIColor *buttonTextColor;
+@property (nonatomic, strong) UIColor *titleTextColor;
+@property (nonatomic, strong) UIColor *bodyTextColor;
+@property (nonatomic, strong) UIColor *buttonTextColor;
 
 @property (nonatomic, retain) NSString *fontName;
 @property (nonatomic) CGFloat titleFontSize;
