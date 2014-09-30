@@ -6,6 +6,11 @@ Onboard provides developers with a quick and easy means to create a beautiful, e
 
 ![demo](onboard_demo.gif)
 
+Compatibility
+====
+
+I currently have implementations written in both Objective-C and Swift, although currently due to time constraints the Swift implementation does not have all of the customization features available in the Objective-C version, namely the skipping feature, customizing different fonts for different components on the same page, etc. I will do my best to get the Swift version to match the Objective-C version as soon as possible, and any pull requests are welcomed in the meantime!
+
 
 Usage
 =====
