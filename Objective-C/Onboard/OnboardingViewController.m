@@ -43,6 +43,10 @@ static NSString * const kSkipButtonText = @"Skip";
     self.allowSkipping = NO;
     self.skipHandler = ^{};
     
+    // create the initial exposed components so they can be customized
+    self.pageControl = [UIPageControl new];
+    self.skipButton = [UIButton new];
+    
     return self;
 }
 
@@ -94,14 +98,14 @@ static NSString * const kSkipButtonText = @"Skip";
     [_pageVC.view sendSubviewToBack:backgroundImageView];
     
     // create and configure the the page control
-    self.pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.view.frame) - kPageControlHeight, self.view.frame.size.width, kPageControlHeight)];
+    self.pageControl.frame = CGRectMake(0, CGRectGetMaxY(self.view.frame) - kPageControlHeight, self.view.frame.size.width, kPageControlHeight);
     self.pageControl.currentPageIndicatorTintColor = self.currentPageIndicatorColor;
     self.pageControl.pageIndicatorTintColor = self.pageIndicatorColor;
     self.pageControl.numberOfPages = _viewControllers.count;
     [self.view addSubview:self.pageControl];
     
     if (self.allowSkipping) {
-        self.skipButton = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.view.frame) - kSkipButtonWidth, CGRectGetMaxY(self.view.frame) - kSkipButtonHeight, kSkipButtonWidth, kSkipButtonHeight)];
+        self.skipButton.frame = CGRectMake(CGRectGetMaxX(self.view.frame) - kSkipButtonWidth, CGRectGetMaxY(self.view.frame) - kSkipButtonHeight, kSkipButtonWidth, kSkipButtonHeight);
         [self.skipButton setTitle:kSkipButtonText forState:UIControlStateNormal];
         [self.skipButton setTitleColor:self.skipButtonTextColor forState:UIControlStateNormal];
         [self.skipButton addTarget:self action:@selector(handleSkipButtonPressed) forControlEvents:UIControlEventTouchUpInside];
