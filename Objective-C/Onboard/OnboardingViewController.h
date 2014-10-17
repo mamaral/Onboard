@@ -9,16 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "OnboardingContentViewController.h"
 
-@interface OnboardingViewController : UIViewController <UIPageViewControllerDataSource, UIPageViewControllerDelegate, UIScrollViewDelegate> {
-    UIImage *_backgroundImage;
-    UIPageViewController *_pageVC;
-    UIPageControl *_pageControl;
-    NSArray *_viewControllers;
-    UIButton *_skipButton;
-    
-    OnboardingContentViewController *_currentPage;
-    OnboardingContentViewController *_upcomingPage;
-}
+@interface OnboardingViewController : UIViewController <UIPageViewControllerDataSource, UIPageViewControllerDelegate, UIScrollViewDelegate>
 
 // Masking, blurring, fading, etc.
 @property (nonatomic) BOOL shouldMaskBackground;

@@ -19,7 +19,14 @@ static CGFloat const kDefaultSaturationDeltaFactor = 1.8;
 
 static NSString * const kSkipButtonText = @"Skip";
 
-@implementation OnboardingViewController
+@implementation OnboardingViewController {
+    UIImage *_backgroundImage;
+    UIPageViewController *_pageVC;
+    NSArray *_viewControllers;
+    
+    OnboardingContentViewController *_currentPage;
+    OnboardingContentViewController *_upcomingPage;
+}
 
 - (id)initWithBackgroundImage:(UIImage *)backgroundImage contents:(NSArray *)contents {
     self = [super init];
