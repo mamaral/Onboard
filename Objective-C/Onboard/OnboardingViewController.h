@@ -20,6 +20,12 @@
 @property (nonatomic) BOOL allowSkipping;
 @property (nonatomic, strong) dispatch_block_t skipHandler;
 
+// Page Control
+@property (nonatomic, strong) UIPageControl *pageControl;
+
+// Skip Button
+@property (nonatomic, strong) UIButton *skipButton;
+
 ////////////////////////////////////////////////////////////////////
 // These are convenience properties for content view customization, so you
 // can set these properties on the master onboarding view controller and

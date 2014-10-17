@@ -94,16 +94,16 @@ static NSString * const kSkipButtonText = @"Skip";
     [_pageVC.view sendSubviewToBack:backgroundImageView];
     
     // create and configure the the page control
-    _pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.view.frame) - kPageControlHeight, self.view.frame.size.width, kPageControlHeight)];
-    _pageControl.numberOfPages = _viewControllers.count;
-    [self.view addSubview:_pageControl];
+    self.pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.view.frame) - kPageControlHeight, self.view.frame.size.width, kPageControlHeight)];
+    self.pageControl.numberOfPages = _viewControllers.count;
+    [self.view addSubview:self.pageControl];
     
     if (self.allowSkipping) {
-        _skipButton = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.view.frame) - kSkipButtonWidth, CGRectGetMaxY(self.view.frame) - kSkipButtonHeight, kSkipButtonWidth, kSkipButtonHeight)];
-        [_skipButton setTitle:kSkipButtonText forState:UIControlStateNormal];
-        [_skipButton setTintColor:[UIColor whiteColor]];
-        [_skipButton addTarget:self action:@selector(handleSkipButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-        [self.view addSubview:_skipButton];
+        self.skipButton = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.view.frame) - kSkipButtonWidth, CGRectGetMaxY(self.view.frame) - kSkipButtonHeight, kSkipButtonWidth, kSkipButtonHeight)];
+        [self.skipButton setTitle:kSkipButtonText forState:UIControlStateNormal];
+        [self.skipButton setTintColor:[UIColor whiteColor]];
+        [self.skipButton addTarget:self action:@selector(handleSkipButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:self.skipButton];
     }
     
     // if we want to fade the transitions, we need to tap into the underlying scrollview
@@ -276,12 +276,12 @@ static NSString * const kSkipButtonText = @"Skip";
     // for the page control dots
     UIViewController *viewController = [pageViewController.viewControllers lastObject];
     NSInteger newIndex = [_viewControllers indexOfObject:viewController];
-    [_pageControl setCurrentPage:newIndex];
+    [self.pageControl setCurrentPage:newIndex];
 }
 
 - (void)moveToPageForViewController:(UIViewController *)viewController {
     [_pageVC setViewControllers:@[viewController] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
-    [_pageControl setCurrentPage:[_viewControllers indexOfObject:viewController]];
+    [self.pageControl setCurrentPage:[_viewControllers indexOfObject:viewController]];
 }
 
 
