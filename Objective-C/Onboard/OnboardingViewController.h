@@ -22,12 +22,9 @@
 
 // Page Control
 @property (nonatomic, strong) UIPageControl *pageControl;
-@property (nonatomic, strong) UIColor *currentPageIndicatorColor;
-@property (nonatomic, strong) UIColor *pageIndicatorColor;
 
 // Skip Button
 @property (nonatomic, strong) UIButton *skipButton;
-@property (nonatomic, strong) UIColor *skipButtonTextColor;
 
 ////////////////////////////////////////////////////////////////////
 // These are convenience properties for content view customization, so you
