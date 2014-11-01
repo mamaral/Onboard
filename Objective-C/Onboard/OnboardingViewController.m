@@ -28,7 +28,7 @@ static NSString * const kSkipButtonText = @"Skip";
     OnboardingContentViewController *_upcomingPage;
 }
 
-- (id)initWithBackgroundImage:(UIImage *)backgroundImage contents:(NSArray *)contents {
+- (instancetype)initWithBackgroundImage:(UIImage *)backgroundImage contents:(NSArray *)contents {
     self = [super init];
 
     // store the passed in background image and view controllers array
@@ -39,6 +39,7 @@ static NSString * const kSkipButtonText = @"Skip";
     self.shouldMaskBackground = YES;
     self.shouldBlurBackground = NO;
     self.shouldFadeTransitions = NO;
+    self.swipingEnabled = YES;
     
     self.allowSkipping = NO;
     self.skipHandler = ^{};
@@ -63,7 +64,7 @@ static NSString * const kSkipButtonText = @"Skip";
     _pageVC.view.frame = self.view.frame;
     _pageVC.view.backgroundColor = [UIColor whiteColor];
     _pageVC.delegate = self;
-    _pageVC.dataSource = self;
+    _pageVC.dataSource = self.swipingEnabled ? self : nil;
     
     if (self.shouldBlurBackground) {
         [self blurBackground];
@@ -119,11 +120,12 @@ static NSString * const kSkipButtonText = @"Skip";
                 [(UIScrollView *)view setDelegate:self];
             }
         }
-        
-        // set ourself as the delegate on all of the content views
-        for (OnboardingContentViewController *contentVC in _viewControllers) {
-            contentVC.delegate = self;
-        }
+    }
+    
+    // set ourself as the delegate on all of the content views, to handle fading
+    // and auto-navigation
+    for (OnboardingContentViewController *contentVC in _viewControllers) {
+        contentVC.delegate = self;
     }
 }
 
@@ -283,9 +285,13 @@ static NSString * const kSkipButtonText = @"Skip";
     [self.pageControl setCurrentPage:newIndex];
 }
 
-- (void)moveToPageForViewController:(UIViewController *)viewController {
-    [_pageVC setViewControllers:@[viewController] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
-    [self.pageControl setCurrentPage:[_viewControllers indexOfObject:viewController]];
+- (void)moveNextPage {
+    NSUInteger indexOfNextPage = [_viewControllers indexOfObject:_currentPage] + 1;
+    
+    if (indexOfNextPage < _viewControllers.count) {
+        [_pageVC setViewControllers:@[_viewControllers[indexOfNextPage]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+        [self.pageControl setCurrentPage:indexOfNextPage];
+    }
 }
 
 

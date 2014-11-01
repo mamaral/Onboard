@@ -20,11 +20,17 @@
 @property (nonatomic) BOOL allowSkipping;
 @property (nonatomic, strong) dispatch_block_t skipHandler;
 
+// Swiping
+@property (nonatomic) BOOL swipingEnabled;
+
 // Page Control
 @property (nonatomic, strong) UIPageControl *pageControl;
 
 // Skip Button
 @property (nonatomic, strong) UIButton *skipButton;
+
+
+- (instancetype)initWithBackgroundImage:(UIImage *)backgroundImage contents:(NSArray *)contents;
 
 ////////////////////////////////////////////////////////////////////
 // These are convenience properties for content view customization, so you
@@ -58,11 +64,13 @@
 
 ////////////////////////////////////////////////////////////////////
 
-- (id)initWithBackgroundImage:(UIImage *)backgroundImage contents:(NSArray *)contents;
 
+////////////////////////////////////////////////////////////////////
+// Delegate methods for internal use.
+- (void)moveNextPage;
 - (void)setCurrentPage:(OnboardingContentViewController *)currentPage;
 - (void)setNextPage:(OnboardingContentViewController *)nextPage;
-
+////////////////////////////////////////////////////////////////////
 
 // Getters for tests only
 - (NSArray *)contentViewControllers;
