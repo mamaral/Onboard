@@ -100,6 +100,7 @@ static NSString * const kSkipButtonText = @"Skip";
     // create and configure the the page control
     self.pageControl.frame = CGRectMake(0, CGRectGetMaxY(self.view.frame) - kPageControlHeight, self.view.frame.size.width, kPageControlHeight);
     self.pageControl.numberOfPages = _viewControllers.count;
+    self.pageControl.userInteractionEnabled = NO;
     [self.view addSubview:self.pageControl];
     
     if (self.allowSkipping) {
