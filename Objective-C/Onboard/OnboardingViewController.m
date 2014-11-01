@@ -9,7 +9,6 @@
 #import "OnboardingViewController.h"
 #import "OnboardingContentViewController.h"
 @import Accelerate;
-@import MediaPlayer;
 
 static CGFloat const kPageControlHeight = 35;
 static CGFloat const kSkipButtonWidth = 100;
@@ -28,8 +27,6 @@ static NSString * const kSkipButtonText = @"Skip";
     
     OnboardingContentViewController *_currentPage;
     OnboardingContentViewController *_upcomingPage;
-    
-    MPMoviePlayerController *_movieController;
 }
 
 
@@ -88,6 +85,9 @@ static NSString * const kSkipButtonText = @"Skip";
     self.pageControl = [UIPageControl new];
     self.skipButton = [UIButton new];
     
+    // create the movie player controller
+    self.moviePlayerController = [MPMoviePlayerController new];
+    
     return self;
 }
 
@@ -106,7 +106,7 @@ static NSString * const kSkipButtonText = @"Skip";
     
     // if we have a video URL, start playing
     if (_videoURL) {
-        [_movieController play];
+        [self.moviePlayerController play];
     }
 }
 
@@ -160,13 +160,13 @@ static NSString * const kSkipButtonText = @"Skip";
     
     // otherwise send the video view to the back if we have one
     else if (_videoURL) {
-        _movieController = [[MPMoviePlayerController alloc] initWithContentURL:_videoURL];
-        _movieController.view.frame = _pageVC.view.frame;
-        _movieController.repeatMode = MPMovieRepeatModeOne;
-        _movieController.controlStyle = MPMovieControlStyleNone;
+        self.moviePlayerController.contentURL = _videoURL;
+        self.moviePlayerController.view.frame = _pageVC.view.frame;
+        self.moviePlayerController.repeatMode = MPMovieRepeatModeOne;
+        self.moviePlayerController.controlStyle = MPMovieControlStyleNone;
         
-        [_pageVC.view addSubview:_movieController.view];
-        [_pageVC.view sendSubviewToBack:_movieController.view];
+        [_pageVC.view addSubview:self.moviePlayerController.view];
+        [_pageVC.view sendSubviewToBack:self.moviePlayerController.view];
     }
     
     // create and configure the the page control

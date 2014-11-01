@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "OnboardingContentViewController.h"
+@import MediaPlayer;
 
 @interface OnboardingViewController : UIViewController <UIPageViewControllerDataSource, UIPageViewControllerDelegate, UIScrollViewDelegate>
 
@@ -29,7 +30,10 @@
 // Skip Button
 @property (nonatomic, strong) UIButton *skipButton;
 
+// Movie player
+@property (nonatomic) MPMoviePlayerController *moviePlayerController;
 
+// Initializers
 + (instancetype)onboardWithBackgroundImage:(UIImage *)backgroundImage contents:(NSArray *)contents;
 - (instancetype)initWithBackgroundImage:(UIImage *)backgroundImage contents:(NSArray *)contents;
 
