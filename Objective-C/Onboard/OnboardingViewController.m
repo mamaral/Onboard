@@ -283,9 +283,13 @@ static NSString * const kSkipButtonText = @"Skip";
     [self.pageControl setCurrentPage:newIndex];
 }
 
-- (void)moveToPageForViewController:(UIViewController *)viewController {
-    [_pageVC setViewControllers:@[viewController] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
-    [self.pageControl setCurrentPage:[_viewControllers indexOfObject:viewController]];
+- (void)moveNextPage {
+    NSUInteger indexOfNextPage = [_viewControllers indexOfObject:_currentPage] + 1;
+    
+    if (indexOfNextPage < _viewControllers.count) {
+        [_pageVC setViewControllers:@[_viewControllers[indexOfNextPage]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+        [self.pageControl setCurrentPage:indexOfNextPage];
+    }
 }
 
 
