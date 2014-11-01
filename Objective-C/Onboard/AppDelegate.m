@@ -86,6 +86,7 @@ static NSString * const kUserHasOnboardedKey = @"user_has_onboarded";
     }];
     
     OnboardingViewController *onboardingVC = [[OnboardingViewController alloc] initWithBackgroundImage:[UIImage imageNamed:@"street"] contents:@[firstPage, secondPage, thirdPage]];
+    onboardingVC.shouldFadeTransitions = YES;
 
     // If you want to allow skipping the onboarding process, enable skipping and set a block to be executed
     // when the user hits the skip button.
@@ -136,6 +137,7 @@ static NSString * const kUserHasOnboardedKey = @"user_has_onboarded";
     NSURL *movieURL = [NSURL fileURLWithPath:moviePath];
     
     OnboardingViewController *onboardingVC = [[OnboardingViewController alloc] initWithBackgroundVideoURL:movieURL contents:@[firstPage, secondPage, thirdPage]];
+    onboardingVC.shouldFadeTransitions = YES;
     onboardingVC.shouldMaskBackground = NO;
     onboardingVC.pageControl.currentPageIndicatorTintColor = [UIColor colorWithRed:239/255.0 green:88/255.0 blue:35/255.0 alpha:1.0];
     onboardingVC.pageControl.pageIndicatorTintColor = [UIColor whiteColor];
