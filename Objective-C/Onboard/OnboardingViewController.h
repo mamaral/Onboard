@@ -20,6 +20,9 @@
 @property (nonatomic) BOOL allowSkipping;
 @property (nonatomic, strong) dispatch_block_t skipHandler;
 
+// Swiping
+@property (nonatomic) BOOL swipingEnabled;
+
 // Page Control
 @property (nonatomic, strong) UIPageControl *pageControl;
 

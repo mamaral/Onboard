@@ -39,6 +39,7 @@ static NSString * const kSkipButtonText = @"Skip";
     self.shouldMaskBackground = YES;
     self.shouldBlurBackground = NO;
     self.shouldFadeTransitions = NO;
+    self.swipingEnabled = YES;
     
     self.allowSkipping = NO;
     self.skipHandler = ^{};
@@ -63,7 +64,7 @@ static NSString * const kSkipButtonText = @"Skip";
     _pageVC.view.frame = self.view.frame;
     _pageVC.view.backgroundColor = [UIColor whiteColor];
     _pageVC.delegate = self;
-    _pageVC.dataSource = self;
+    _pageVC.dataSource = self.swipingEnabled ? self : nil;
     
     if (self.shouldBlurBackground) {
         [self blurBackground];

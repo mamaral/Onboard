@@ -25,6 +25,8 @@
 
 @property (nonatomic, weak) OnboardingViewController *delegate;
 
+@property (nonatomic) BOOL movesToNextViewController;
+
 @property (nonatomic) CGFloat iconHeight;
 @property (nonatomic) CGFloat iconWidth;
 

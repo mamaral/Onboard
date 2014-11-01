@@ -44,6 +44,9 @@ static CGFloat const kMainPageControlHeight = 35;
     _buttonText = buttonText;
     _actionHandler = action ?: ^{};
     
+    // default auto-navigation
+    self.movesToNextViewController = NO;
+    
     // default icon properties
     self.iconHeight = kDefaultImageViewSize;
     self.iconWidth = kDefaultImageViewSize;
@@ -164,7 +167,13 @@ static CGFloat const kMainPageControlHeight = 35;
 #pragma mark - action button callback
 
 - (void)handleButtonPressed {
-    // simply call the provided action handler
+    // if we want to navigate to the next view controller, tell our delegate
+    // to handle it
+    if (self.movesToNextViewController) {
+        [self.delegate moveNextPage];
+    }
+    
+    // call the provided action handler
     _actionHandler();
 }
 
