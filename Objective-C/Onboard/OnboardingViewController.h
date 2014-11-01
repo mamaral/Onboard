@@ -30,6 +30,8 @@
 @property (nonatomic, strong) UIButton *skipButton;
 
 
++ (instancetype)onboardWithBackgroundImage:(UIImage *)backgroundImage contents:(NSArray *)contents;
+    
 - (instancetype)initWithBackgroundImage:(UIImage *)backgroundImage contents:(NSArray *)contents;
 
 ////////////////////////////////////////////////////////////////////
