@@ -119,11 +119,12 @@ static NSString * const kSkipButtonText = @"Skip";
                 [(UIScrollView *)view setDelegate:self];
             }
         }
-        
-        // set ourself as the delegate on all of the content views
-        for (OnboardingContentViewController *contentVC in _viewControllers) {
-            contentVC.delegate = self;
-        }
+    }
+    
+    // set ourself as the delegate on all of the content views, to handle fading
+    // and auto-navigation
+    for (OnboardingContentViewController *contentVC in _viewControllers) {
+        contentVC.delegate = self;
     }
 }
 
