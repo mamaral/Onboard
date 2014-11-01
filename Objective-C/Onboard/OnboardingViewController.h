@@ -25,6 +25,7 @@
 @property (nonatomic) BOOL swipingEnabled;
 
 // Page Control
+@property (nonatomic) BOOL hidePageControl;
 @property (nonatomic, strong) UIPageControl *pageControl;
 
 // Skip Button

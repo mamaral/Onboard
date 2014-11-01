@@ -77,6 +77,7 @@ static NSString * const kSkipButtonText = @"Skip";
     self.shouldBlurBackground = NO;
     self.shouldFadeTransitions = NO;
     self.swipingEnabled = YES;
+    self.hidePageControl = NO;
     
     self.allowSkipping = NO;
     self.skipHandler = ^{};
@@ -170,10 +171,12 @@ static NSString * const kSkipButtonText = @"Skip";
     }
     
     // create and configure the the page control
-    self.pageControl.frame = CGRectMake(0, CGRectGetMaxY(self.view.frame) - kPageControlHeight, self.view.frame.size.width, kPageControlHeight);
-    self.pageControl.numberOfPages = _viewControllers.count;
-    self.pageControl.userInteractionEnabled = NO;
-    [self.view addSubview:self.pageControl];
+    if (!self.hidePageControl) {
+        self.pageControl.frame = CGRectMake(0, CGRectGetMaxY(self.view.frame) - kPageControlHeight, self.view.frame.size.width, kPageControlHeight);
+        self.pageControl.numberOfPages = _viewControllers.count;
+        self.pageControl.userInteractionEnabled = NO;
+        [self.view addSubview:self.pageControl];
+    }
     
     // if we allow skipping, setup the skip button
     if (self.allowSkipping) {
