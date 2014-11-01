@@ -129,7 +129,7 @@ static NSString * const kUserHasOnboardedKey = @"user_has_onboarded";
     thirdPage.bodyFontName = @"NasalizationRg-Regular";
     thirdPage.bodyFontSize = 15;
     thirdPage.buttonFontName = @"SpaceAge";
-    thirdPage.buttonFontSize = 14;
+    thirdPage.buttonFontSize = 17;
     
     NSBundle *bundle = [NSBundle mainBundle];
     NSString *moviePath = [bundle pathForResource:@"sun" ofType:@"mp4"];
