@@ -29,8 +29,8 @@ static NSString * const kUserHasOnboardedKey = @"user_has_onboarded";
     
     // otherwise set the root view controller to the onboarding view controller
     else {
-//        self.window.rootViewController = [self generateFirstDemoVC];
-        self.window.rootViewController = [self generateSecondDemoVC];
+        self.window.rootViewController = [self generateFirstDemoVC];
+//        self.window.rootViewController = [self generateSecondDemoVC];
 //        self.window.rootViewController = [self generateThirdDemoVC];
 //        self.window.rootViewController = [self generateFourthDemoVC];
 //        self.window.rootViewController = [self generateFifthDemoVC];
