@@ -160,9 +160,6 @@
 			isa = PBXGroup;
 			children = (
 				273D50B419A1A34F00E38DB2 /* Onboard */,
-				273D50CD19A1A34F00E38DB2 /* OnboardTests */,
-				273D50AD19A1A34F00E38DB2 /* Frameworks */,
-				273D50AC19A1A34F00E38DB2 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -173,6 +170,7 @@
 				273D50C619A1A34F00E38DB2 /* OnboardTests.xctest */,
 			);
 			name = Products;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		273D50AD19A1A34F00E38DB2 /* Frameworks */ = {
@@ -184,18 +182,17 @@
 				273D50C719A1A34F00E38DB2 /* XCTest.framework */,
 			);
 			name = Frameworks;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		273D50B419A1A34F00E38DB2 /* Onboard */ = {
 			isa = PBXGroup;
 			children = (
-				275280F219A45909007FBD47 /* Demo */,
 				273D50DD19A1A49C00E38DB2 /* OnboardingViewController.h */,
 				273D50DE19A1A49C00E38DB2 /* OnboardingViewController.m */,
 				273D50E019A1A4BF00E38DB2 /* OnboardingContentViewController.h */,
 				273D50E119A1A4BF00E38DB2 /* OnboardingContentViewController.m */,
-				273D50C019A1A34F00E38DB2 /* Images.xcassets */,
-				273D50B519A1A34F00E38DB2 /* Supporting Files */,
+				275280F219A45909007FBD47 /* Demo */,
 			);
 			path = Onboard;
 			sourceTree = "<group>";
@@ -218,7 +215,7 @@
 				273D50CE19A1A34F00E38DB2 /* Supporting Files */,
 			);
 			path = OnboardTests;
-			sourceTree = "<group>";
+			sourceTree = SOURCE_ROOT;
 		};
 		273D50CE19A1A34F00E38DB2 /* Supporting Files */ = {
 			isa = PBXGroup;
@@ -234,6 +231,11 @@
 			children = (
 				273D50BD19A1A34F00E38DB2 /* AppDelegate.h */,
 				273D50BE19A1A34F00E38DB2 /* AppDelegate.m */,
+				273D50C019A1A34F00E38DB2 /* Images.xcassets */,
+				273D50B519A1A34F00E38DB2 /* Supporting Files */,
+				273D50CD19A1A34F00E38DB2 /* OnboardTests */,
+				273D50AD19A1A34F00E38DB2 /* Frameworks */,
+				273D50AC19A1A34F00E38DB2 /* Products */,
 				270CB0B419BABF8C00F051B3 /* media */,
 			);
 			name = Demo;
