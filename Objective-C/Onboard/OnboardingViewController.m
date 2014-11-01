@@ -28,7 +28,7 @@ static NSString * const kSkipButtonText = @"Skip";
     OnboardingContentViewController *_upcomingPage;
 }
 
-- (id)initWithBackgroundImage:(UIImage *)backgroundImage contents:(NSArray *)contents {
+- (instancetype)initWithBackgroundImage:(UIImage *)backgroundImage contents:(NSArray *)contents {
     self = [super init];
 
     // store the passed in background image and view controllers array

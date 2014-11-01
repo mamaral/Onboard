@@ -29,6 +29,9 @@
 // Skip Button
 @property (nonatomic, strong) UIButton *skipButton;
 
+
+- (instancetype)initWithBackgroundImage:(UIImage *)backgroundImage contents:(NSArray *)contents;
+
 ////////////////////////////////////////////////////////////////////
 // These are convenience properties for content view customization, so you
 // can set these properties on the master onboarding view controller and
