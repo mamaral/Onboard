@@ -6,6 +6,29 @@ Onboard provides developers with a quick and easy means to create a beautiful, e
 
 ![demo](onboard_demo.gif)
 
+
+Samples
+=============
+
+![demo](Screenshots/space1.png)
+![demo](Screenshots/space2.png)
+![demo](Screenshots/space3.png)
+![demo](Screenshots/space4.png)
+
+![demo](Screenshots/purple1.png)
+![demo](Screenshots/purple2.png)
+![demo](Screenshots/purple3.png)
+![demo](Screenshots/purple4.png)
+
+![demo](Screenshots/yellow1.png)
+![demo](Screenshots/yellow2.png)
+![demo](Screenshots/yellow3.png)
+![demo](Screenshots/yellow4.png)
+
+![demo](Screenshots/city1.png)
+![demo](Screenshots/city2.png)
+![demo](Screenshots/city3.png)
+
 Compatibility
 ====
 
@@ -104,6 +127,16 @@ Apply a fade effect to the icons, text, and buttons, while transitioning between
 onboardingVC.shouldFadeTransitions = YES; // defaults to NO
 ```
 
+Auto-Navigation
+=============
+
+If you want to automatically move users to the next page in the onboarding process when they press the action button simply set the `movesToNextViewController` property to `YES` on any `OnboardingContentViewController` that isn’t the last view controller in the onboarding process. Coupled with this, you can disable the ability to swipe between contents by setting the `swipingEnabled` property on the `OnboardingViewController` to `NO`. This allows you to have greater control over the onboarding process if you desire.
+
+```objective-c
+contentVC.movesToNextViewController = YES;
+onboardingVC.swipingEnabled = NO;
+```
+
 Skipping
 =============
 
@@ -122,29 +155,6 @@ You can tweak these settings in a few different combinations to get your desired
 ![demo](Screenshots/dark.png)
 ![demo](Screenshots/lightblur.png)
 ![demo](Screenshots/darkblur.png)
-
-
-Samples
-=============
-
-![demo](Screenshots/space1.png)
-![demo](Screenshots/space2.png)
-![demo](Screenshots/space3.png)
-![demo](Screenshots/space4.png)
-
-![demo](Screenshots/purple1.png)
-![demo](Screenshots/purple2.png)
-![demo](Screenshots/purple3.png)
-![demo](Screenshots/purple4.png)
-
-![demo](Screenshots/yellow1.png)
-![demo](Screenshots/yellow2.png)
-![demo](Screenshots/yellow3.png)
-![demo](Screenshots/yellow4.png)
-
-![demo](Screenshots/city1.png)
-![demo](Screenshots/city2.png)
-![demo](Screenshots/city3.png)
 
 
 Notes
