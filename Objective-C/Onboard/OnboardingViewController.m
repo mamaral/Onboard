@@ -9,6 +9,7 @@
 #import "OnboardingViewController.h"
 #import "OnboardingContentViewController.h"
 @import Accelerate;
+@import MediaPlayer;
 
 static CGFloat const kPageControlHeight = 35;
 static CGFloat const kSkipButtonWidth = 100;
@@ -21,23 +22,57 @@ static NSString * const kSkipButtonText = @"Skip";
 
 @implementation OnboardingViewController {
     UIImage *_backgroundImage;
+    NSURL *_videoURL;
     UIPageViewController *_pageVC;
     NSArray *_viewControllers;
     
     OnboardingContentViewController *_currentPage;
     OnboardingContentViewController *_upcomingPage;
+    
+    MPMoviePlayerController *_movieController;
 }
 
- + (instancetype)onboardWithBackgroundImage:(UIImage *)backgroundImage contents:(NSArray *)contents {
+
+#pragma mark - Initializing with images
+
++ (instancetype)onboardWithBackgroundImage:(UIImage *)backgroundImage contents:(NSArray *)contents {
      OnboardingViewController *onboardingVC = [[self alloc] initWithBackgroundImage:backgroundImage contents:contents];
      return onboardingVC;
  }
 
 - (instancetype)initWithBackgroundImage:(UIImage *)backgroundImage contents:(NSArray *)contents {
-    self = [super init];
-
-    // store the passed in background image and view controllers array
+    self = [[OnboardingViewController alloc] initWithContents:contents];
+    
+    // store the passed in view controllers array
     _backgroundImage = backgroundImage;
+    
+    return self;
+}
+
+
+#pragma mark - Initializing with video files
+
++ (instancetype)onboardWithBackgroundVideoURL:(NSURL *)backgroundVideoURL contents:(NSArray *)contents {
+    OnboardingViewController *onboardingVC = [[self alloc] initWithBackgroundVideoURL:backgroundVideoURL contents:contents];
+    return onboardingVC;
+}
+
+- (instancetype)initWithBackgroundVideoURL:(NSURL *)backgroundVideoURL contents:(NSArray *)contents {
+    self = [[OnboardingViewController alloc] initWithContents:contents];
+    
+    // store the passed in video URL
+    _videoURL = backgroundVideoURL;
+    
+    return self;
+}
+
+
+#pragma mark - Initialization
+
+- (instancetype)initWithContents:(NSArray *)contents {
+    self = [super init];
+    
+    // store the passed in view controllers array
     _viewControllers = contents;
     
     // set the default properties
@@ -56,11 +91,23 @@ static NSString * const kSkipButtonText = @"Skip";
     return self;
 }
 
+
+#pragma mark - View life cycle
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     // now that the view has loaded, we can generate the content
     [self generateView];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    // if we have a video URL, start playing
+    if (_videoURL) {
+        [_movieController play];
+    }
 }
 
 - (void)generateView {
@@ -75,11 +122,15 @@ static NSString * const kSkipButtonText = @"Skip";
         [self blurBackground];
     }
     
+    UIImageView *backgroundImageView;
+    
     // create the background image view and set it to aspect fill so it isn't skewed
-    UIImageView *backgroundImageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
-    backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
-    [backgroundImageView setImage:_backgroundImage];
-    [self.view addSubview:backgroundImageView];
+    if (_backgroundImage) {
+        backgroundImageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
+        backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
+        [backgroundImageView setImage:_backgroundImage];
+        [self.view addSubview:backgroundImageView];
+    }
     
     // as long as the shouldMaskBackground setting hasn't been set to NO, we want to
     // create a partially opaque view and add it on top of the image view, so that it
@@ -101,7 +152,22 @@ static NSString * const kSkipButtonText = @"Skip";
     [self.view addSubview:_pageVC.view];
     [_pageVC didMoveToParentViewController:self];
     [_pageVC.view sendSubviewToBack:backgroundMaskView];
-    [_pageVC.view sendSubviewToBack:backgroundImageView];
+    
+    // send the background image view to the back if we have one
+    if (backgroundImageView) {
+        [_pageVC.view sendSubviewToBack:backgroundImageView];
+    }
+    
+    // otherwise send the video view to the back if we have one
+    else if (_videoURL) {
+        _movieController = [[MPMoviePlayerController alloc] initWithContentURL:_videoURL];
+        _movieController.view.frame = _pageVC.view.frame;
+        _movieController.repeatMode = MPMovieRepeatModeOne;
+        _movieController.controlStyle = MPMovieControlStyleNone;
+        
+        [_pageVC.view addSubview:_movieController.view];
+        [_pageVC.view sendSubviewToBack:_movieController.view];
+    }
     
     // create and configure the the page control
     self.pageControl.frame = CGRectMake(0, CGRectGetMaxY(self.view.frame) - kPageControlHeight, self.view.frame.size.width, kPageControlHeight);
@@ -109,6 +175,7 @@ static NSString * const kSkipButtonText = @"Skip";
     self.pageControl.userInteractionEnabled = NO;
     [self.view addSubview:self.pageControl];
     
+    // if we allow skipping, setup the skip button
     if (self.allowSkipping) {
         self.skipButton.frame = CGRectMake(CGRectGetMaxX(self.view.frame) - kSkipButtonWidth, CGRectGetMaxY(self.view.frame) - kSkipButtonHeight, kSkipButtonWidth, kSkipButtonHeight);
         [self.skipButton setTitle:kSkipButtonText forState:UIControlStateNormal];
