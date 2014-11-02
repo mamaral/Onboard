@@ -59,7 +59,7 @@ Objective-C
 -------
 
 ```objective-c
-OnboardingContentViewController *firstPage = [[OnboardingContentViewController alloc] initWithTitle:@"Page Title" body:@"Page body goes here." image:[UIImage imageNamed:@"icon"] buttonText:@"Text For Button" action:^{
+OnboardingContentViewController *firstPage = [OnboardingContentViewController contentWithTitle:@"Page Title" body:@"Page body goes here." image:[UIImage imageNamed:@"icon"] buttonText:@"Text For Button" action:^{
     // do something here when users press the button, like ask for location services permissions, register for push notifications, connect to social media, or finish the onboarding process
 }];
 ```
@@ -80,14 +80,14 @@ Objective-C
 
 ```objective-c
 // Image
-OnboardingViewController *onboardingVC = [[OnboardingViewController alloc] initWithBackgroundImage:[UIImage imageNamed:@"background"] contents:@[firstPage, secondPage, thirdPage]];
+OnboardingViewController *onboardingVC = [OnboardingViewController onboardWithBackgroundImage:[UIImage imageNamed:@"background"] contents:@[firstPage, secondPage, thirdPage]];
 
 // Video
 NSBundle *bundle = [NSBundle mainBundle];
 NSString *moviePath = [bundle pathForResource:@"yourVid" ofType:@"mp4"];
 NSURL *movieURL = [NSURL fileURLWithPath:moviePath];
 
-OnboardingViewController *onboardingVC = [[OnboardingViewController alloc] initWithBackgroundVideoURL:movieURL contents:@[firstPage, secondPage, thirdPage]];
+OnboardingViewController *onboardingVC = [OnboardingViewController onboardWithBackgroundVideoURL:movieURL contents:@[firstPage, secondPage, thirdPage]];
 ```
 
 Swift
@@ -106,7 +106,7 @@ Customization
 The content pages can be customized by setting the provided padding, font, and size properties on either the pages individually (if you want something different on each) or on the OnboardingViewController itself, which will pass those properties to all of the content view controllers.
 
 ```objective-c
-OnboardingViewController *onboardingVC = [[OnboardingViewController alloc] initWithBackgroundImage:yourImage contents:yourContentsArray];
+OnboardingViewController *onboardingVC = [OnboardingViewController onboardWithBackgroundImage contents:yourContentsArray];
 onboardingVC.fontName = @"Helvetica-Light";
 onboardingVC.titleFontSize = 28;
 onboardingVC.bodyFontSize = 22;
