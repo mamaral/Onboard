@@ -30,9 +30,10 @@ static NSString * const kUserHasOnboardedKey = @"user_has_onboarded";
     // otherwise set the root view controller to the onboarding view controller
     else {
         self.window.rootViewController = [self generateFirstDemoVC];
-        //    self.window.rootViewController = [self generateSecondDemoVC];
-        //    self.window.rootViewController = [self generateThirdDemoVC];
-        //    self.window.rootViewController = [self generateFourthDemoVC];
+//        self.window.rootViewController = [self generateSecondDemoVC];
+//        self.window.rootViewController = [self generateThirdDemoVC];
+//        self.window.rootViewController = [self generateFourthDemoVC];
+//        self.window.rootViewController = [self generateFifthDemoVC];
     }
     
     application.statusBarStyle = UIStatusBarStyleLightContent;
@@ -70,21 +71,22 @@ static NSString * const kUserHasOnboardedKey = @"user_has_onboarded";
 }
 
 - (OnboardingViewController *)generateFirstDemoVC {
-    OnboardingContentViewController *firstPage = [[OnboardingContentViewController alloc] initWithTitle:@"What A Beautiful Photo" body:@"This city background image is so beautiful." image:[UIImage imageNamed:@"blue"] buttonText:@"Enable Location Services" action:^{
+    OnboardingContentViewController *firstPage = [OnboardingContentViewController contentWithTitle:@"What A Beautiful Photo" body:@"This city background image is so beautiful." image:[UIImage imageNamed:@"blue"] buttonText:@"Enable Location Services" action:^{
         [[[UIAlertView alloc] initWithTitle:nil message:@"Here you can prompt users for various application permissions." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
     }];
     firstPage.movesToNextViewController = YES;
     
-    OnboardingContentViewController *secondPage = [[OnboardingContentViewController alloc] initWithTitle:@"I'm so sorry" body:@"I can't get over the nice blurry background photo." image:[UIImage imageNamed:@"red"] buttonText:@"Connect With Facebook" action:^{
+    OnboardingContentViewController *secondPage = [OnboardingContentViewController contentWithTitle:@"I'm so sorry" body:@"I can't get over the nice blurry background photo." image:[UIImage imageNamed:@"red"] buttonText:@"Connect With Facebook" action:^{
         [[[UIAlertView alloc] initWithTitle:nil message:@"Prompt users to do other cool things on startup." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
     }];
     secondPage.movesToNextViewController = YES;
     
-    OnboardingContentViewController *thirdPage = [[OnboardingContentViewController alloc] initWithTitle:@"Seriously Though" body:@"Kudos to the photographer." image:[UIImage imageNamed:@"yellow"] buttonText:@"Get Started" action:^{
+    OnboardingContentViewController *thirdPage = [OnboardingContentViewController contentWithTitle:@"Seriously Though" body:@"Kudos to the photographer." image:[UIImage imageNamed:@"yellow"] buttonText:@"Get Started" action:^{
         [self handleOnboardingCompletion];
     }];
     
-    OnboardingViewController *onboardingVC = [[OnboardingViewController alloc] initWithBackgroundImage:[UIImage imageNamed:@"street"] contents:@[firstPage, secondPage, thirdPage]];
+    OnboardingViewController *onboardingVC = [OnboardingViewController onboardWithBackgroundImage:[UIImage imageNamed:@"street"] contents:@[firstPage, secondPage, thirdPage]];
+    onboardingVC.shouldFadeTransitions = YES;
 
     // If you want to allow skipping the onboarding process, enable skipping and set a block to be executed
     // when the user hits the skip button.
@@ -97,6 +99,52 @@ static NSString * const kUserHasOnboardedKey = @"user_has_onboarded";
 }
 
 - (OnboardingViewController *)generateSecondDemoVC {
+    OnboardingContentViewController *firstPage = [[OnboardingContentViewController alloc] initWithTitle:@"Everything Under The Sun" body:@"The temperature of the photosphere is over 10,000°F." image:nil buttonText:nil action:nil];
+    firstPage.topPadding = -15;
+    firstPage.underTitlePadding = 160;
+    firstPage.titleTextColor = [UIColor colorWithRed:239/255.0 green:88/255.0 blue:35/255.0 alpha:1.0];
+    firstPage.titleFontName = @"SFOuterLimitsUpright";
+    firstPage.bodyTextColor = [UIColor colorWithRed:239/255.0 green:88/255.0 blue:35/255.0 alpha:1.0];
+    firstPage.bodyFontName = @"NasalizationRg-Regular";
+    firstPage.bodyFontSize = 18;
+    
+    OnboardingContentViewController *secondPage = [[OnboardingContentViewController alloc] initWithTitle:@"Every Second" body:@"600 million tons of protons are converted into helium atoms." image:nil buttonText:nil action:nil];
+    secondPage.titleFontName = @"SFOuterLimitsUpright";
+    secondPage.underTitlePadding = 170;
+    secondPage.topPadding = 0;
+    secondPage.titleTextColor = [UIColor colorWithRed:251/255.0 green:176/255.0 blue:59/255.0 alpha:1.0];
+    secondPage.bodyTextColor = [UIColor colorWithRed:251/255.0 green:176/255.0 blue:59/255.0 alpha:1.0];
+    secondPage.bodyFontName = @"NasalizationRg-Regular";
+    secondPage.bodyFontSize = 18;
+    
+    OnboardingContentViewController *thirdPage = [[OnboardingContentViewController alloc] initWithTitle:@"We're All Start Stuff" body:@"Our very bodies consist of the same chemical elements found in the most distant nebulae, and our activities are guided by the same universal rules." image:nil buttonText:@"Explore the universe" action:^{
+        [self handleOnboardingCompletion];
+    }];
+    thirdPage.topPadding = 10;
+    thirdPage.underTitlePadding = 160;
+    thirdPage.bottomPadding = -10;
+    thirdPage.titleFontName = @"SFOuterLimitsUpright";
+    thirdPage.titleTextColor = [UIColor colorWithRed:58/255.0 green:105/255.0 blue:136/255.0 alpha:1.0];
+    thirdPage.bodyTextColor = [UIColor colorWithRed:58/255.0 green:105/255.0 blue:136/255.0 alpha:1.0];
+    thirdPage.buttonTextColor = [UIColor colorWithRed:239/255.0 green:88/255.0 blue:35/255.0 alpha:1.0];
+    thirdPage.bodyFontName = @"NasalizationRg-Regular";
+    thirdPage.bodyFontSize = 15;
+    thirdPage.buttonFontName = @"SpaceAge";
+    thirdPage.buttonFontSize = 17;
+    
+    NSBundle *bundle = [NSBundle mainBundle];
+    NSString *moviePath = [bundle pathForResource:@"sun" ofType:@"mp4"];
+    NSURL *movieURL = [NSURL fileURLWithPath:moviePath];
+    
+    OnboardingViewController *onboardingVC = [[OnboardingViewController alloc] initWithBackgroundVideoURL:movieURL contents:@[firstPage, secondPage, thirdPage]];
+    onboardingVC.shouldFadeTransitions = YES;
+    onboardingVC.shouldMaskBackground = NO;
+    onboardingVC.pageControl.currentPageIndicatorTintColor = [UIColor colorWithRed:239/255.0 green:88/255.0 blue:35/255.0 alpha:1.0];
+    onboardingVC.pageControl.pageIndicatorTintColor = [UIColor whiteColor];
+    return onboardingVC;
+}
+
+- (OnboardingViewController *)generateThirdDemoVC {
     OnboardingContentViewController *firstPage = [[OnboardingContentViewController alloc] initWithTitle:@"It's one small step for a man..." body:@"The first man on the moon, Buzz Aldrin, only had one photo taken of him while on the lunar surface due to an unexpected call from Dick Nixon." image:[UIImage imageNamed:@"space1"] buttonText:nil action:nil];
     firstPage.bodyFontSize = 25;
     
@@ -113,7 +161,7 @@ static NSString * const kUserHasOnboardedKey = @"user_has_onboarded";
     return onboardingVC;
 }
 
-- (OnboardingViewController *)generateThirdDemoVC {
+- (OnboardingViewController *)generateFourthDemoVC {
     OnboardingContentViewController *firstPage = [[OnboardingContentViewController alloc] initWithTitle:@"Organize" body:@"Everything has its place. We take care of the housekeeping for you. " image:[UIImage imageNamed:@"layers"] buttonText:nil action:nil];
     
     OnboardingContentViewController *secondPage = [[OnboardingContentViewController alloc] initWithTitle:@"Relax" body:@"Grab a nice beverage, sit back, and enjoy the experience." image:[UIImage imageNamed:@"coffee"] buttonText:nil action:nil];
@@ -129,7 +177,7 @@ static NSString * const kUserHasOnboardedKey = @"user_has_onboarded";
     return onboardingVC;
 }
 
-- (OnboardingViewController *)generateFourthDemoVC {
+- (OnboardingViewController *)generateFifthDemoVC {
     OnboardingContentViewController *firstPage = [[OnboardingContentViewController alloc] initWithTitle:@"\"If you can't explain it simply, you don't know it well enough.\"" body:@"                 - Einsten" image:[UIImage imageNamed:@""] buttonText:nil action:nil];
     
     OnboardingContentViewController *secondPage = [[OnboardingContentViewController alloc] initWithTitle:@"\"If you wish to make an apple pie from scratch, you must first invent the universe.\"" body:@"                 - Sagan" image:nil buttonText:nil action:nil];

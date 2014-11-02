@@ -32,7 +32,12 @@ static CGFloat const kMainPageControlHeight = 35;
 
 @implementation OnboardingContentViewController
 
-- (id)initWithTitle:(NSString *)title body:(NSString *)body image:(UIImage *)image buttonText:(NSString *)buttonText action:(dispatch_block_t)action {
++ (instancetype)contentWithTitle:(NSString *)title body:(NSString *)body image:(UIImage *)image buttonText:(NSString *)buttonText action:(dispatch_block_t)action {
+    OnboardingContentViewController *contentVC = [[self alloc] initWithTitle:title body:body image:image buttonText:buttonText action:action];
+    return contentVC;
+}
+
+- (instancetype)initWithTitle:(NSString *)title body:(NSString *)body image:(UIImage *)image buttonText:(NSString *)buttonText action:(dispatch_block_t)action {
     self = [super init];
 
     // hold onto the passed in parameters, and set the action block to an empty block

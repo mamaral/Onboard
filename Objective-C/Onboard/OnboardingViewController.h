@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "OnboardingContentViewController.h"
+@import MediaPlayer;
 
 @interface OnboardingViewController : UIViewController <UIPageViewControllerDataSource, UIPageViewControllerDelegate, UIScrollViewDelegate>
 
@@ -24,13 +25,21 @@
 @property (nonatomic) BOOL swipingEnabled;
 
 // Page Control
+@property (nonatomic) BOOL hidePageControl;
 @property (nonatomic, strong) UIPageControl *pageControl;
 
 // Skip Button
 @property (nonatomic, strong) UIButton *skipButton;
 
+// Movie player
+@property (nonatomic) MPMoviePlayerController *moviePlayerController;
 
+// Initializers
++ (instancetype)onboardWithBackgroundImage:(UIImage *)backgroundImage contents:(NSArray *)contents;
 - (instancetype)initWithBackgroundImage:(UIImage *)backgroundImage contents:(NSArray *)contents;
+
++ (instancetype)onboardWithBackgroundVideoURL:(NSURL *)backgroundVideoURL contents:(NSArray *)contents;
+- (instancetype)initWithBackgroundVideoURL:(NSURL *)backgroundVideoURL contents:(NSArray *)contents;
 
 ////////////////////////////////////////////////////////////////////
 // These are convenience properties for content view customization, so you
