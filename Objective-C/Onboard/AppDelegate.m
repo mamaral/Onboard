@@ -117,7 +117,7 @@ static NSString * const kUserHasOnboardedKey = @"user_has_onboarded";
     secondPage.bodyFontName = @"NasalizationRg-Regular";
     secondPage.bodyFontSize = 18;
     
-    OnboardingContentViewController *thirdPage = [[OnboardingContentViewController alloc] initWithTitle:@"We're All Start Stuff" body:@"Our very bodies consist of the same chemical elements found in the most distant nebulae, and our activities are guided by the same universal rules." image:nil buttonText:@"Explore the universe" action:^{
+    OnboardingContentViewController *thirdPage = [[OnboardingContentViewController alloc] initWithTitle:@"We're All Star Stuff" body:@"Our very bodies consist of the same chemical elements found in the most distant nebulae, and our activities are guided by the same universal rules." image:nil buttonText:@"Explore the universe" action:^{
         [self handleOnboardingCompletion];
     }];
     thirdPage.topPadding = 10;
