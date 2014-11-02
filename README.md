@@ -6,6 +6,7 @@ Onboard provides developers with a quick and easy means to create a beautiful, e
 
 ![demo](Screenshots/city.gif)
 ![demo](Screenshots/solar.gif)
+![demo](Screenshots/waves.gif)
 
 
 Samples
@@ -28,11 +29,6 @@ Samples
 ![demo](Screenshots/purple2.png)
 ![demo](Screenshots/purple3.png)
 ![demo](Screenshots/purple4.png)
-
-![demo](Screenshots/yellow1.png)
-![demo](Screenshots/yellow2.png)
-![demo](Screenshots/yellow3.png)
-![demo](Screenshots/yellow4.png)
 
 Compatibility
 ====
