@@ -73,13 +73,21 @@ let firstPage: OnboardingContentViewController = OnboardingContentViewController
 }
 ```
 
-Then create the OnboardingViewController by providing a background image and an array of OnboardingContentViewControllers you just created. You can then present the view modally and get the onboarding process started!
+Then create the OnboardingViewController by providing either a background image or a URL to a local video file in your project, and an array of OnboardingContentViewControllers you just created. You can then present the view modally and get the onboarding process started!
 
 Objective-C
 -------
 
 ```objective-c
+// Image
 OnboardingViewController *onboardingVC = [[OnboardingViewController alloc] initWithBackgroundImage:[UIImage imageNamed:@"background"] contents:@[firstPage, secondPage, thirdPage]];
+
+// Video
+NSBundle *bundle = [NSBundle mainBundle];
+NSString *moviePath = [bundle pathForResource:@"yourVid" ofType:@"mp4"];
+NSURL *movieURL = [NSURL fileURLWithPath:moviePath];
+
+OnboardingViewController *onboardingVC = [[OnboardingViewController alloc] initWithBackgroundVideoURL:movieURL contents:@[firstPage, secondPage, thirdPage]];
 ```
 
 Swift
