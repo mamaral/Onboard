@@ -4,11 +4,20 @@ Onboard
 Onboard provides developers with a quick and easy means to create a beautiful, engaging, and useful onboarding experience with only a few lines of code.
 
 
-![demo](onboard_demo.gif)
+![demo](Screenshots/city.gif)
+![demo](Screenshots/solar.gif)
 
 
 Samples
 =============
+
+![demo](Screenshots/city1.png)
+![demo](Screenshots/city2.png)
+![demo](Screenshots/city3.png)
+
+![demo](Screenshots/solar1.png)
+![demo](Screenshots/solar2.png)
+![demo](Screenshots/solar3.png)
 
 ![demo](Screenshots/space1.png)
 ![demo](Screenshots/space2.png)
@@ -24,10 +33,6 @@ Samples
 ![demo](Screenshots/yellow2.png)
 ![demo](Screenshots/yellow3.png)
 ![demo](Screenshots/yellow4.png)
-
-![demo](Screenshots/city1.png)
-![demo](Screenshots/city2.png)
-![demo](Screenshots/city3.png)
 
 Compatibility
 ====
@@ -130,11 +135,12 @@ onboardingVC.shouldFadeTransitions = YES; // defaults to NO
 Auto-Navigation
 =============
 
-If you want to automatically move users to the next page in the onboarding process when they press the action button simply set the `movesToNextViewController` property to `YES` on any `OnboardingContentViewController` that isn’t the last view controller in the onboarding process. Coupled with this, you can disable the ability to swipe between contents by setting the `swipingEnabled` property on the `OnboardingViewController` to `NO`. This allows you to have greater control over the onboarding process if you desire.
+If you want to automatically move users to the next page in the onboarding process when they press the action button simply set the `movesToNextViewController` property to `YES` on any `OnboardingContentViewController` that isn’t the last view controller in the onboarding process. Coupled with this, you can disable the ability to swipe between contents by setting the `swipingEnabled` property on the `OnboardingViewController` to `NO`. This allows you to have greater control over the onboarding process if you desire. Finally, if your design lends itself to not having a page control, or if it is only one page, you can set the `hidePageControl` property to `YES` and the page control dots will not appear.
 
 ```objective-c
 contentVC.movesToNextViewController = YES;
 onboardingVC.swipingEnabled = NO;
+onboardingVC.hidePageControl = YES;
 ```
 
 Skipping
