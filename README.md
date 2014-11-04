@@ -166,6 +166,21 @@ You can tweak these settings in a few different combinations to get your desired
 ![demo](Screenshots/lightblur.png)
 ![demo](Screenshots/darkblur.png)
 
+Blocks
+=========
+
+There may be cases in which you want to do *something* when the content pages are about to appear, and when they did appear. In this case, you can set the viewWillAppearBlock and viewDidAppearBlock properties on any or all of the content pages to handle whatever you’d like.
+
+```objective-c
+contentVC.viewWillAppearBlock = ^{
+	// do something when the view will appear here…
+}
+
+contentVC.viewDidAppearBlock = ^{
+	// do something when the view appears here…
+}
+```
+
 
 Notes
 =====
