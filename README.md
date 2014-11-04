@@ -136,6 +136,13 @@ Apply a fade effect to the icons, text, and buttons, while transitioning between
 onboardingVC.shouldFadeTransitions = YES; // defaults to NO
 ```
 
+You can tweak these settings in a few different combinations to get your desired effect:
+
+![demo](Screenshots/normal.png)
+![demo](Screenshots/dark.png)
+![demo](Screenshots/lightblur.png)
+![demo](Screenshots/darkblur.png)
+
 Auto-Navigation
 =============
 
@@ -158,13 +165,6 @@ onboardingVC.skipHandler = ^{
     // Dismiss, fade out, etc...
 };
 ```
-
-You can tweak these settings in a few different combinations to get your desired effect:
-
-![demo](Screenshots/normal.png)
-![demo](Screenshots/dark.png)
-![demo](Screenshots/lightblur.png)
-![demo](Screenshots/darkblur.png)
 
 Blocks
 =========
