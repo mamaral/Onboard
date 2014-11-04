@@ -79,6 +79,10 @@ static CGFloat const kMainPageControlHeight = 35;
     self.bodyTextColor = DEFAULT_TEXT_COLOR;
     self.buttonTextColor = DEFAULT_TEXT_COLOR;
     
+    // default blocks
+    self.viewWillAppearBlock = ^{};
+    self.viewDidAppearBlock = ^{};
+    
     return self;
 }
 
@@ -97,6 +101,9 @@ static CGFloat const kMainPageControlHeight = 35;
     if (self.delegate) {
         [self.delegate setNextPage:self];
     }
+    
+    // call our view will appear block
+    self.viewWillAppearBlock();
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -107,6 +114,9 @@ static CGFloat const kMainPageControlHeight = 35;
     if (self.delegate) {
         [self.delegate setCurrentPage:self];
     }
+    
+    // call our view did appear block
+    self.viewDidAppearBlock();
 }
 
 - (void)generateView {

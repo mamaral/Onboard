@@ -48,6 +48,9 @@
 @property (nonatomic) CGFloat underTitlePadding;
 @property (nonatomic) CGFloat bottomPadding;
 
+@property (nonatomic, copy) dispatch_block_t viewWillAppearBlock;
+@property (nonatomic, copy) dispatch_block_t viewDidAppearBlock;
+
 + (instancetype)contentWithTitle:(NSString *)title body:(NSString *)body image:(UIImage *)image buttonText:(NSString *)buttonText action:(dispatch_block_t)action;
 - (instancetype)initWithTitle:(NSString *)title body:(NSString *)body image:(UIImage *)image buttonText:(NSString *)buttonText action:(dispatch_block_t)action;
 
