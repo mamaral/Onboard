@@ -89,6 +89,9 @@ static NSString * const kSkipButtonText = @"Skip";
     // create the movie player controller
     self.moviePlayerController = [MPMoviePlayerController new];
     
+    // Handle when the app enters the foreground.
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleAppEnteredForeground) name:UIApplicationWillEnterForegroundNotification object:nil];
+    
     return self;
 }
 
@@ -201,6 +204,14 @@ static NSString * const kSkipButtonText = @"Skip";
     // and auto-navigation
     for (OnboardingContentViewController *contentVC in _viewControllers) {
         contentVC.delegate = self;
+    }
+}
+
+- (void)handleAppEnteredForeground {
+    // If the movie player is paused, as it does by default when backgrounded, start
+    // playing again.
+    if (self.moviePlayerController.playbackState == MPMoviePlaybackStatePaused) {
+        [self.moviePlayerController play];
     }
 }
 
