@@ -74,11 +74,9 @@
     NSArray *contentsFromController = [onboardingVC contentViewControllers];
     
     for (OnboardingContentViewController *contentVC in contentsFromController) {
-        XCTAssert(contentVC.iconSize == testIconSize, @"The content view controller's icon size is invalid.");
         XCTAssert(contentVC.titleTextColor == testColor, @"The content view controller's title text color is invalid.");
         XCTAssert(contentVC.bodyTextColor == testColor, @"The content view controller's body text color is invalid.");
         XCTAssert(contentVC.buttonTextColor == testColor, @"The content view controller's button test color is invalid.");
-        XCTAssert([contentVC.fontName isEqualToString:testFontName], @"The content view controller's font name is invalid.");
         XCTAssert(contentVC.titleFontSize == testFontSize, @"The content view controller's title fotn size is invalid.");
         XCTAssert(contentVC.bodyFontSize == testFontSize, @"The content view controller's body font size is invalid.");
         XCTAssert(contentVC.topPadding == testPadding, @"The content view controller's top padding is invalid.");
