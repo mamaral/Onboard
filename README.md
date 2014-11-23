@@ -17,7 +17,7 @@ Apps Using Onboard
 
 If your app is currently using onboard, let me know and I would love to feature it here!
 
-Gemr - [Gemr](http://www.gemr.com/ "Gemr")
+[Gemr](http://www.gemr.com/ "Gemr")
 ===
 
 
@@ -25,7 +25,7 @@ Gemr - [Gemr](http://www.gemr.com/ "Gemr")
 ![demo](Screenshots/gemr2.PNG)
 ![demo](Screenshots/gemr3.PNG)
 
-Tripnary - [Tripnary](http://tripnary.com/ "Tripnary")
+[Tripnary](http://tripnary.com/ "Tripnary")
 ===
 
 Thanks to @goelv for this! You did a superb job!
