@@ -21,20 +21,20 @@ Gemr - [Gemr](http://www.gemr.com/ "Gemr")
 ===
 
 
-![demo](Screenshots/gemr1.png)
-![demo](Screenshots/gemr2.png)
-![demo](Screenshots/gemr3.png)
+![demo](Screenshots/gemr1.PNG)
+![demo](Screenshots/gemr2.PNG)
+![demo](Screenshots/gemr3.PNG)
 
 Tripnary - [Tripnary](http://tripnary.com/ "Tripnary")
 ===
 
 Thanks to @goelv for this! You did a superb job!
 
-![demo](Screenshots/tripnary1.png)
-![demo](Screenshots/tripnary2.png)
-![demo](Screenshots/tripnary3.png)
-![demo](Screenshots/tripnary4.png)
-![demo](Screenshots/tripnary5.png)
+![demo](Screenshots/tripnary1.PNG)
+![demo](Screenshots/tripnary2.PNG)
+![demo](Screenshots/tripnary3.PNG)
+![demo](Screenshots/tripnary4.PNG)
+![demo](Screenshots/tripnary5.PNG)
 
 Samples
 =============
