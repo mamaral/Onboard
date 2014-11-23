@@ -7,7 +7,34 @@ Onboard provides developers with a quick and easy means to create a beautiful, e
 ![demo](Screenshots/city.gif)
 ![demo](Screenshots/solar.gif)
 ![demo](Screenshots/waves.gif)
+![demo](Screenshots/gemr.gif)
+![demo](Screenshots/tripnary.gif)
 
+
+
+Apps Using Onboard
+=============
+
+If your app is currently using onboard, let me know and I would love to feature it here!
+
+Gemr - [Gemr](http://www.gemr.com/ "Gemr")
+===
+
+
+![demo](Screenshots/gemr1.png)
+![demo](Screenshots/gemr2.png)
+![demo](Screenshots/gemr3.png)
+
+Tripnary - [Tripnary](http://tripnary.com/ "Tripnary")
+===
+
+Thanks to @goelv for this! You did a superb job!
+
+![demo](Screenshots/tripnary1.png)
+![demo](Screenshots/tripnary2.png)
+![demo](Screenshots/tripnary3.png)
+![demo](Screenshots/tripnary4.png)
+![demo](Screenshots/tripnary5.png)
 
 Samples
 =============
