@@ -76,6 +76,7 @@ static NSString * const kSkipButtonText = @"Skip";
     self.shouldMaskBackground = YES;
     self.shouldBlurBackground = NO;
     self.shouldFadeTransitions = NO;
+    self.fadePageControlOnLastPage = NO;
     self.swipingEnabled = YES;
     self.hidePageControl = NO;
     
@@ -409,6 +410,19 @@ static NSString * const kSkipButtonText = @"Skip";
     // set the current page's alpha to the difference between 100% and this percent value,
     // so we're 90% scrolling towards the next page, the current content's alpha sshould be 10%
     [_currentPage updateAlphas:1.0 - percentComplete];
+    
+    // If we want to fade the page control on the last page...
+    if (self.fadePageControlOnLastPage) {
+        // If the upcoming page is the last object, fade the page control out as we scroll.
+        if (_upcomingPage == [_viewControllers lastObject]) {
+            _pageControl.alpha = 1.0 - percentComplete;
+        }
+        
+        // Otherwise if we're on the last page and we're moving towards the second-to-last page, fade it back in.
+        else if ((_currentPage == [_viewControllers lastObject]) && (_upcomingPage == _viewControllers[_viewControllers.count - 2])) {
+            _pageControl.alpha = percentComplete;
+        }
+    }
 }
 
 
