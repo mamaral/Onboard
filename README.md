@@ -28,7 +28,7 @@ If your app is currently using onboard, let me know and I would love to feature 
 [Tripnary](http://tripnary.com/ "Tripnary")
 ===
 
-Thanks to @goelv for this! You did a superb job!
+Thanks to [goelv](https://github.com/goelv) for this! You did a superb job!
 
 ![demo](Screenshots/tripnary1.PNG)
 ![demo](Screenshots/tripnary2.PNG)
