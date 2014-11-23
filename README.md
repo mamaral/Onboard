@@ -36,7 +36,7 @@ Thanks to @goelv for this! You did a superb job!
 ![demo](Screenshots/tripnary4.PNG)
 ![demo](Screenshots/tripnary5.PNG)
 
-Samples
+More Samples
 =============
 
 ![demo](Screenshots/city1.png)
