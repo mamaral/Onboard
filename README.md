@@ -66,11 +66,13 @@ I currently have implementations written in both Objective-C and Swift, although
 Usage
 =====
 
-Cocoapods
+CocoaPods
 --------
-I'm still new to implementing my own pods, so bear with me! Adding the following to your podfile and running `pod install` should do the trick:
+I'm still new to implementing my own pods, so bear with me! Adding the following to your `Podfile` and running `pod install` should do the trick:
 
-`pod 'Onboard', :git => 'https://github.com/mamaral/Onboard.git'`
+```ruby
+pod 'Onboard', :git => 'https://github.com/mamaral/Onboard.git'
+```
 
 Manual
 ------
