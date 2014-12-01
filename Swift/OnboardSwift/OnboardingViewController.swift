@@ -17,7 +17,7 @@ class OnboardingViewController: UIViewController, UIPageViewControllerDataSource
     var contents: [OnboardingContentViewController] = []
     var shouldMaskBackground: Bool = true
     
-    init(backgroundImage: UIImage, contents: [OnboardingContentViewController]) {
+    init(backgroundImage: UIImage?, contents: [OnboardingContentViewController]) {
         self.backgroundImage = backgroundImage
         self.contents = contents
         super.init(nibName: nil, bundle: nil)
