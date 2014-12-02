@@ -38,7 +38,7 @@ static NSString * const kSkipButtonText = @"Skip";
  }
 
 - (instancetype)initWithBackgroundImage:(UIImage *)backgroundImage contents:(NSArray *)contents {
-    self = [[OnboardingViewController alloc] initWithContents:contents];
+    self = [self initWithContents:contents];
     
     // store the passed in view controllers array
     _backgroundImage = backgroundImage;
@@ -55,7 +55,7 @@ static NSString * const kSkipButtonText = @"Skip";
 }
 
 - (instancetype)initWithBackgroundVideoURL:(NSURL *)backgroundVideoURL contents:(NSArray *)contents {
-    self = [[OnboardingViewController alloc] initWithContents:contents];
+    self = [self initWithContents:contents];
     
     // store the passed in video URL
     _videoURL = backgroundVideoURL;
