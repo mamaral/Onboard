@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/mamaral/Onboard.svg?branch=master)](https://travis-ci.org/mamaral/Onboard)
 [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org)
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/mamaral/onboard/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
 Onboard provides developers with a quick and easy means to create a beautiful, engaging, and useful onboarding experience with only a few lines of code.
 
@@ -229,7 +230,4 @@ License
 =====
 
 This project is made available under the MIT license. See LICENSE.txt for details.
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/mamaral/onboard/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
