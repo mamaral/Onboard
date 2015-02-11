@@ -15,7 +15,7 @@
     NSString *_body;
     UIImage *_image;
     NSString *_buttonText;
-    dispatch_block_t _actionHandler;
+    void(^_actionHandler)(OnboardingContentViewController *onboardingContentController);
     
     UIImageView *_imageView;
     UILabel *_mainTextLabel;
@@ -51,9 +51,11 @@
 @property (nonatomic, copy) dispatch_block_t viewWillAppearBlock;
 @property (nonatomic, copy) dispatch_block_t viewDidAppearBlock;
 
-+ (instancetype)contentWithTitle:(NSString *)title body:(NSString *)body image:(UIImage *)image buttonText:(NSString *)buttonText action:(dispatch_block_t)action;
-- (instancetype)initWithTitle:(NSString *)title body:(NSString *)body image:(UIImage *)image buttonText:(NSString *)buttonText action:(dispatch_block_t)action;
++ (instancetype)contentWithTitle:(NSString *)title body:(NSString *)body image:(UIImage *)image buttonText:(NSString *)buttonText action:(void(^)(OnboardingContentViewController *onboardingContentController))action;
+- (instancetype)initWithTitle:(NSString *)title body:(NSString *)body image:(UIImage *)image buttonText:(NSString *)buttonText action:(void(^)(OnboardingContentViewController *onboardingContentController))action;
 
 - (void)updateAlphas:(CGFloat)newAlpha;
+
+- (void)moveNextPage;
 
 @end

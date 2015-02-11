@@ -32,12 +32,12 @@ static CGFloat const kMainPageControlHeight = 35;
 
 @implementation OnboardingContentViewController
 
-+ (instancetype)contentWithTitle:(NSString *)title body:(NSString *)body image:(UIImage *)image buttonText:(NSString *)buttonText action:(dispatch_block_t)action {
++ (instancetype)contentWithTitle:(NSString *)title body:(NSString *)body image:(UIImage *)image buttonText:(NSString *)buttonText action:(void(^)(OnboardingContentViewController *onboardingContentController))action {
     OnboardingContentViewController *contentVC = [[self alloc] initWithTitle:title body:body image:image buttonText:buttonText action:action];
     return contentVC;
 }
 
-- (instancetype)initWithTitle:(NSString *)title body:(NSString *)body image:(UIImage *)image buttonText:(NSString *)buttonText action:(dispatch_block_t)action {
+- (instancetype)initWithTitle:(NSString *)title body:(NSString *)body image:(UIImage *)image buttonText:(NSString *)buttonText action:(void(^)(OnboardingContentViewController *onboardingContentController))action {
     self = [super init];
 
     // hold onto the passed in parameters, and set the action block to an empty block
@@ -47,7 +47,7 @@ static CGFloat const kMainPageControlHeight = 35;
     _body = body;
     _image = image;
     _buttonText = buttonText;
-    _actionHandler = action ?: ^{};
+    _actionHandler = action ?: ^(OnboardingContentViewController *controller){};
     
     // default auto-navigation
     self.movesToNextViewController = NO;
@@ -190,11 +190,15 @@ static CGFloat const kMainPageControlHeight = 35;
     // if we want to navigate to the next view controller, tell our delegate
     // to handle it
     if (self.movesToNextViewController) {
-        [self.delegate moveNextPage];
+        [self moveNextPage];
     }
     
     // call the provided action handler
-    _actionHandler();
+    _actionHandler(self);
+}
+
+- (void)moveNextPage{
+	[self.delegate moveNextPage];
 }
 
 @end
