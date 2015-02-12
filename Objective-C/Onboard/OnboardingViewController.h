@@ -44,6 +44,9 @@
 + (instancetype)onboardWithBackgroundVideoURL:(NSURL *)backgroundVideoURL contents:(NSArray *)contents;
 - (instancetype)initWithBackgroundVideoURL:(NSURL *)backgroundVideoURL contents:(NSArray *)contents;
 
+// Manually moving to next page
+- (void)moveNextPage;
+
 ////////////////////////////////////////////////////////////////////
 // These are convenience properties for content view customization, so you
 // can set these properties on the master onboarding view controller and
@@ -79,7 +82,6 @@
 
 ////////////////////////////////////////////////////////////////////
 // Delegate methods for internal use.
-- (void)moveNextPage;
 - (void)setCurrentPage:(OnboardingContentViewController *)currentPage;
 - (void)setNextPage:(OnboardingContentViewController *)nextPage;
 ////////////////////////////////////////////////////////////////////
