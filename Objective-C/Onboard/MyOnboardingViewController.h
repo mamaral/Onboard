@@ -10,4 +10,6 @@
 
 @interface MyOnboardingViewController : OnboardingViewController
 
+- (instancetype)initWithCompletionHandler:(dispatch_block_t)completionHandler;
+
 @end

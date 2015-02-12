@@ -30,6 +30,8 @@
 		273D50D419A1A34F00E38DB2 /* OnboardTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 273D50D319A1A34F00E38DB2 /* OnboardTests.m */; };
 		273D50DF19A1A49C00E38DB2 /* OnboardingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 273D50DE19A1A49C00E38DB2 /* OnboardingViewController.m */; };
 		273D50E219A1A4BF00E38DB2 /* OnboardingContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 273D50E119A1A4BF00E38DB2 /* OnboardingContentViewController.m */; };
+		274E5B151A8C51ED009765AB /* MyOnboardingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 274E5B141A8C51ED009765AB /* MyOnboardingViewController.m */; };
+		274E5B191A8C558D009765AB /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 274E5B181A8C558D009765AB /* MBProgressHUD.m */; };
 		27535AD019BBCA070017811B /* tree.png in Resources */ = {isa = PBXBuildFile; fileRef = 27535ACF19BBCA070017811B /* tree.png */; };
 		27535AD219BBD1F00017811B /* yellowbg.png in Resources */ = {isa = PBXBuildFile; fileRef = 27535AD119BBD1F00017811B /* yellowbg.png */; };
 		2789AD6219A2D95E002117FE /* street.png in Resources */ = {isa = PBXBuildFile; fileRef = 2789AD6119A2D95E002117FE /* street.png */; };
@@ -86,6 +88,10 @@
 		273D50DE19A1A49C00E38DB2 /* OnboardingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnboardingViewController.m; sourceTree = "<group>"; };
 		273D50E019A1A4BF00E38DB2 /* OnboardingContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnboardingContentViewController.h; sourceTree = "<group>"; };
 		273D50E119A1A4BF00E38DB2 /* OnboardingContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnboardingContentViewController.m; sourceTree = "<group>"; };
+		274E5B131A8C51ED009765AB /* MyOnboardingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOnboardingViewController.h; sourceTree = "<group>"; };
+		274E5B141A8C51ED009765AB /* MyOnboardingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOnboardingViewController.m; sourceTree = "<group>"; };
+		274E5B171A8C558D009765AB /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		274E5B181A8C558D009765AB /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		27535ACF19BBCA070017811B /* tree.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tree.png; sourceTree = "<group>"; };
 		27535AD119BBD1F00017811B /* yellowbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellowbg.png; sourceTree = "<group>"; };
 		2789AD6119A2D95E002117FE /* street.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = street.png; sourceTree = "<group>"; };
@@ -226,12 +232,24 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		274E5B161A8C552B009765AB /* Externals */ = {
+			isa = PBXGroup;
+			children = (
+				274E5B171A8C558D009765AB /* MBProgressHUD.h */,
+				274E5B181A8C558D009765AB /* MBProgressHUD.m */,
+			);
+			name = Externals;
+			sourceTree = "<group>";
+		};
 		275280F219A45909007FBD47 /* Demo */ = {
 			isa = PBXGroup;
 			children = (
 				273D50BD19A1A34F00E38DB2 /* AppDelegate.h */,
 				273D50BE19A1A34F00E38DB2 /* AppDelegate.m */,
+				274E5B131A8C51ED009765AB /* MyOnboardingViewController.h */,
+				274E5B141A8C51ED009765AB /* MyOnboardingViewController.m */,
 				273D50C019A1A34F00E38DB2 /* Images.xcassets */,
+				274E5B161A8C552B009765AB /* Externals */,
 				273D50B519A1A34F00E38DB2 /* Supporting Files */,
 				273D50CD19A1A34F00E38DB2 /* OnboardTests */,
 				273D50AD19A1A34F00E38DB2 /* Frameworks */,
@@ -360,9 +378,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				273D50DF19A1A49C00E38DB2 /* OnboardingViewController.m in Sources */,
+				274E5B191A8C558D009765AB /* MBProgressHUD.m in Sources */,
 				273D50BF19A1A34F00E38DB2 /* AppDelegate.m in Sources */,
 				273D50BB19A1A34F00E38DB2 /* main.m in Sources */,
 				273D50E219A1A4BF00E38DB2 /* OnboardingContentViewController.m in Sources */,
+				274E5B151A8C51ED009765AB /* MyOnboardingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
