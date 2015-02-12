@@ -12,6 +12,8 @@
 
 @interface OnboardingViewController : UIViewController <UIPageViewControllerDataSource, UIPageViewControllerDelegate, UIScrollViewDelegate>
 
+@property (nonatomic, strong) NSArray *viewControllers;
+
 // Masking, blurring, fading, etc.
 @property (nonatomic) BOOL shouldMaskBackground;
 @property (nonatomic) BOOL shouldBlurBackground;
@@ -82,7 +84,5 @@
 - (void)setNextPage:(OnboardingContentViewController *)nextPage;
 ////////////////////////////////////////////////////////////////////
 
-// Getters for tests only
-- (NSArray *)contentViewControllers;
 
 @end
