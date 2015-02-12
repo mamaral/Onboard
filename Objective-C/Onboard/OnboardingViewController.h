@@ -12,7 +12,9 @@
 
 @interface OnboardingViewController : UIViewController <UIPageViewControllerDataSource, UIPageViewControllerDelegate, UIScrollViewDelegate>
 
+// View controllers and background image
 @property (nonatomic, strong) NSArray *viewControllers;
+@property (nonatomic, strong) UIImage *backgroundImage;
 
 // Masking, blurring, fading, etc.
 @property (nonatomic) BOOL shouldMaskBackground;
