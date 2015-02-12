@@ -30,13 +30,16 @@ static NSString * const kUserHasOnboardedKey = @"user_has_onboarded";
     
     // otherwise set the root view controller to the onboarding view controller
     else {
-//        self.window.rootViewController = [self generateFirstDemoVC];
+        self.window.rootViewController = [self generateFirstDemoVC];
 //        self.window.rootViewController = [self generateSecondDemoVC];
 //        self.window.rootViewController = [self generateThirdDemoVC];
-        self.window.rootViewController = [[MyOnboardingViewController alloc] initWithCompletionHandler:^{
-            [self setupNormalRootViewControllerAnimated:NO];
-        }];
-//        self.window.rootViewController = [self generateFifthDemoVC];
+//        self.window.rootViewController = [self generateFourthDemoVC];
+        
+//        __weak typeof(self) weakSelf = self;
+//        
+//        self.window.rootViewController = [[MyOnboardingViewController alloc] initWithCompletionHandler:^{
+//            [weakSelf setupNormalRootViewControllerAnimated:NO];
+//        }];
     }
     
     application.statusBarStyle = UIStatusBarStyleLightContent;
@@ -169,7 +172,7 @@ static NSString * const kUserHasOnboardedKey = @"user_has_onboarded";
     return onboardingVC;
 }
 
-- (OnboardingViewController *)generateFifthDemoVC {
+- (OnboardingViewController *)generateFourthDemoVC {
     OnboardingContentViewController *firstPage = [[OnboardingContentViewController alloc] initWithTitle:@"\"If you can't explain it simply, you don't know it well enough.\"" body:@"                 - Einsten" image:[UIImage imageNamed:@""] buttonText:nil action:nil];
     
     OnboardingContentViewController *secondPage = [[OnboardingContentViewController alloc] initWithTitle:@"\"If you wish to make an apple pie from scratch, you must first invent the universe.\"" body:@"                 - Sagan" image:nil buttonText:nil action:nil];
