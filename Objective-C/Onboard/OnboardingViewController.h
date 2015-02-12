@@ -12,6 +12,10 @@
 
 @interface OnboardingViewController : UIViewController <UIPageViewControllerDataSource, UIPageViewControllerDelegate, UIScrollViewDelegate>
 
+// View controllers and background image
+@property (nonatomic, strong) NSArray *viewControllers;
+@property (nonatomic, strong) UIImage *backgroundImage;
+
 // Masking, blurring, fading, etc.
 @property (nonatomic) BOOL shouldMaskBackground;
 @property (nonatomic) BOOL shouldBlurBackground;
@@ -41,6 +45,9 @@
 
 + (instancetype)onboardWithBackgroundVideoURL:(NSURL *)backgroundVideoURL contents:(NSArray *)contents;
 - (instancetype)initWithBackgroundVideoURL:(NSURL *)backgroundVideoURL contents:(NSArray *)contents;
+
+// Manually moving to next page
+- (void)moveNextPage;
 
 ////////////////////////////////////////////////////////////////////
 // These are convenience properties for content view customization, so you
@@ -77,12 +84,9 @@
 
 ////////////////////////////////////////////////////////////////////
 // Delegate methods for internal use.
-- (void)moveNextPage;
 - (void)setCurrentPage:(OnboardingContentViewController *)currentPage;
 - (void)setNextPage:(OnboardingContentViewController *)nextPage;
 ////////////////////////////////////////////////////////////////////
 
-// Getters for tests only
-- (NSArray *)contentViewControllers;
 
 @end

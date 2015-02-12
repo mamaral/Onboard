@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "OnboardingViewController.h"
 #import "OnboardingContentViewController.h"
+#import "MyOnboardingViewController.h"
 
 static NSString * const kUserHasOnboardedKey = @"user_has_onboarded";
 
@@ -33,7 +34,12 @@ static NSString * const kUserHasOnboardedKey = @"user_has_onboarded";
 //        self.window.rootViewController = [self generateSecondDemoVC];
 //        self.window.rootViewController = [self generateThirdDemoVC];
 //        self.window.rootViewController = [self generateFourthDemoVC];
-//        self.window.rootViewController = [self generateFifthDemoVC];
+        
+//        __weak typeof(self) weakSelf = self;
+//        
+//        self.window.rootViewController = [[MyOnboardingViewController alloc] initWithCompletionHandler:^{
+//            [weakSelf setupNormalRootViewControllerAnimated:NO];
+//        }];
     }
     
     application.statusBarStyle = UIStatusBarStyleLightContent;
@@ -167,22 +173,6 @@ static NSString * const kUserHasOnboardedKey = @"user_has_onboarded";
 }
 
 - (OnboardingViewController *)generateFourthDemoVC {
-    OnboardingContentViewController *firstPage = [[OnboardingContentViewController alloc] initWithTitle:@"Organize" body:@"Everything has its place. We take care of the housekeeping for you. " image:[UIImage imageNamed:@"layers"] buttonText:nil action:nil];
-    
-    OnboardingContentViewController *secondPage = [[OnboardingContentViewController alloc] initWithTitle:@"Relax" body:@"Grab a nice beverage, sit back, and enjoy the experience." image:[UIImage imageNamed:@"coffee"] buttonText:nil action:nil];
-    
-    OnboardingContentViewController *thirdPage = [[OnboardingContentViewController alloc] initWithTitle:@"Rock Out" body:@"Import your favorite tunes and jam out while you browse." image:[UIImage imageNamed:@"headphones"] buttonText:nil action:nil];
-    
-    OnboardingContentViewController *fourthPage = [[OnboardingContentViewController alloc] initWithTitle:@"Experiment" body:@"Try new things, explore different combinations, and see what you come up with!" image:[UIImage imageNamed:@"testtube"] buttonText:@"Let's Get Started" action:nil];
-    
-    OnboardingViewController *onboardingVC = [[OnboardingViewController alloc] initWithBackgroundImage:[UIImage imageNamed:@"purple"] contents:@[firstPage, secondPage, thirdPage, fourthPage]];
-    onboardingVC.shouldMaskBackground = NO;
-    onboardingVC.iconSize = 160;
-    onboardingVC.fontName = @"HelveticaNeue-Thin";
-    return onboardingVC;
-}
-
-- (OnboardingViewController *)generateFifthDemoVC {
     OnboardingContentViewController *firstPage = [[OnboardingContentViewController alloc] initWithTitle:@"\"If you can't explain it simply, you don't know it well enough.\"" body:@"                 - Einsten" image:[UIImage imageNamed:@""] buttonText:nil action:nil];
     
     OnboardingContentViewController *secondPage = [[OnboardingContentViewController alloc] initWithTitle:@"\"If you wish to make an apple pie from scratch, you must first invent the universe.\"" body:@"                 - Sagan" image:nil buttonText:nil action:nil];

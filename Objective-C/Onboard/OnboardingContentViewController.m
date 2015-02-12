@@ -53,10 +53,12 @@ static CGFloat const kMainPageControlHeight = 35;
     self.movesToNextViewController = NO;
     
     // default icon properties
-	if(_image){
+    if(_image) {
 		self.iconHeight = _image.size.height;
 		self.iconWidth = _image.size.width;
-	} else {
+	}
+    
+    else {
 		self.iconHeight = kDefaultImageViewSize;
 		self.iconWidth = kDefaultImageViewSize;
 	}

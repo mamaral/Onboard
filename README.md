@@ -14,52 +14,6 @@ Onboard provides developers with a quick and easy means to create a beautiful, e
 ![demo](Screenshots/tripnary.gif)
 
 
-
-Apps Using Onboard
-=============
-
-If your app is currently using onboard, let me know and I would love to feature it here!
-
-[Gemr](http://www.gemr.com/ "Gemr")
-===
-
-
-![demo](Screenshots/gemr1.PNG)
-![demo](Screenshots/gemr2.PNG)
-![demo](Screenshots/gemr3.PNG)
-
-[Tripnary](http://tripnary.com/ "Tripnary")
-===
-
-Thanks to [goelv](https://github.com/goelv) for this! You did a superb job!
-
-![demo](Screenshots/tripnary1.PNG)
-![demo](Screenshots/tripnary2.PNG)
-![demo](Screenshots/tripnary3.PNG)
-![demo](Screenshots/tripnary4.PNG)
-![demo](Screenshots/tripnary5.PNG)
-
-More Samples
-=============
-
-![demo](Screenshots/city1.png)
-![demo](Screenshots/city2.png)
-![demo](Screenshots/city3.png)
-
-![demo](Screenshots/solar1.png)
-![demo](Screenshots/solar2.png)
-![demo](Screenshots/solar3.png)
-
-![demo](Screenshots/space1.png)
-![demo](Screenshots/space2.png)
-![demo](Screenshots/space3.png)
-![demo](Screenshots/space4.png)
-
-![demo](Screenshots/purple1.png)
-![demo](Screenshots/purple2.png)
-![demo](Screenshots/purple3.png)
-![demo](Screenshots/purple4.png)
-
 Compatibility
 ====
 
@@ -218,6 +172,51 @@ Notes
 =====
 
 I'm not currently supporting landscape at the moment, so I would recommend either using this in an application that only supports portrait, or wrapping it in a subclassed UINavigationController that only supports portrait.
+
+Apps Using Onboard
+=============
+
+If your app is currently using onboard, let me know and I would love to feature it here!
+
+[Gemr](http://www.gemr.com/ "Gemr")
+===
+
+
+![demo](Screenshots/gemr1.PNG)
+![demo](Screenshots/gemr2.PNG)
+![demo](Screenshots/gemr3.PNG)
+
+[Tripnary](http://tripnary.com/ "Tripnary")
+===
+
+Thanks to [goelv](https://github.com/goelv) for this! You did a superb job!
+
+![demo](Screenshots/tripnary1.PNG)
+![demo](Screenshots/tripnary2.PNG)
+![demo](Screenshots/tripnary3.PNG)
+![demo](Screenshots/tripnary4.PNG)
+![demo](Screenshots/tripnary5.PNG)
+
+More Samples
+=============
+
+![demo](Screenshots/city1.png)
+![demo](Screenshots/city2.png)
+![demo](Screenshots/city3.png)
+
+![demo](Screenshots/solar1.png)
+![demo](Screenshots/solar2.png)
+![demo](Screenshots/solar3.png)
+
+![demo](Screenshots/space1.png)
+![demo](Screenshots/space2.png)
+![demo](Screenshots/space3.png)
+![demo](Screenshots/space4.png)
+
+![demo](Screenshots/purple1.png)
+![demo](Screenshots/purple2.png)
+![demo](Screenshots/purple3.png)
+![demo](Screenshots/purple4.png)
 
 
 Community

@@ -20,10 +20,8 @@ static CGFloat const kDefaultSaturationDeltaFactor = 1.8;
 static NSString * const kSkipButtonText = @"Skip";
 
 @implementation OnboardingViewController {
-    UIImage *_backgroundImage;
     NSURL *_videoURL;
     UIPageViewController *_pageVC;
-    NSArray *_viewControllers;
     
     OnboardingContentViewController *_currentPage;
     OnboardingContentViewController *_upcomingPage;
@@ -41,7 +39,7 @@ static NSString * const kSkipButtonText = @"Skip";
     self = [self initWithContents:contents];
     
     // store the passed in view controllers array
-    _backgroundImage = backgroundImage;
+    self.backgroundImage = backgroundImage;
     
     return self;
 }
@@ -70,7 +68,7 @@ static NSString * const kSkipButtonText = @"Skip";
     self = [super init];
     
     // store the passed in view controllers array
-    _viewControllers = contents;
+    self.viewControllers = contents;
     
     // set the default properties
     self.shouldMaskBackground = YES;
@@ -130,10 +128,10 @@ static NSString * const kSkipButtonText = @"Skip";
     UIImageView *backgroundImageView;
     
     // create the background image view and set it to aspect fill so it isn't skewed
-    if (_backgroundImage) {
+    if (self.backgroundImage) {
         backgroundImageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
         backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
-        [backgroundImageView setImage:_backgroundImage];
+        [backgroundImageView setImage:self.backgroundImage];
         [self.view addSubview:backgroundImageView];
     }
     
@@ -148,7 +146,7 @@ static NSString * const kSkipButtonText = @"Skip";
     }
     
     // set the initial current page as the first page provided
-    _currentPage = [_viewControllers firstObject];
+    _currentPage = [self.viewControllers firstObject];
     
     // more page controller setup
     [_pageVC setViewControllers:@[_currentPage] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
@@ -177,7 +175,7 @@ static NSString * const kSkipButtonText = @"Skip";
     // create and configure the the page control
     if (!self.hidePageControl) {
         self.pageControl.frame = CGRectMake(0, CGRectGetMaxY(self.view.frame) - kPageControlHeight, self.view.frame.size.width, kPageControlHeight);
-        self.pageControl.numberOfPages = _viewControllers.count;
+        self.pageControl.numberOfPages = self.viewControllers.count;
         self.pageControl.userInteractionEnabled = NO;
         [self.view addSubview:self.pageControl];
     }
@@ -203,7 +201,7 @@ static NSString * const kSkipButtonText = @"Skip";
     
     // set ourself as the delegate on all of the content views, to handle fading
     // and auto-navigation
-    for (OnboardingContentViewController *contentVC in _viewControllers) {
+    for (OnboardingContentViewController *contentVC in self.viewControllers) {
         contentVC.delegate = self;
     }
 }
@@ -227,44 +225,44 @@ static NSString * const kSkipButtonText = @"Skip";
 #pragma mark - Convenience setters for content pages
 
 - (void)setIconSize:(CGFloat)iconSize {
-    for (OnboardingContentViewController *contentVC in _viewControllers) {
+    for (OnboardingContentViewController *contentVC in self.viewControllers) {
         contentVC.iconWidth = iconSize;
         contentVC.iconHeight = iconSize;
     }
 }
 
 - (void)setIconWidth:(CGFloat)iconWidth {
-    for (OnboardingContentViewController *contentVC in _viewControllers) {
+    for (OnboardingContentViewController *contentVC in self.viewControllers) {
         contentVC.iconWidth = iconWidth;
     }
 }
 
 - (void)setIconHeight:(CGFloat)iconHeight {
-    for (OnboardingContentViewController *contentVC in _viewControllers) {
+    for (OnboardingContentViewController *contentVC in self.viewControllers) {
         contentVC.iconHeight = iconHeight;
     }
 }
 
 - (void)setTitleTextColor:(UIColor *)titleTextColor {
-    for (OnboardingContentViewController *contentVC in _viewControllers) {
+    for (OnboardingContentViewController *contentVC in self.viewControllers) {
         contentVC.titleTextColor = titleTextColor;
     }
 }
 
 - (void)setBodyTextColor:(UIColor *)bodyTextColor {
-    for (OnboardingContentViewController *contentVC in _viewControllers) {
+    for (OnboardingContentViewController *contentVC in self.viewControllers) {
         contentVC.bodyTextColor = bodyTextColor;
     }
 }
 
 - (void)setButtonTextColor:(UIColor *)buttonTextColor {
-    for (OnboardingContentViewController *contentVC in _viewControllers) {
+    for (OnboardingContentViewController *contentVC in self.viewControllers) {
         contentVC.buttonTextColor = buttonTextColor;
     }
 }
 
 - (void)setFontName:(NSString *)fontName {
-    for (OnboardingContentViewController *contentVC in _viewControllers) {
+    for (OnboardingContentViewController *contentVC in self.viewControllers) {
         contentVC.titleFontName = fontName;
         contentVC.bodyFontName = fontName;
         contentVC.buttonFontName = fontName;
@@ -272,61 +270,61 @@ static NSString * const kSkipButtonText = @"Skip";
 }
 
 - (void)setTitleFontName:(NSString *)fontName {
-    for (OnboardingContentViewController *contentVC in _viewControllers) {
+    for (OnboardingContentViewController *contentVC in self.viewControllers) {
         contentVC.titleFontName = fontName;
     }
 }
 
 - (void)setTitleFontSize:(CGFloat)titleFontSize {
-    for (OnboardingContentViewController *contentVC in _viewControllers) {
+    for (OnboardingContentViewController *contentVC in self.viewControllers) {
         contentVC.titleFontSize = titleFontSize;
     }
 }
 
 - (void)setBodyFontName:(NSString *)fontName {
-    for (OnboardingContentViewController *contentVC in _viewControllers) {
+    for (OnboardingContentViewController *contentVC in self.viewControllers) {
         contentVC.bodyFontName = fontName;
     }
 }
 
 - (void)setBodyFontSize:(CGFloat)bodyFontSize {
-    for (OnboardingContentViewController *contentVC in _viewControllers) {
+    for (OnboardingContentViewController *contentVC in self.viewControllers) {
         contentVC.bodyFontSize = bodyFontSize;
     }
 }
 
 - (void)setButtonFontName:(NSString *)fontName {
-    for (OnboardingContentViewController *contentVC in _viewControllers) {
+    for (OnboardingContentViewController *contentVC in self.viewControllers) {
         contentVC.buttonFontName = fontName;
     }
 }
 
 - (void)setButtonFontSize:(CGFloat)bodyFontSize {
-    for (OnboardingContentViewController *contentVC in _viewControllers) {
+    for (OnboardingContentViewController *contentVC in self.viewControllers) {
         contentVC.buttonFontSize = bodyFontSize;
     }
 }
 
 - (void)setTopPadding:(CGFloat)topPadding {
-    for (OnboardingContentViewController *contentVC in _viewControllers) {
+    for (OnboardingContentViewController *contentVC in self.viewControllers) {
         contentVC.topPadding = topPadding;
     }
 }
 
 - (void)setUnderIconPadding:(CGFloat)underIconPadding {
-    for (OnboardingContentViewController *contentVC in _viewControllers) {
+    for (OnboardingContentViewController *contentVC in self.viewControllers) {
         contentVC.underIconPadding = underIconPadding;
     }
 }
 
 - (void)setUnderTitlePadding:(CGFloat)underTitlePadding {
-    for (OnboardingContentViewController *contentVC in _viewControllers) {
+    for (OnboardingContentViewController *contentVC in self.viewControllers) {
         contentVC.underTitlePadding = underTitlePadding;
     }
 }
 
 - (void)setBottomPadding:(CGFloat)bottomPadding {
-    for (OnboardingContentViewController *contentVC in _viewControllers) {
+    for (OnboardingContentViewController *contentVC in self.viewControllers) {
         contentVC.bottomPadding = bottomPadding;
     }
 }
@@ -336,23 +334,23 @@ static NSString * const kSkipButtonText = @"Skip";
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController {
     // return the previous view controller in the array unless we're at the beginning
-    if (viewController == [_viewControllers firstObject]) {
+    if (viewController == [self.viewControllers firstObject]) {
         return nil;
     }
     else {
-        NSInteger priorPageIndex = [_viewControllers indexOfObject:viewController] - 1;
-        return _viewControllers[priorPageIndex];
+        NSInteger priorPageIndex = [self.viewControllers indexOfObject:viewController] - 1;
+        return self.viewControllers[priorPageIndex];
     }
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
     // return the next view controller in the array unless we're at the end
-    if (viewController == [_viewControllers lastObject]) {
+    if (viewController == [self.viewControllers lastObject]) {
         return nil;
     }
     else {
         NSInteger nextPageIndex = [_viewControllers indexOfObject:viewController] + 1;
-        return _viewControllers[nextPageIndex];
+        return self.viewControllers[nextPageIndex];
     }
 }
 
@@ -368,15 +366,15 @@ static NSString * const kSkipButtonText = @"Skip";
     // get the view controller we are moving towards, then get the index, then set it as the current page
     // for the page control dots
     UIViewController *viewController = [pageViewController.viewControllers lastObject];
-    NSInteger newIndex = [_viewControllers indexOfObject:viewController];
+    NSInteger newIndex = [self.viewControllers indexOfObject:viewController];
     [self.pageControl setCurrentPage:newIndex];
 }
 
 - (void)moveNextPage {
-    NSUInteger indexOfNextPage = [_viewControllers indexOfObject:_currentPage] + 1;
+    NSUInteger indexOfNextPage = [self.viewControllers indexOfObject:_currentPage] + 1;
     
-    if (indexOfNextPage < _viewControllers.count) {
-        [_pageVC setViewControllers:@[_viewControllers[indexOfNextPage]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+    if (indexOfNextPage < self.viewControllers.count) {
+        [_pageVC setViewControllers:@[self.viewControllers[indexOfNextPage]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
         [self.pageControl setCurrentPage:indexOfNextPage];
     }
 }
@@ -414,12 +412,12 @@ static NSString * const kSkipButtonText = @"Skip";
     // If we want to fade the page control on the last page...
     if (self.fadePageControlOnLastPage) {
         // If the upcoming page is the last object, fade the page control out as we scroll.
-        if (_upcomingPage == [_viewControllers lastObject]) {
+        if (_upcomingPage == [self.viewControllers lastObject]) {
             _pageControl.alpha = 1.0 - percentComplete;
         }
         
         // Otherwise if we're on the last page and we're moving towards the second-to-last page, fade it back in.
-        else if ((_currentPage == [_viewControllers lastObject]) && (_upcomingPage == _viewControllers[_viewControllers.count - 2])) {
+        else if ((_currentPage == [self.viewControllers lastObject]) && (_upcomingPage == self.viewControllers[self.viewControllers.count - 2])) {
             _pageControl.alpha = percentComplete;
         }
     }
@@ -430,29 +428,29 @@ static NSString * const kSkipButtonText = @"Skip";
 
 - (void)blurBackground {
     // Check pre-conditions.
-    if (_backgroundImage.size.width < 1 || _backgroundImage.size.height < 1) {
-        NSLog (@"*** error: invalid size: (%.2f x %.2f). Both dimensions must be >= 1: %@", _backgroundImage.size.width, _backgroundImage.size.height, _backgroundImage);
+    if (self.backgroundImage.size.width < 1 || self.backgroundImage.size.height < 1) {
+        NSLog (@"*** error: invalid size: (%.2f x %.2f). Both dimensions must be >= 1: %@", self.backgroundImage.size.width, self.backgroundImage.size.height, self.backgroundImage);
         return;
     }
-    if (!_backgroundImage.CGImage) {
-        NSLog (@"*** error: image must be backed by a CGImage: %@", _backgroundImage);
+    if (!self.backgroundImage.CGImage) {
+        NSLog (@"*** error: image must be backed by a CGImage: %@", self.backgroundImage);
         return;
     }
     
     UIColor *tintColor = [UIColor colorWithWhite:0.7 alpha:0.3];
     CGFloat blurRadius = kDefaultBlurRadius;
     CGFloat saturationDeltaFactor = kDefaultSaturationDeltaFactor;
-    CGRect imageRect = { CGPointZero, _backgroundImage.size };
-    UIImage *effectImage = _backgroundImage;
+    CGRect imageRect = { CGPointZero, self.backgroundImage.size };
+    UIImage *effectImage = self.backgroundImage;
     
     BOOL hasBlur = blurRadius > __FLT_EPSILON__;
     BOOL hasSaturationChange = fabs(saturationDeltaFactor - 1.) > __FLT_EPSILON__;
     if (hasBlur || hasSaturationChange) {
-        UIGraphicsBeginImageContextWithOptions(_backgroundImage.size, NO, [[UIScreen mainScreen] scale]);
+        UIGraphicsBeginImageContextWithOptions(self.backgroundImage.size, NO, [[UIScreen mainScreen] scale]);
         CGContextRef effectInContext = UIGraphicsGetCurrentContext();
         CGContextScaleCTM(effectInContext, 1.0, -1.0);
-        CGContextTranslateCTM(effectInContext, 0, -_backgroundImage.size.height);
-        CGContextDrawImage(effectInContext, imageRect, _backgroundImage.CGImage);
+        CGContextTranslateCTM(effectInContext, 0, -self.backgroundImage.size.height);
+        CGContextDrawImage(effectInContext, imageRect, self.backgroundImage.CGImage);
         
         vImage_Buffer effectInBuffer;
         effectInBuffer.data     = CGBitmapContextGetData(effectInContext);
@@ -460,7 +458,7 @@ static NSString * const kSkipButtonText = @"Skip";
         effectInBuffer.height   = CGBitmapContextGetHeight(effectInContext);
         effectInBuffer.rowBytes = CGBitmapContextGetBytesPerRow(effectInContext);
         
-        UIGraphicsBeginImageContextWithOptions(_backgroundImage.size, NO, [[UIScreen mainScreen] scale]);
+        UIGraphicsBeginImageContextWithOptions(self.backgroundImage.size, NO, [[UIScreen mainScreen] scale]);
         CGContextRef effectOutContext = UIGraphicsGetCurrentContext();
         vImage_Buffer effectOutBuffer;
         effectOutBuffer.data     = CGBitmapContextGetData(effectOutContext);
@@ -523,13 +521,13 @@ static NSString * const kSkipButtonText = @"Skip";
     }
     
     // Set up output context.
-    UIGraphicsBeginImageContextWithOptions(_backgroundImage.size, NO, [[UIScreen mainScreen] scale]);
+    UIGraphicsBeginImageContextWithOptions(self.backgroundImage.size, NO, [[UIScreen mainScreen] scale]);
     CGContextRef outputContext = UIGraphicsGetCurrentContext();
     CGContextScaleCTM(outputContext, 1.0, -1.0);
-    CGContextTranslateCTM(outputContext, 0, -_backgroundImage.size.height);
+    CGContextTranslateCTM(outputContext, 0, -self.backgroundImage.size.height);
     
     // Draw base image.
-    CGContextDrawImage(outputContext, imageRect, _backgroundImage.CGImage);
+    CGContextDrawImage(outputContext, imageRect, self.backgroundImage.CGImage);
     
     // Draw effect image.
     if (hasBlur) {
@@ -550,14 +548,7 @@ static NSString * const kSkipButtonText = @"Skip";
     UIImage *outputImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
-    _backgroundImage = outputImage;
-}
-
-
-#pragma mark - Getters for unit tests
-
-- (NSArray *)contentViewControllers {
-    return _viewControllers;
+    self.backgroundImage = outputImage;
 }
 
 @end

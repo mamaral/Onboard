@@ -29,7 +29,7 @@
     // view controllers at init-time, the view controllers are correctly set.
     NSArray *contents = [self generateStockContentVCS];
     OnboardingViewController *onboardingVC = [[OnboardingViewController alloc] initWithBackgroundImage:nil contents:contents];
-    NSArray *contentsFromController = [onboardingVC contentViewControllers];
+    NSArray *contentsFromController = onboardingVC.viewControllers;
     
     for (NSInteger index = 0; index < contents.count; index++) {
         OnboardingContentViewController *originalContentVC = contents[index];
@@ -71,7 +71,7 @@
     onboardingVC.underTitlePadding = testPadding;
     onboardingVC.bottomPadding = testPadding;
     
-    NSArray *contentsFromController = [onboardingVC contentViewControllers];
+    NSArray *contentsFromController = onboardingVC.viewControllers;
     
     for (OnboardingContentViewController *contentVC in contentsFromController) {
         XCTAssert(contentVC.titleTextColor == testColor, @"The content view controller's title text color is invalid.");
