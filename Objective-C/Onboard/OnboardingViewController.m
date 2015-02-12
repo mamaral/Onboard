@@ -20,7 +20,6 @@ static CGFloat const kDefaultSaturationDeltaFactor = 1.8;
 static NSString * const kSkipButtonText = @"Skip";
 
 @implementation OnboardingViewController {
-    UIImage *_backgroundImage;
     NSURL *_videoURL;
     UIPageViewController *_pageVC;
     
@@ -40,7 +39,7 @@ static NSString * const kSkipButtonText = @"Skip";
     self = [self initWithContents:contents];
     
     // store the passed in view controllers array
-    _backgroundImage = backgroundImage;
+    self.backgroundImage = backgroundImage;
     
     return self;
 }
@@ -129,10 +128,10 @@ static NSString * const kSkipButtonText = @"Skip";
     UIImageView *backgroundImageView;
     
     // create the background image view and set it to aspect fill so it isn't skewed
-    if (_backgroundImage) {
+    if (self.backgroundImage) {
         backgroundImageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
         backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
-        [backgroundImageView setImage:_backgroundImage];
+        [backgroundImageView setImage:self.backgroundImage];
         [self.view addSubview:backgroundImageView];
     }
     
@@ -429,29 +428,29 @@ static NSString * const kSkipButtonText = @"Skip";
 
 - (void)blurBackground {
     // Check pre-conditions.
-    if (_backgroundImage.size.width < 1 || _backgroundImage.size.height < 1) {
-        NSLog (@"*** error: invalid size: (%.2f x %.2f). Both dimensions must be >= 1: %@", _backgroundImage.size.width, _backgroundImage.size.height, _backgroundImage);
+    if (self.backgroundImage.size.width < 1 || self.backgroundImage.size.height < 1) {
+        NSLog (@"*** error: invalid size: (%.2f x %.2f). Both dimensions must be >= 1: %@", self.backgroundImage.size.width, self.backgroundImage.size.height, self.backgroundImage);
         return;
     }
-    if (!_backgroundImage.CGImage) {
-        NSLog (@"*** error: image must be backed by a CGImage: %@", _backgroundImage);
+    if (!self.backgroundImage.CGImage) {
+        NSLog (@"*** error: image must be backed by a CGImage: %@", self.backgroundImage);
         return;
     }
     
     UIColor *tintColor = [UIColor colorWithWhite:0.7 alpha:0.3];
     CGFloat blurRadius = kDefaultBlurRadius;
     CGFloat saturationDeltaFactor = kDefaultSaturationDeltaFactor;
-    CGRect imageRect = { CGPointZero, _backgroundImage.size };
-    UIImage *effectImage = _backgroundImage;
+    CGRect imageRect = { CGPointZero, self.backgroundImage.size };
+    UIImage *effectImage = self.backgroundImage;
     
     BOOL hasBlur = blurRadius > __FLT_EPSILON__;
     BOOL hasSaturationChange = fabs(saturationDeltaFactor - 1.) > __FLT_EPSILON__;
     if (hasBlur || hasSaturationChange) {
-        UIGraphicsBeginImageContextWithOptions(_backgroundImage.size, NO, [[UIScreen mainScreen] scale]);
+        UIGraphicsBeginImageContextWithOptions(self.backgroundImage.size, NO, [[UIScreen mainScreen] scale]);
         CGContextRef effectInContext = UIGraphicsGetCurrentContext();
         CGContextScaleCTM(effectInContext, 1.0, -1.0);
-        CGContextTranslateCTM(effectInContext, 0, -_backgroundImage.size.height);
-        CGContextDrawImage(effectInContext, imageRect, _backgroundImage.CGImage);
+        CGContextTranslateCTM(effectInContext, 0, -self.backgroundImage.size.height);
+        CGContextDrawImage(effectInContext, imageRect, self.backgroundImage.CGImage);
         
         vImage_Buffer effectInBuffer;
         effectInBuffer.data     = CGBitmapContextGetData(effectInContext);
@@ -459,7 +458,7 @@ static NSString * const kSkipButtonText = @"Skip";
         effectInBuffer.height   = CGBitmapContextGetHeight(effectInContext);
         effectInBuffer.rowBytes = CGBitmapContextGetBytesPerRow(effectInContext);
         
-        UIGraphicsBeginImageContextWithOptions(_backgroundImage.size, NO, [[UIScreen mainScreen] scale]);
+        UIGraphicsBeginImageContextWithOptions(self.backgroundImage.size, NO, [[UIScreen mainScreen] scale]);
         CGContextRef effectOutContext = UIGraphicsGetCurrentContext();
         vImage_Buffer effectOutBuffer;
         effectOutBuffer.data     = CGBitmapContextGetData(effectOutContext);
@@ -522,13 +521,13 @@ static NSString * const kSkipButtonText = @"Skip";
     }
     
     // Set up output context.
-    UIGraphicsBeginImageContextWithOptions(_backgroundImage.size, NO, [[UIScreen mainScreen] scale]);
+    UIGraphicsBeginImageContextWithOptions(self.backgroundImage.size, NO, [[UIScreen mainScreen] scale]);
     CGContextRef outputContext = UIGraphicsGetCurrentContext();
     CGContextScaleCTM(outputContext, 1.0, -1.0);
-    CGContextTranslateCTM(outputContext, 0, -_backgroundImage.size.height);
+    CGContextTranslateCTM(outputContext, 0, -self.backgroundImage.size.height);
     
     // Draw base image.
-    CGContextDrawImage(outputContext, imageRect, _backgroundImage.CGImage);
+    CGContextDrawImage(outputContext, imageRect, self.backgroundImage.CGImage);
     
     // Draw effect image.
     if (hasBlur) {
@@ -549,7 +548,7 @@ static NSString * const kSkipButtonText = @"Skip";
     UIImage *outputImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
-    _backgroundImage = outputImage;
+    self.backgroundImage = outputImage;
 }
 
 @end
