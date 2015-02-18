@@ -16,10 +16,6 @@
     UIImage *_image;
     NSString *_buttonText;
     dispatch_block_t _actionHandler;
-    
-    UILabel *_mainTextLabel;
-    UILabel *_subTextLabel;
-    UIButton *_actionButton;
 }
 
 @property (nonatomic, weak) OnboardingViewController *delegate;
@@ -27,6 +23,9 @@
 @property (nonatomic) BOOL movesToNextViewController;
 
 @property (nonatomic, strong) UIImageView *imageView;
+@property (nonatomic, strong) UILabel *mainTextLabel;
+@property (nonatomic, strong) UILabel *subTextLabel;
+@property (nonatomic, strong) UIButton *actionButton;
 
 @property (nonatomic) CGFloat iconHeight;
 @property (nonatomic) CGFloat iconWidth;

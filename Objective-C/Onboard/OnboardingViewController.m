@@ -79,6 +79,7 @@ static NSString * const kSkipButtonText = @"Skip";
     self.hidePageControl = NO;
     
     self.allowSkipping = NO;
+    self.skipButtonText = kSkipButtonText;
     self.skipHandler = ^{};
     
     // create the initial exposed components so they can be customized
@@ -183,7 +184,7 @@ static NSString * const kSkipButtonText = @"Skip";
     // if we allow skipping, setup the skip button
     if (self.allowSkipping) {
         self.skipButton.frame = CGRectMake(CGRectGetMaxX(self.view.frame) - kSkipButtonWidth, CGRectGetMaxY(self.view.frame) - kSkipButtonHeight, kSkipButtonWidth, kSkipButtonHeight);
-        [self.skipButton setTitle:kSkipButtonText forState:UIControlStateNormal];
+        [self.skipButton setTitle:self.skipButtonText forState:UIControlStateNormal];
         [self.skipButton addTarget:self action:@selector(handleSkipButtonPressed) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:self.skipButton];
     }

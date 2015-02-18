@@ -24,6 +24,7 @@
 
 // Skipping
 @property (nonatomic) BOOL allowSkipping;
+@property (nonatomic, strong) NSString *skipButtonText;
 @property (nonatomic, strong) dispatch_block_t skipHandler;
 
 // Swiping
