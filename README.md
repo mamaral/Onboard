@@ -25,10 +25,10 @@ Usage
 
 CocoaPods
 --------
-I'm still new to implementing my own pods, so bear with me! Adding the following to your `Podfile` and running `pod install` should do the trick:
+Adding the following to your `Podfile` and running `pod install` should do the trick:
 
-```ruby
-pod 'Onboard', :git => 'https://github.com/mamaral/Onboard.git'
+```
+pod 'Onboard'
 ```
 
 Manual
