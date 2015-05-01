@@ -89,7 +89,9 @@ static CGFloat const kMainPageControlHeight = 35;
     // default blocks
     self.viewWillAppearBlock = ^{};
     self.viewDidAppearBlock = ^{};
-    
+    self.viewWillDisappearBlock = ^{};
+    self.viewDidDisappearBlock = ^{};
+
     return self;
 }
 
@@ -124,6 +126,20 @@ static CGFloat const kMainPageControlHeight = 35;
     
     // call our view did appear block
     self.viewDidAppearBlock();
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+
+    // call our view will disappear block
+    self.viewWillDisappearBlock();
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+
+    // call our view did disappear block
+    self.viewDidDisappearBlock();
 }
 
 - (void)generateView {
