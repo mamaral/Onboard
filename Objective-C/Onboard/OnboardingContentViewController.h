@@ -15,7 +15,6 @@
     NSString *_body;
     UIImage *_image;
     NSString *_buttonText;
-    dispatch_block_t _actionHandler;
     
     UIImageView *_imageView;
     UILabel *_mainTextLabel;
@@ -47,6 +46,8 @@
 @property (nonatomic) CGFloat underIconPadding;
 @property (nonatomic) CGFloat underTitlePadding;
 @property (nonatomic) CGFloat bottomPadding;
+
+@property (nonatomic, copy) dispatch_block_t buttonActionHandler;
 
 @property (nonatomic, copy) dispatch_block_t viewWillAppearBlock;
 @property (nonatomic, copy) dispatch_block_t viewDidAppearBlock;

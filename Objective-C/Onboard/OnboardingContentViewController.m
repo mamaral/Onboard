@@ -47,7 +47,8 @@ static CGFloat const kMainPageControlHeight = 35;
     _body = body;
     _image = image;
     _buttonText = buttonText;
-    _actionHandler = action ?: ^{};
+
+    self.buttonActionHandler = action;
     
     // default auto-navigation
     self.movesToNextViewController = NO;
@@ -142,6 +143,11 @@ static CGFloat const kMainPageControlHeight = 35;
     self.viewDidDisappearBlock();
 }
 
+- (void)setButtonActionHandler:(dispatch_block_t)action
+{
+    _buttonActionHandler = action ?: ^{};
+}
+
 - (void)generateView {
     // we want our background to be clear so we can see through it to the image provided
     self.view.backgroundColor = [UIColor clearColor];
@@ -212,7 +218,7 @@ static CGFloat const kMainPageControlHeight = 35;
     }
     
     // call the provided action handler
-    _actionHandler();
+    _buttonActionHandler();
 }
 
 @end
