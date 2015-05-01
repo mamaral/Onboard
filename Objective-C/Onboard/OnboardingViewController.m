@@ -144,7 +144,13 @@ static NSString * const kSkipButtonText = @"Skip";
         backgroundMaskView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:kBackgroundMaskAlpha];
         [_pageVC.view addSubview:backgroundMaskView];
     }
-    
+
+    // set ourself as the delegate on all of the content views, to handle fading
+    // and auto-navigation
+    for (OnboardingContentViewController *contentVC in self.viewControllers) {
+        contentVC.delegate = self;
+    }
+
     // set the initial current page as the first page provided
     _currentPage = [self.viewControllers firstObject];
     
@@ -197,12 +203,6 @@ static NSString * const kSkipButtonText = @"Skip";
                 [(UIScrollView *)view setDelegate:self];
             }
         }
-    }
-    
-    // set ourself as the delegate on all of the content views, to handle fading
-    // and auto-navigation
-    for (OnboardingContentViewController *contentVC in self.viewControllers) {
-        contentVC.delegate = self;
     }
 }
 
