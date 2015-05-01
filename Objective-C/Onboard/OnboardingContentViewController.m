@@ -126,6 +126,20 @@ static CGFloat const kMainPageControlHeight = 35;
     self.viewDidAppearBlock();
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+
+    // call our view will disappear block
+    self.viewWillDisappearBlock();
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+
+    // call our view did disappear block
+    self.viewDidDisappearBlock();
+}
+
 - (void)generateView {
     // we want our background to be clear so we can see through it to the image provided
     self.view.backgroundColor = [UIColor clearColor];
