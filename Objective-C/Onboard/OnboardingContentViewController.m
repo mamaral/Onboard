@@ -89,7 +89,9 @@ static CGFloat const kMainPageControlHeight = 35;
     // default blocks
     self.viewWillAppearBlock = ^{};
     self.viewDidAppearBlock = ^{};
-    
+    self.viewWillDisappearBlock = ^{};
+    self.viewDidDisappearBlock = ^{};
+
     return self;
 }
 
