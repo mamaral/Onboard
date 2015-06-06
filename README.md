@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/mamaral/Onboard.svg?branch=master)](https://travis-ci.org/mamaral/Onboard)
 [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org)
+![Badge w/ Version](https://img.shields.io/cocoapods/v/Onboard.svg)
 
 Onboard provides developers with a quick and easy means to create a beautiful, engaging, and useful onboarding experience with only a few lines of code.
 
