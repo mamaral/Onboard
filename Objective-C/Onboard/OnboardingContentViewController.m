@@ -113,7 +113,9 @@ static CGFloat const kMainPageControlHeight = 35;
     }
     
     // call our view will appear block
-    self.viewWillAppearBlock();
+    if (self.viewWillAppearBlock) {
+        self.viewWillAppearBlock();
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -126,25 +128,30 @@ static CGFloat const kMainPageControlHeight = 35;
     }
     
     // call our view did appear block
-    self.viewDidAppearBlock();
+    if (self.viewDidAppearBlock) {
+        self.viewDidAppearBlock();
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
 
     // call our view will disappear block
-    self.viewWillDisappearBlock();
+    if (self.viewWillDisappearBlock) {
+        self.viewWillDisappearBlock();
+    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
 
     // call our view did disappear block
-    self.viewDidDisappearBlock();
+    if (self.viewDidDisappearBlock) {
+        self.viewDidDisappearBlock();
+    }
 }
 
-- (void)setButtonActionHandler:(dispatch_block_t)action
-{
+- (void)setButtonActionHandler:(dispatch_block_t)action {
     _buttonActionHandler = action ?: ^{};
 }
 
@@ -218,7 +225,9 @@ static CGFloat const kMainPageControlHeight = 35;
     }
     
     // call the provided action handler
-    _buttonActionHandler();
+    if (_buttonActionHandler) {
+        _buttonActionHandler();
+    }
 }
 
 @end
