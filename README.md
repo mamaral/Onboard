@@ -198,6 +198,7 @@ Thanks to [goelv](https://github.com/goelv) for this! You did a superb job!
 ![demo](Screenshots/tripnary5.PNG)
 
 [Almanac - coming soon!](https://github.com/rldaulton)
+===
 
 ![demo](Screenshots/almanac1.png)
 ![demo](Screenshots/almanac2.png)
