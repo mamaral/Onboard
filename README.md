@@ -7,6 +7,7 @@
 Onboard provides developers with a quick and easy means to create a beautiful, engaging, and useful onboarding experience with only a few lines of code.
 
 ![demo](Screenshots/city.gif)
+![demo](Screenshots/almanac.gif)
 ![demo](Screenshots/solar.gif)
 ![demo](Screenshots/waves.gif)
 ![demo](Screenshots/gemr.gif)
@@ -195,6 +196,13 @@ Thanks to [goelv](https://github.com/goelv) for this! You did a superb job!
 ![demo](Screenshots/tripnary3.PNG)
 ![demo](Screenshots/tripnary4.PNG)
 ![demo](Screenshots/tripnary5.PNG)
+
+[Almanac - coming soon!](https://github.com/rldaulton)
+===
+
+![demo](Screenshots/almanac1.png)
+![demo](Screenshots/almanac2.png)
+![demo](Screenshots/almanac3.png)
 
 More Samples
 =============
