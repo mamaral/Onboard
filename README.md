@@ -199,9 +199,9 @@ Thanks to [goelv](https://github.com/goelv) for this! You did a superb job!
 
 [Almanac - coming soon!](https://github.com/rldaulton)
 
-![demo](Screenshots/almanac1.PNG)
-![demo](Screenshots/almanac2.PNG)
-![demo](Screenshots/almanac3.PNG)
+![demo](Screenshots/almanac1.png)
+![demo](Screenshots/almanac2.png)
+![demo](Screenshots/almanac3.png)
 
 More Samples
 =============
