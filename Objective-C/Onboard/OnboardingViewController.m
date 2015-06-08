@@ -83,8 +83,13 @@ static NSString * const kSkipButtonText = @"Skip";
     
     // create the initial exposed components so they can be customized
     self.pageControl = [UIPageControl new];
+    self.pageControl.numberOfPages = self.viewControllers.count;
+    self.pageControl.userInteractionEnabled = NO;
+
     self.skipButton = [UIButton new];
-    
+    [self.skipButton setTitle:kSkipButtonText forState:UIControlStateNormal];
+    [self.skipButton addTarget:self action:@selector(handleSkipButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+
     // create the movie player controller
     self.moviePlayerController = [MPMoviePlayerController new];
     
@@ -181,16 +186,12 @@ static NSString * const kSkipButtonText = @"Skip";
     // create and configure the the page control
     if (!self.hidePageControl) {
         self.pageControl.frame = CGRectMake(0, CGRectGetMaxY(self.view.frame) - kPageControlHeight, self.view.frame.size.width, kPageControlHeight);
-        self.pageControl.numberOfPages = self.viewControllers.count;
-        self.pageControl.userInteractionEnabled = NO;
         [self.view addSubview:self.pageControl];
     }
     
     // if we allow skipping, setup the skip button
     if (self.allowSkipping) {
         self.skipButton.frame = CGRectMake(CGRectGetMaxX(self.view.frame) - kSkipButtonWidth, CGRectGetMaxY(self.view.frame) - kSkipButtonHeight, kSkipButtonWidth, kSkipButtonHeight);
-        [self.skipButton setTitle:kSkipButtonText forState:UIControlStateNormal];
-        [self.skipButton addTarget:self action:@selector(handleSkipButtonPressed) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:self.skipButton];
     }
     
