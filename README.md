@@ -7,6 +7,7 @@
 Onboard provides developers with a quick and easy means to create a beautiful, engaging, and useful onboarding experience with only a few lines of code.
 
 ![demo](Screenshots/city.gif)
+![demo](Screenshots/calendar.gif)
 ![demo](Screenshots/solar.gif)
 ![demo](Screenshots/waves.gif)
 ![demo](Screenshots/gemr.gif)
