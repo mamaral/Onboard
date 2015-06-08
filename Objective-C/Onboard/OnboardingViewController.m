@@ -218,7 +218,9 @@ static NSString * const kSkipButtonText = @"Skip";
 #pragma mark - Skipping
 
 - (void)handleSkipButtonPressed {
-    self.skipHandler();
+    if (self.skipHandler) {
+        self.skipHandler();
+    }
 }
 
 
