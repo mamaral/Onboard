@@ -114,7 +114,9 @@ static CGFloat const kMainPageControlHeight = 35;
     
     // call our view will appear block
     if (self.viewWillAppearBlock) {
-        self.viewWillAppearBlock();
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.viewWillAppearBlock();
+        });
     }
 }
 
@@ -129,7 +131,9 @@ static CGFloat const kMainPageControlHeight = 35;
     
     // call our view did appear block
     if (self.viewDidAppearBlock) {
-        self.viewDidAppearBlock();
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.viewDidAppearBlock();
+        });
     }
 }
 
@@ -138,7 +142,9 @@ static CGFloat const kMainPageControlHeight = 35;
 
     // call our view will disappear block
     if (self.viewWillDisappearBlock) {
-        self.viewWillDisappearBlock();
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.viewWillDisappearBlock();
+        });
     }
 }
 
@@ -147,7 +153,9 @@ static CGFloat const kMainPageControlHeight = 35;
 
     // call our view did disappear block
     if (self.viewDidDisappearBlock) {
-        self.viewDidDisappearBlock();
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.viewDidDisappearBlock();
+        });
     }
 }
 
