@@ -46,6 +46,7 @@
 @property (nonatomic) CGFloat underIconPadding;
 @property (nonatomic) CGFloat underTitlePadding;
 @property (nonatomic) CGFloat bottomPadding;
+@property (nonatomic) CGFloat underPageControlPadding;
 
 @property (nonatomic, copy) dispatch_block_t buttonActionHandler;
 

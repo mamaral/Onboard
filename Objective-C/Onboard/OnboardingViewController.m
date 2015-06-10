@@ -183,15 +183,15 @@ static NSString * const kSkipButtonText = @"Skip";
         [_pageVC.view sendSubviewToBack:self.moviePlayerController.view];
     }
     
-    // create and configure the the page control
+    // create and configure the page control
     if (!self.hidePageControl) {
-        self.pageControl.frame = CGRectMake(0, CGRectGetMaxY(self.view.frame) - kPageControlHeight, self.view.frame.size.width, kPageControlHeight);
+        self.pageControl.frame = CGRectMake(0, CGRectGetMaxY(self.view.frame) - self.underPageControlPadding - kPageControlHeight, self.view.frame.size.width, kPageControlHeight);
         [self.view addSubview:self.pageControl];
     }
     
     // if we allow skipping, setup the skip button
     if (self.allowSkipping) {
-        self.skipButton.frame = CGRectMake(CGRectGetMaxX(self.view.frame) - kSkipButtonWidth, CGRectGetMaxY(self.view.frame) - kSkipButtonHeight, kSkipButtonWidth, kSkipButtonHeight);
+        self.skipButton.frame = CGRectMake(CGRectGetMaxX(self.view.frame) - kSkipButtonWidth, CGRectGetMaxY(self.view.frame) - self.underPageControlPadding - kSkipButtonHeight, kSkipButtonWidth, kSkipButtonHeight);
         [self.view addSubview:self.skipButton];
     }
     
@@ -332,6 +332,13 @@ static NSString * const kSkipButtonText = @"Skip";
     }
 }
 
+- (void)setUnderPageControlPadding:(CGFloat)underPageControlPadding {
+    _underPageControlPadding = underPageControlPadding;
+
+    for (OnboardingContentViewController *contentVC in self.viewControllers) {
+        contentVC.underPageControlPadding = underPageControlPadding;
+    }
+}
 
 #pragma mark - Page view controller data source
 
