@@ -37,6 +37,7 @@
 @property (nonatomic, strong) UIButton *skipButton;
 
 // Movie player
+@property (nonatomic) BOOL stopMoviePlayerWhenDisappear;
 @property (nonatomic) MPMoviePlayerController *moviePlayerController;
 
 // Initializers
