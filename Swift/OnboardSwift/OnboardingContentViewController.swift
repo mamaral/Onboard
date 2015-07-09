@@ -111,7 +111,7 @@ class OnboardingContentViewController: UIViewController {
         bodyLabel.center = CGPointMake(horizontalCenter, bodyLabel.center.y)
         self.view.addSubview(bodyLabel)
         
-        if (countElements(self.buttonText) != 0) {
+        if (count(self.buttonText) != 0) {
             var actionButton: UIButton = UIButton(frame: CGRectMake((CGRectGetMaxX(self.view.frame) / 2) - (contentWidth / 2), CGRectGetMaxY(self.view.frame) - kDefaultMainPageControlHeight - kDefaultActionButtonHeight - self.bottomPadding, contentWidth, kDefaultActionButtonHeight))
             actionButton.titleLabel?.font = UIFont .systemFontOfSize(24)
             actionButton.setTitle(self.buttonText, forState: .Normal)
