@@ -163,12 +163,12 @@ class OnboardingViewController: UIViewController, UIPageViewControllerDataSource
     
     // PRAGMA: page view controller delegate
     
-    func pageViewController(pageViewController: UIPageViewController!, didFinishAnimating finished: Bool, previousViewControllers: [AnyObject]!, transitionCompleted completed: Bool) {
+    func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [AnyObject], transitionCompleted completed: Bool) {
         if !completed {
             return
         }
         
-        let newViewController = pageViewController.viewControllers[0] as UIViewController
+        let newViewController = pageViewController.viewControllers[0] as! UIViewController
         pageControl.currentPage = indexOfViewController(newViewController)
     }
 }
