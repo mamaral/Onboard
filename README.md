@@ -15,13 +15,13 @@
 Usage
 =====
 
-CocoaPods
---------
 Adding the following to your `Podfile` and running `pod install` should do the trick:
 
 ```
 pod 'Onboard'
 ```
+
+If you don't want to use CocoaPods, you can grab the files location in the *Source* folder and pull them into your project manually.
 
 Each onboarding experience is comprised of two primary components - the background and the content pages. The background includes the static background image/video, the page control, and the skip button. The content pages are made up of four pieces, an image/icon, title, body, and action button.
 
