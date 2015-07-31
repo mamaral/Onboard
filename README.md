@@ -9,7 +9,7 @@
 ![demo](Screenshots/solar.gif)
 ![demo](Screenshots/tripnary.gif)
 
-#[More Examples](examples.md)
+#[Click Here For More Examples](examples.md)
 
 
 Usage
