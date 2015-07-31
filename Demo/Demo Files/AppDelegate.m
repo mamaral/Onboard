@@ -9,7 +9,6 @@
 #import "AppDelegate.h"
 #import "OnboardingViewController.h"
 #import "OnboardingContentViewController.h"
-#import "MyOnboardingViewController.h"
 
 static NSString * const kUserHasOnboardedKey = @"user_has_onboarded";
 
