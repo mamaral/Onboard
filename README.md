@@ -10,7 +10,6 @@
 ![demo](Screenshots/tripnary.gif)
 
 #[More Examples](examples.md)
-=====
 
 
 Usage
