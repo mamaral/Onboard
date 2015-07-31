@@ -5,6 +5,9 @@
 ![Badge w/ Version](https://img.shields.io/cocoapods/v/Onboard.svg)
 
 ![demo](Screenshots/city.gif)
+![demo](Screenshots/almanac.gif)
+![demo](Screenshots/solar.gif)
+![demo](Screenshots/tripnary.gif)
 
 #[More Examples](examples.md)
 =====
