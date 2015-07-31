@@ -22,9 +22,9 @@ static NSString * const kUserHasOnboardedKey = @"user_has_onboarded";
     BOOL userHasOnboarded = [[NSUserDefaults standardUserDefaults] boolForKey:kUserHasOnboardedKey];
     
     // if the user has already onboarded, just set up the normal root view controller
-    // for the application, but don't animate it because there's no transition in this case
+    // for the application
     if (userHasOnboarded) {
-        [self setupNormalRootViewControllerAnimated:NO];
+        [self setupNormalRootViewController];
     }
     
     // otherwise set the root view controller to the onboarding view controller
@@ -37,7 +37,7 @@ static NSString * const kUserHasOnboardedKey = @"user_has_onboarded";
 //        __weak typeof(self) weakSelf = self;
 //        
 //        self.window.rootViewController = [[MyOnboardingViewController alloc] initWithCompletionHandler:^{
-//            [weakSelf setupNormalRootViewControllerAnimated:NO];
+//            [weakSelf setupNormalRootViewController];
 //        }];
     }
     
@@ -48,23 +48,13 @@ static NSString * const kUserHasOnboardedKey = @"user_has_onboarded";
     return YES;
 }
 
-- (void)setupNormalRootViewControllerAnimated:(BOOL)animated {
+- (void)setupNormalRootViewController {
     // create whatever your root view controller is going to be, in this case just a simple view controller
     // wrapped in a navigation controller
     UIViewController *mainVC = [UIViewController new];
     mainVC.title = @"Main Application";
-    
-    // if we want to animate the transition, do it
-    if (animated) {
-        [UIView transitionWithView:self.window duration:0.5 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
-            self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:mainVC];
-        } completion:nil];
-    }
-    
-    // otherwise just set the root view controller normally without animation
-    else {
-        self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:mainVC];
-    }
+
+    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:mainVC];
 }
 
 - (void)handleOnboardingCompletion {
@@ -73,8 +63,8 @@ static NSString * const kUserHasOnboardedKey = @"user_has_onboarded";
     // this here...
 //    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kUserHasOnboardedKey];
     
-    // animate the transition to the main application
-    [self setupNormalRootViewControllerAnimated:YES];
+    // transition to the main application
+    [self setupNormalRootViewController];
 }
 
 - (OnboardingViewController *)generateFirstDemoVC {
