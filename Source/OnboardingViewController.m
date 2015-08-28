@@ -194,6 +194,9 @@ static NSString * const kSkipButtonText = @"Skip";
     // create and configure the page control
     if (!self.hidePageControl) {
         self.pageControl.frame = CGRectMake(0, CGRectGetMaxY(self.view.frame) - self.underPageControlPadding - kPageControlHeight, self.view.frame.size.width, kPageControlHeight);
+        if (self.pageIndicatorColor) {
+          self.pageControl.pageIndicatorTintColor =  self.pageIndicatorColor;
+        }
         [self.view addSubview:self.pageControl];
     }
 
