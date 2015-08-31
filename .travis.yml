@@ -1,4 +1,3 @@
 language: objective-c
 script:
-  - xctool -project Objective-C/Onboard.xcodeproj -sdk iphonesimulator -scheme Onboard build
-  - xctool -project Swift/OnboardSwift.xcodeproj -sdk iphonesimulator -scheme OnboardSwift build
+  - xctool -project Demo/Onboard.xcodeproj -sdk iphonesimulator -scheme Onboard build
