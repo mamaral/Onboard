@@ -438,11 +438,13 @@ static NSString * const kSkipButtonText = @"Skip";
         // If the upcoming page is the last object, fade the page control out as we scroll.
         if (_upcomingPage == [self.viewControllers lastObject]) {
             _pageControl.alpha = 1.0 - percentComplete;
+            _skipButton.alpha = 1.0 - percentComplete;
         }
 
         // Otherwise if we're on the last page and we're moving towards the second-to-last page, fade it back in.
         else if ((_currentPage == [self.viewControllers lastObject]) && (_upcomingPage == self.viewControllers[self.viewControllers.count - 2])) {
             _pageControl.alpha = percentComplete;
+            _skipButton.alpha = percentComplete;
         }
     }
 }
