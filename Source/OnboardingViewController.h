@@ -63,6 +63,8 @@
 @property (nonatomic, strong) UIColor *titleTextColor;
 @property (nonatomic, strong) UIColor *bodyTextColor;
 @property (nonatomic, strong) UIColor *buttonTextColor;
+@property (nonatomic, strong) UIColor *pageIndicatorColor;
+@property (nonatomic, strong) UIColor *skipButtonTextColor;
 
 @property (nonatomic, strong) NSString *fontName; // to set the same font for everything
 
