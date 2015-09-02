@@ -21,6 +21,7 @@
 @property (nonatomic) BOOL shouldBlurBackground;
 @property (nonatomic) BOOL shouldFadeTransitions;
 @property (nonatomic) BOOL fadePageControlOnLastPage;
+@property (nonatomic) BOOL fadeSkipButtonOnLastPage;
 
 // Skipping
 @property (nonatomic) BOOL allowSkipping;
