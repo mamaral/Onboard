@@ -75,6 +75,7 @@ static NSString * const kSkipButtonText = @"Skip";
     self.shouldBlurBackground = NO;
     self.shouldFadeTransitions = NO;
     self.fadePageControlOnLastPage = NO;
+    self.fadeSkipButtonOnLastPage = NO;
     self.swipingEnabled = YES;
     self.hidePageControl = NO;
     
@@ -412,8 +413,9 @@ static NSString * const kSkipButtonText = @"Skip";
     // calculate the percent complete of the transition of the current page given the
     // scrollview's offset and the width of the screen
     CGFloat percentComplete = fabs(scrollView.contentOffset.x - self.view.frame.size.width) / self.view.frame.size.width;
+    CGFloat percentCompleteInverse = 1.0 - percentComplete;
     
-    // these cases have some funk results given the way this method is called, like stuff
+    // these cases have some funky results given the way this method is called, like stuff
     // just disappearing, so we want to do nothing in these cases
     if (_upcomingPage == _currentPage || percentComplete == 0) {
         return;
@@ -425,18 +427,31 @@ static NSString * const kSkipButtonText = @"Skip";
     
     // set the current page's alpha to the difference between 100% and this percent value,
     // so we're 90% scrolling towards the next page, the current content's alpha sshould be 10%
-    [_currentPage updateAlphas:1.0 - percentComplete];
+    [_currentPage updateAlphas:percentCompleteInverse];
+
+    // determine if we're transitioning to or from our last page
+    BOOL transitioningToLastPage = (_upcomingPage == self.viewControllers.lastObject);
+    BOOL transitioningFromLastPage = (_currentPage == self.viewControllers.lastObject) && (_upcomingPage == self.viewControllers[self.viewControllers.count - 2]);
     
-    // If we want to fade the page control on the last page...
+    // fade the page control to and from the last page
     if (self.fadePageControlOnLastPage) {
-        // If the upcoming page is the last object, fade the page control out as we scroll.
-        if (_upcomingPage == [self.viewControllers lastObject]) {
-            _pageControl.alpha = 1.0 - percentComplete;
+        if (transitioningToLastPage) {
+            _pageControl.alpha = percentCompleteInverse;
         }
-        
-        // Otherwise if we're on the last page and we're moving towards the second-to-last page, fade it back in.
-        else if ((_currentPage == [self.viewControllers lastObject]) && (_upcomingPage == self.viewControllers[self.viewControllers.count - 2])) {
+
+        else if (transitioningFromLastPage) {
             _pageControl.alpha = percentComplete;
+        }
+    }
+
+    // fade the skip button to and from the last page
+    if (self.fadeSkipButtonOnLastPage) {
+        if (transitioningToLastPage) {
+            _skipButton.alpha = percentCompleteInverse;
+        }
+
+        else if (transitioningFromLastPage) {
+            _skipButton.alpha = percentComplete;
         }
     }
 }
