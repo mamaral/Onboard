@@ -87,6 +87,7 @@ static NSString * const kUserHasOnboardedKey = @"user_has_onboarded";
     OnboardingViewController *onboardingVC = [OnboardingViewController onboardWithBackgroundImage:[UIImage imageNamed:@"street"] contents:@[firstPage, secondPage, thirdPage]];
     onboardingVC.shouldFadeTransitions = YES;
     onboardingVC.fadePageControlOnLastPage = YES;
+    onboardingVC.fadeSkipButtonOnLastPage = YES;
 
     // If you want to allow skipping the onboarding process, enable skipping and set a block to be executed
     // when the user hits the skip button.
