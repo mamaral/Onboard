@@ -19,6 +19,12 @@ static CGFloat const kDefaultSaturationDeltaFactor = 1.8;
 
 static NSString * const kSkipButtonText = @"Skip";
 
+@interface OnboardingViewController ()
+
+@property (nonatomic, weak) UIImageView *backgroundImageView;
+
+@end
+
 @implementation OnboardingViewController {
     NSURL *_videoURL;
     UIPageViewController *_pageVC;
@@ -142,12 +148,13 @@ static NSString * const kSkipButtonText = @"Skip";
     UIImageView *backgroundImageView;
     
     // create the background image view and set it to aspect fill so it isn't skewed
+    backgroundImageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
+    backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
     if (self.backgroundImage) {
-        backgroundImageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
-        backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
         [backgroundImageView setImage:self.backgroundImage];
-        [self.view addSubview:backgroundImageView];
     }
+    self.backgroundImageView = backgroundImageView;
+    [self.view addSubview:backgroundImageView];
     
     // as long as the shouldMaskBackground setting hasn't been set to NO, we want to
     // create a partially opaque view and add it on top of the image view, so that it
@@ -458,6 +465,24 @@ static NSString * const kSkipButtonText = @"Skip";
 
 
 #pragma mark - Image blurring
+
+- (void)setBackgroundImage:(UIImage *)backgroundImage {
+    BOOL animate = _backgroundImage != nil;
+    _backgroundImage = backgroundImage;
+    if (!_backgroundImageView) {
+        return;
+    }
+    if (!animate) {
+        _backgroundImageView.image = _backgroundImage;
+        return;
+    }
+    [UIView transitionWithView:_backgroundImageView
+                      duration:0.5f
+                       options:UIViewAnimationOptionTransitionCrossDissolve
+                    animations:^{
+                        _backgroundImageView.image = backgroundImage;
+                    } completion:nil];
+}
 
 - (void)blurBackground {
     // Check pre-conditions.
