@@ -19,6 +19,12 @@ static CGFloat const kDefaultSaturationDeltaFactor = 1.8;
 
 static NSString * const kSkipButtonText = @"Skip";
 
+@interface OnboardingViewController ()
+
+@property (nonatomic, weak) UIImageView *backgroundImageView;
+
+@end
+
 @implementation OnboardingViewController {
     NSURL *_videoURL;
     UIPageViewController *_pageVC;
@@ -147,6 +153,7 @@ static NSString * const kSkipButtonText = @"Skip";
         backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
         [backgroundImageView setImage:self.backgroundImage];
         [self.view addSubview:backgroundImageView];
+        self.backgroundImageView = backgroundImageView;
     }
     
     // as long as the shouldMaskBackground setting hasn't been set to NO, we want to
@@ -458,6 +465,11 @@ static NSString * const kSkipButtonText = @"Skip";
 
 
 #pragma mark - Image blurring
+
+- (void)setBackgroundImage:(UIImage *)backgroundImage {
+    _backgroundImage = backgroundImage;
+    [_backgroundImageView setImage:_backgroundImage];
+}
 
 - (void)blurBackground {
     // Check pre-conditions.
