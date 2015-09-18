@@ -467,8 +467,21 @@ static NSString * const kSkipButtonText = @"Skip";
 #pragma mark - Image blurring
 
 - (void)setBackgroundImage:(UIImage *)backgroundImage {
+    BOOL animate = _backgroundImage != nil;
     _backgroundImage = backgroundImage;
-    [_backgroundImageView setImage:_backgroundImage];
+    if (!_backgroundImageView) {
+        return;
+    }
+    if (!animate) {
+        _backgroundImageView.image = _backgroundImage;
+        return;
+    }
+    [UIView transitionWithView:_backgroundImageView
+                      duration:0.5f
+                       options:UIViewAnimationOptionTransitionCrossDissolve
+                    animations:^{
+                        _backgroundImageView.image = backgroundImage;
+                    } completion:nil];
 }
 
 - (void)blurBackground {
