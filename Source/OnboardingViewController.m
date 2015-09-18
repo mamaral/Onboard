@@ -148,13 +148,13 @@ static NSString * const kSkipButtonText = @"Skip";
     UIImageView *backgroundImageView;
     
     // create the background image view and set it to aspect fill so it isn't skewed
+    backgroundImageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
+    backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
     if (self.backgroundImage) {
-        backgroundImageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
-        backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
         [backgroundImageView setImage:self.backgroundImage];
-        [self.view addSubview:backgroundImageView];
-        self.backgroundImageView = backgroundImageView;
     }
+    self.backgroundImageView = backgroundImageView;
+    [self.view addSubview:backgroundImageView];
     
     // as long as the shouldMaskBackground setting hasn't been set to NO, we want to
     // create a partially opaque view and add it on top of the image view, so that it
