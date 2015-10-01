@@ -25,6 +25,7 @@ static NSString * const kSkipButtonText = @"Skip";
     
     OnboardingContentViewController *_currentPage;
     OnboardingContentViewController *_upcomingPage;
+    UIImageView *_backgroundImageView;
 }
 
 
@@ -78,6 +79,7 @@ static NSString * const kSkipButtonText = @"Skip";
     self.fadeSkipButtonOnLastPage = NO;
     self.swipingEnabled = YES;
     self.hidePageControl = NO;
+    self.shouldParallax = NO;
     
     self.allowSkipping = NO;
     self.skipHandler = ^{};
@@ -139,14 +141,12 @@ static NSString * const kSkipButtonText = @"Skip";
         [self blurBackground];
     }
     
-    UIImageView *backgroundImageView;
-    
     // create the background image view and set it to aspect fill so it isn't skewed
     if (self.backgroundImage) {
-        backgroundImageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
-        backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
-        [backgroundImageView setImage:self.backgroundImage];
-        [self.view addSubview:backgroundImageView];
+        _backgroundImageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
+        _backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
+        [_backgroundImageView setImage:self.backgroundImage];
+        [self.view addSubview:_backgroundImageView];
     }
     
     // as long as the shouldMaskBackground setting hasn't been set to NO, we want to
@@ -177,8 +177,8 @@ static NSString * const kSkipButtonText = @"Skip";
     [_pageVC.view sendSubviewToBack:backgroundMaskView];
     
     // send the background image view to the back if we have one
-    if (backgroundImageView) {
-        [_pageVC.view sendSubviewToBack:backgroundImageView];
+    if (_backgroundImageView) {
+        [_pageVC.view sendSubviewToBack:_backgroundImageView];
     }
     
     // otherwise send the video view to the back if we have one
@@ -414,6 +414,18 @@ static NSString * const kSkipButtonText = @"Skip";
     // scrollview's offset and the width of the screen
     CGFloat percentComplete = fabs(scrollView.contentOffset.x - self.view.frame.size.width) / self.view.frame.size.width;
     CGFloat percentCompleteInverse = 1.0 - percentComplete;
+    
+    // do the parallax if enabled
+    if (_shouldParallax) {
+        CGFloat realContentOffset = (_pageControl.currentPage - 1) * scrollView.bounds.size.width + scrollView.contentOffset.x;
+        CGRect newBounds = _backgroundImageView.bounds;
+        CGFloat percent = realContentOffset / scrollView.contentSize.width;
+        CGFloat imageSqueezeRatio = _backgroundImage.size.width / CGRectGetHeight(_backgroundImageView.bounds);
+        CGFloat imageActualWidth = imageSqueezeRatio * _backgroundImage.size.width;
+        _backgroundImageView.layer.bounds = newBounds;
+        _backgroundImageView.layer.contentsRect = CGRectMake(percent / 15, 0, 1.0, 1.0);
+//        [_backgroundImageView setNeedsDisplay];
+    }
     
     // these cases have some funky results given the way this method is called, like stuff
     // just disappearing, so we want to do nothing in these cases

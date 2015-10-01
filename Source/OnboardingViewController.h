@@ -30,6 +30,9 @@
 // Swiping
 @property (nonatomic) BOOL swipingEnabled;
 
+// Parallax
+@property (nonatomic) BOOL shouldParallax;
+
 // Page Control
 @property (nonatomic) BOOL hidePageControl;
 @property (nonatomic, strong) UIPageControl *pageControl;
