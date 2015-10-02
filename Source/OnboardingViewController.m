@@ -16,6 +16,7 @@ static CGFloat const kSkipButtonHeight = 44;
 static CGFloat const kBackgroundMaskAlpha = 0.6;
 static CGFloat const kDefaultBlurRadius = 20;
 static CGFloat const kDefaultSaturationDeltaFactor = 1.8;
+static CGFloat const kDefaultParallaxRatio = 0.30;
 
 static NSString * const kSkipButtonText = @"Skip";
 
@@ -79,7 +80,8 @@ static NSString * const kSkipButtonText = @"Skip";
     self.fadeSkipButtonOnLastPage = NO;
     self.swipingEnabled = YES;
     self.hidePageControl = NO;
-    self.shouldParallax = NO;
+    self.shouldParallaxBackground = NO;
+    self.parallaxRatio = kDefaultParallaxRatio;
     
     self.allowSkipping = NO;
     self.skipHandler = ^{};
@@ -204,10 +206,10 @@ static NSString * const kSkipButtonText = @"Skip";
         [self.view addSubview:self.skipButton];
     }
     
-    // if we want to fade the transitions, we need to tap into the underlying scrollview
-    // so we can set ourself as the delegate, this is sort of hackish but the only current
-    // solution I am aware of using a page view controller
-    if (self.shouldFadeTransitions) {
+    // if we want to fade the transitions or to have a parallax background, we need to tap
+    // into the underlying scrollview so we can set ourself as the delegate, this is sort
+    // of hackish but the only current solution I am aware of using a page view controller
+    if (self.shouldFadeTransitions || self.shouldParallaxBackground) {
         for (UIView *view in _pageVC.view.subviews) {
             if ([view isKindOfClass:[UIScrollView class]]) {
                 [(UIScrollView *)view setDelegate:self];
@@ -410,22 +412,27 @@ static NSString * const kSkipButtonText = @"Skip";
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (self.shouldFadeTransitions) {
+        [self fadeTransitionWithScrollView:scrollView];
+    }
+    if (self.shouldParallaxBackground) {
+        [self parallaxBackgroundWithScrollView:scrollView];
+    }
+}
+
+- (void)parallaxBackgroundWithScrollView:(UIScrollView *)scrollView {
+    if (_shouldParallaxBackground) {
+        CGFloat realContentOffset = (_pageControl.currentPage - 1) * scrollView.bounds.size.width + scrollView.contentOffset.x;
+        CGFloat offsetRatio = realContentOffset / scrollView.contentSize.width;
+        _backgroundImageView.layer.contentsRect = CGRectMake(offsetRatio * self.parallaxRatio, 0.0, 1.0, 1.0);
+    }
+}
+
+- (void)fadeTransitionWithScrollView:(UIScrollView *)scrollView {
     // calculate the percent complete of the transition of the current page given the
     // scrollview's offset and the width of the screen
     CGFloat percentComplete = fabs(scrollView.contentOffset.x - self.view.frame.size.width) / self.view.frame.size.width;
     CGFloat percentCompleteInverse = 1.0 - percentComplete;
-    
-    // do the parallax if enabled
-    if (_shouldParallax) {
-        CGFloat realContentOffset = (_pageControl.currentPage - 1) * scrollView.bounds.size.width + scrollView.contentOffset.x;
-        CGRect newBounds = _backgroundImageView.bounds;
-        CGFloat percent = realContentOffset / scrollView.contentSize.width;
-        CGFloat imageSqueezeRatio = _backgroundImage.size.width / CGRectGetHeight(_backgroundImageView.bounds);
-        CGFloat imageActualWidth = imageSqueezeRatio * _backgroundImage.size.width;
-        _backgroundImageView.layer.bounds = newBounds;
-        _backgroundImageView.layer.contentsRect = CGRectMake(percent / 15, 0, 1.0, 1.0);
-//        [_backgroundImageView setNeedsDisplay];
-    }
     
     // these cases have some funky results given the way this method is called, like stuff
     // just disappearing, so we want to do nothing in these cases
@@ -440,7 +447,7 @@ static NSString * const kSkipButtonText = @"Skip";
     // set the current page's alpha to the difference between 100% and this percent value,
     // so we're 90% scrolling towards the next page, the current content's alpha sshould be 10%
     [_currentPage updateAlphas:percentCompleteInverse];
-
+    
     // determine if we're transitioning to or from our last page
     BOOL transitioningToLastPage = (_upcomingPage == self.viewControllers.lastObject);
     BOOL transitioningFromLastPage = (_currentPage == self.viewControllers.lastObject) && (_upcomingPage == self.viewControllers[self.viewControllers.count - 2]);
@@ -450,18 +457,18 @@ static NSString * const kSkipButtonText = @"Skip";
         if (transitioningToLastPage) {
             _pageControl.alpha = percentCompleteInverse;
         }
-
+        
         else if (transitioningFromLastPage) {
             _pageControl.alpha = percentComplete;
         }
     }
-
+    
     // fade the skip button to and from the last page
     if (self.fadeSkipButtonOnLastPage) {
         if (transitioningToLastPage) {
             _skipButton.alpha = percentCompleteInverse;
         }
-
+        
         else if (transitioningFromLastPage) {
             _skipButton.alpha = percentComplete;
         }

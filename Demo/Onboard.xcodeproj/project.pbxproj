@@ -45,6 +45,7 @@
 		27B4BCED19BB5F6E0066EC81 /* purple.png in Resources */ = {isa = PBXBuildFile; fileRef = 27B4BCEC19BB5F6E0066EC81 /* purple.png */; };
 		27B4BCEF19BB60660066EC81 /* coffee.png in Resources */ = {isa = PBXBuildFile; fileRef = 27B4BCEE19BB60660066EC81 /* coffee.png */; };
 		27B4BCF119BB657F0066EC81 /* charcoal.png in Resources */ = {isa = PBXBuildFile; fileRef = 27B4BCF019BB657F0066EC81 /* charcoal.png */; };
+		9980011C1BBF006F00CEB581 /* beach.png in Resources */ = {isa = PBXBuildFile; fileRef = 9980011B1BBF006F00CEB581 /* beach.png */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +104,7 @@
 		27B4BCEC19BB5F6E0066EC81 /* purple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = purple.png; sourceTree = "<group>"; };
 		27B4BCEE19BB60660066EC81 /* coffee.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coffee.png; sourceTree = "<group>"; };
 		27B4BCF019BB657F0066EC81 /* charcoal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = charcoal.png; sourceTree = "<group>"; };
+		9980011B1BBF006F00CEB581 /* beach.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = beach.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +138,7 @@
 				27009D001A059F6B00CFA5B5 /* sf-outer-limits.upright.ttf */,
 				27009D021A05A09E00CFA5B5 /* nasalization rg.ttf */,
 				27009CFE1A05991300CFA5B5 /* sun.mp4 */,
+				9980011B1BBF006F00CEB581 /* beach.png */,
 				27535AD119BBD1F00017811B /* yellowbg.png */,
 				27535ACF19BBCA070017811B /* tree.png */,
 				27B4BCF019BB657F0066EC81 /* charcoal.png */,
@@ -337,6 +340,7 @@
 				27535AD219BBD1F00017811B /* yellowbg.png in Resources */,
 				27009D051A05A24800CFA5B5 /* space age.ttf in Resources */,
 				273D50B919A1A34F00E38DB2 /* InfoPlist.strings in Resources */,
+				9980011C1BBF006F00CEB581 /* beach.png in Resources */,
 				27B4BCEA19BB5D9B0066EC81 /* shark.png in Resources */,
 				2789AD7019A2DE53002117FE /* yellow.png in Resources */,
 				27009CFF1A05991300CFA5B5 /* sun.mp4 in Resources */,

@@ -31,7 +31,7 @@
 @property (nonatomic) BOOL swipingEnabled;
 
 // Parallax
-@property (nonatomic) BOOL shouldParallax;
+@property (nonatomic) BOOL shouldParallaxBackground;
 
 // Page Control
 @property (nonatomic) BOOL hidePageControl;
@@ -84,6 +84,7 @@
 @property (nonatomic) CGFloat underTitlePadding;
 @property (nonatomic) CGFloat bottomPadding;
 @property (nonatomic) CGFloat underPageControlPadding;
+@property (nonatomic) CGFloat parallaxRatio;
 
 ////////////////////////////////////////////////////////////////////
 
