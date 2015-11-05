@@ -9,6 +9,7 @@
 #import <XCTest/XCTest.h>
 #import "OnboardingViewController.h"
 #import "OnboardingContentViewController.h"
+#import "OnboardingContentViewController_Private.h"
 
 @interface OnboardTests : XCTestCase
 
@@ -84,6 +85,34 @@
         XCTAssert(contentVC.underTitlePadding == testPadding, @"The content view controller's under title padding is invalid.");
         XCTAssert(contentVC.bottomPadding == testPadding, @"The content view controller's bottom padding is invalid.");
     }
+}
+
+- (void)testActionHandler {
+    XCTestExpectation *expectation = [self expectationWithDescription:@"callback"];
+    OnboardingContentViewController *contentVC = [[OnboardingContentViewController alloc] initWithTitle:@"T1" body:@"B1" image:nil buttonText:nil action:^{
+        [expectation fulfill];
+    }];
+    [contentVC handleButtonPressed];
+    [self waitForExpectationsWithTimeout:1. handler:nil];
+}
+
+- (void)testActionHandlerWithOnboardController {
+    XCTestExpectation *expectation = [self expectationWithDescription:@"callback"];
+    OnboardingViewController *onboardingVC = [[OnboardingViewController alloc] initWithBackgroundImage:nil contents:nil];
+    OnboardingContentViewController *contentVC = [[OnboardingContentViewController alloc] initWithTitle:@"T1" body:@"B1" image:nil buttonText:nil actionBlock:^(OnboardingViewController *onboardController) {
+        if([onboardingVC isEqual:onboardController]) {
+            [expectation fulfill];
+        }
+    }];
+    onboardingVC.viewControllers = @[contentVC];
+    [onboardingVC viewDidLoad];
+    [contentVC handleButtonPressed];
+    [self waitForExpectationsWithTimeout:1. handler:nil];
+}
+
+- (void)testConvenientInitializer {
+    OnboardingContentViewController *contentVC = [OnboardingContentViewController contentWithTitle:@"T1" body:@"B1" image:nil buttonText:nil actionBlock:nil];
+    XCTAssertTrue([contentVC isKindOfClass:[OnboardingContentViewController class]], @"should get content controller");
 }
 
 

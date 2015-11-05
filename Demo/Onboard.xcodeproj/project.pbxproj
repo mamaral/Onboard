@@ -103,6 +103,7 @@
 		27B4BCEC19BB5F6E0066EC81 /* purple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = purple.png; sourceTree = "<group>"; };
 		27B4BCEE19BB60660066EC81 /* coffee.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coffee.png; sourceTree = "<group>"; };
 		27B4BCF019BB657F0066EC81 /* charcoal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = charcoal.png; sourceTree = "<group>"; };
+		F3D2BE1A1BEB5A33000C63A6 /* OnboardingContentViewController_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OnboardingContentViewController_Private.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,6 +193,7 @@
 			children = (
 				273D50DD19A1A49C00E38DB2 /* OnboardingViewController.h */,
 				273D50DE19A1A49C00E38DB2 /* OnboardingViewController.m */,
+				F3D2BE1A1BEB5A33000C63A6 /* OnboardingContentViewController_Private.h */,
 				273D50E019A1A4BF00E38DB2 /* OnboardingContentViewController.h */,
 				273D50E119A1A4BF00E38DB2 /* OnboardingContentViewController.m */,
 			);
