@@ -10,6 +10,8 @@
 
 @class OnboardingViewController;
 
+typedef void (^action_callback)(OnboardingViewController *onboardController);
+
 @interface OnboardingContentViewController : UIViewController {
     NSString *_titleText;
     NSString *_body;
@@ -48,7 +50,7 @@
 @property (nonatomic) CGFloat bottomPadding;
 @property (nonatomic) CGFloat underPageControlPadding;
 
-@property (nonatomic, copy) dispatch_block_t buttonActionHandler;
+@property (nonatomic, copy) action_callback buttonActionHandler;
 
 @property (nonatomic, copy) dispatch_block_t viewWillAppearBlock;
 @property (nonatomic, copy) dispatch_block_t viewDidAppearBlock;
@@ -57,6 +59,9 @@
 
 + (instancetype)contentWithTitle:(NSString *)title body:(NSString *)body image:(UIImage *)image buttonText:(NSString *)buttonText action:(dispatch_block_t)action;
 - (instancetype)initWithTitle:(NSString *)title body:(NSString *)body image:(UIImage *)image buttonText:(NSString *)buttonText action:(dispatch_block_t)action;
+
++ (instancetype)contentWithTitle:(NSString *)title body:(NSString *)body image:(UIImage *)image buttonText:(NSString *)buttonText actionBlock:(action_callback)actionBlock;
+- (instancetype)initWithTitle:(NSString *)title body:(NSString *)body image:(UIImage *)image buttonText:(NSString *)buttonText actionBlock:(action_callback)actionBlock;
 
 - (void)updateAlphas:(CGFloat)newAlpha;
 

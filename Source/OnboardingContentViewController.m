@@ -39,6 +39,17 @@ static CGFloat const kMainPageControlHeight = 35;
 }
 
 - (instancetype)initWithTitle:(NSString *)title body:(NSString *)body image:(UIImage *)image buttonText:(NSString *)buttonText action:(dispatch_block_t)action {
+    return [self initWithTitle:title body:body image:image buttonText:buttonText actionBlock:^(OnboardingViewController *onboardController) {
+        if(action) action();
+    }];
+}
+
++ (instancetype)contentWithTitle:(NSString *)title body:(NSString *)body image:(UIImage *)image buttonText:(NSString *)buttonText actionBlock:(action_callback)actionBlock {
+    OnboardingContentViewController *contentVC = [[self alloc] initWithTitle:title body:body image:image buttonText:buttonText actionBlock:actionBlock];
+    return contentVC;
+}
+
+- (instancetype)initWithTitle:(NSString *)title body:(NSString *)body image:(UIImage *)image buttonText:(NSString *)buttonText actionBlock:(action_callback)actionBlock {
     self = [super init];
 
     // hold onto the passed in parameters, and set the action block to an empty block
@@ -49,7 +60,7 @@ static CGFloat const kMainPageControlHeight = 35;
     _image = image;
     _buttonText = buttonText;
 
-    self.buttonActionHandler = action;
+    self.buttonActionHandler = actionBlock;
     
     // default auto-navigation
     self.movesToNextViewController = NO;
@@ -161,8 +172,8 @@ static CGFloat const kMainPageControlHeight = 35;
     }
 }
 
-- (void)setButtonActionHandler:(dispatch_block_t)action {
-    _buttonActionHandler = action ?: ^{};
+- (void)setButtonActionHandler:(action_callback)actionBlock {
+    _buttonActionHandler = actionBlock ?: ^(OnboardingViewController *controller){};
 }
 
 - (void)generateView {
@@ -236,7 +247,7 @@ static CGFloat const kMainPageControlHeight = 35;
     
     // call the provided action handler
     if (_buttonActionHandler) {
-        _buttonActionHandler();
+        _buttonActionHandler(self.delegate);
     }
 }
 
