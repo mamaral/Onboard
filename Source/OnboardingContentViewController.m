@@ -38,7 +38,7 @@ static CGFloat const kMainPageControlHeight = 35;
 @implementation OnboardingContentViewController
 
 - (void)dealloc {
-    [self removeObserver:self forKeyPath:UIApplicationWillEnterForegroundNotification];
+    [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:UIApplicationWillEnterForegroundNotification];
 }
 
 + (instancetype)contentWithTitle:(NSString *)title body:(NSString *)body image:(UIImage *)image buttonText:(NSString *)buttonText action:(dispatch_block_t)action {

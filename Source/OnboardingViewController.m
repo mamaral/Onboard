@@ -28,7 +28,7 @@ static NSString * const kSkipButtonText = @"Skip";
 }
 
 - (void)dealloc {
-    [self removeObserver:self forKeyPath:UIApplicationWillEnterForegroundNotification];
+    [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:UIApplicationWillEnterForegroundNotification];
 }
 
 #pragma mark - Initializing with images
