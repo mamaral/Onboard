@@ -37,6 +37,10 @@ static CGFloat const kMainPageControlHeight = 35;
 
 @implementation OnboardingContentViewController
 
+- (void)dealloc {
+    [self removeObserver:self forKeyPath:UIApplicationWillEnterForegroundNotification];
+}
+
 + (instancetype)contentWithTitle:(NSString *)title body:(NSString *)body image:(UIImage *)image buttonText:(NSString *)buttonText action:(dispatch_block_t)action {
     OnboardingContentViewController *contentVC = [[self alloc] initWithTitle:title body:body image:image buttonText:buttonText action:action];
     return contentVC;
@@ -130,6 +134,9 @@ static CGFloat const kMainPageControlHeight = 35;
     self.viewDidAppearBlock = ^{};
     self.viewWillDisappearBlock = ^{};
     self.viewDidDisappearBlock = ^{};
+    
+    // Handle when the app enters the foreground.
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleAppEnteredForeground) name:UIApplicationWillEnterForegroundNotification object:nil];
     
     return self;
 }
@@ -246,8 +253,6 @@ static CGFloat const kMainPageControlHeight = 35;
         [self.moviePlayerController.backgroundView addSubview:thumbnailImageView];
         
         [self.view addSubview:self.moviePlayerController.view];
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleAppEnteredForeground) name:UIApplicationWillEnterForegroundNotification object:nil];
     }
     
     // create and configure the main text label sitting underneath the icon with the provided padding

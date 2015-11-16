@@ -27,6 +27,9 @@ static NSString * const kSkipButtonText = @"Skip";
     OnboardingContentViewController *_upcomingPage;
 }
 
+- (void)dealloc {
+    [self removeObserver:self forKeyPath:UIApplicationWillEnterForegroundNotification];
+}
 
 #pragma mark - Initializing with images
 
