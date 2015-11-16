@@ -33,6 +33,7 @@ static NSString * const kUserHasOnboardedKey = @"user_has_onboarded";
 //        self.window.rootViewController = [self generateSecondDemoVC];
 //        self.window.rootViewController = [self generateThirdDemoVC];
 //        self.window.rootViewController = [self generateFourthDemoVC];
+//        self.window.rootViewController = [self generateFifthDemoVC];
         
 //        __weak typeof(self) weakSelf = self;
 //        
@@ -181,6 +182,48 @@ static NSString * const kUserHasOnboardedKey = @"user_has_onboarded";
     onboardingVC.titleTextColor = [UIColor colorWithRed:57/255.0 green:57/255.0 blue:57/255.0 alpha:1.0];;
     onboardingVC.bodyTextColor = [UIColor colorWithRed:244/255.0 green:64/255.0 blue:40/255.0 alpha:1.0];
     onboardingVC.fontName = @"HelveticaNeue-Italic";
+    return onboardingVC;
+}
+
+- (OnboardingViewController *)generateFifthDemoVC {
+    OnboardingContentViewController *firstPage = [[OnboardingContentViewController alloc] initWithTitle:@"Tri-tip bacon shankle" body:@"Bacon ipsum dolor amet cow filet mignon porchetta ham hamburger pork chop venison landjaeger ribeye drumstick beef ribs tongue." videoURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"video1" ofType:@"mp4"]] buttonText:nil action:nil];
+    firstPage.topPadding = -15;
+    firstPage.underTitlePadding = 160;
+    firstPage.titleTextColor = [UIColor colorWithRed:239/255.0 green:88/255.0 blue:35/255.0 alpha:1.0];
+    firstPage.titleFontName = @"SFOuterLimitsUpright";
+    firstPage.bodyTextColor = [UIColor colorWithRed:239/255.0 green:88/255.0 blue:35/255.0 alpha:1.0];
+    firstPage.bodyFontName = @"NasalizationRg-Regular";
+    firstPage.bodyFontSize = 18;
+    
+    OnboardingContentViewController *secondPage = [[OnboardingContentViewController alloc] initWithTitle:@"Ball tip hamburger" body:@"Bacon ipsum dolor amet kielbasa landjaeger ham fatback frankfurter pork beef pig strip steak pancetta tenderloin pork chop." videoURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"video2" ofType:@"mp4"]] buttonText:nil action:nil];
+    secondPage.titleFontName = @"SFOuterLimitsUpright";
+    secondPage.underTitlePadding = 170;
+    secondPage.topPadding = 0;
+    secondPage.titleTextColor = [UIColor colorWithRed:251/255.0 green:176/255.0 blue:59/255.0 alpha:1.0];
+    secondPage.bodyTextColor = [UIColor colorWithRed:251/255.0 green:176/255.0 blue:59/255.0 alpha:1.0];
+    secondPage.bodyFontName = @"NasalizationRg-Regular";
+    secondPage.bodyFontSize = 18;
+    
+    OnboardingContentViewController *thirdPage = [[OnboardingContentViewController alloc] initWithTitle:@"Sausage prosciutto flank capicola" body:@"Bacon ipsum dolor amet tail sausage salami filet mignon spare ribs hamburger." videoURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"video3" ofType:@"mp4"]] buttonText:@"Tap me" action:^{
+        [self handleOnboardingCompletion];
+    }];
+    thirdPage.topPadding = 10;
+    thirdPage.underTitlePadding = 160;
+    thirdPage.bottomPadding = -10;
+    thirdPage.titleFontName = @"SFOuterLimitsUpright";
+    thirdPage.titleTextColor = [UIColor colorWithRed:58/255.0 green:105/255.0 blue:136/255.0 alpha:1.0];
+    thirdPage.bodyTextColor = [UIColor colorWithRed:58/255.0 green:105/255.0 blue:136/255.0 alpha:1.0];
+    thirdPage.buttonTextColor = [UIColor colorWithRed:239/255.0 green:88/255.0 blue:35/255.0 alpha:1.0];
+    thirdPage.bodyFontName = @"NasalizationRg-Regular";
+    thirdPage.bodyFontSize = 15;
+    thirdPage.buttonFontName = @"SpaceAge";
+    thirdPage.buttonFontSize = 17;
+    
+    OnboardingViewController *onboardingVC = [[OnboardingViewController alloc] initWithBackgroundImage:[UIImage imageNamed:@"milky_way.jpg"] contents:@[firstPage, secondPage, thirdPage]];
+    onboardingVC.shouldFadeTransitions = YES;
+    onboardingVC.shouldMaskBackground = NO;
+    onboardingVC.pageControl.currentPageIndicatorTintColor = [UIColor colorWithRed:239/255.0 green:88/255.0 blue:35/255.0 alpha:1.0];
+    onboardingVC.pageControl.pageIndicatorTintColor = [UIColor whiteColor];
     return onboardingVC;
 }
 

@@ -15,6 +15,14 @@
 
 @end
 
+@interface OnboardingContentViewController (Testing)
+
+@property (nonatomic, strong) MPMoviePlayerController *moviePlayerController;
+@property (nonatomic, strong) NSURL *videoURL;
+- (UIImage *)thumbnailImageForVideo:(NSURL *)videoURL;
+
+@end
+
 @implementation OnboardTests
 
 - (void)setUp {
@@ -37,6 +45,28 @@
         OnboardingContentViewController *passedContentVC = contentsFromController[index];
         XCTAssertEqualObjects(originalContentVC, passedContentVC, @"The content view controllers from the controller don't match.");
     }
+}
+
+- (void)testContentViewControllerWithVideo {
+    // This tests that when we create an onboarding content view controller with a video url
+
+    OnboardingContentViewController *contentVC = [[OnboardingContentViewController alloc] initWithTitle:@"T1" body:@"B1" videoURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"sun" ofType:@"mp4"]] buttonText:nil action:nil];
+    [contentVC view];//trick to call viewDidLoad
+    
+    XCTAssertNotNil(contentVC.moviePlayerController, @"The moviePlayerController should exist.");
+    XCTAssertNotNil(contentVC.videoURL, @"The videoURL should exist.");
+}
+
+- (void)testGetThumbnailImageForVideo {
+    // This tests that when we try to get the video thumbnail on an onboarding content view controller with a video url
+    
+    OnboardingContentViewController *contentVC = [[OnboardingContentViewController alloc] initWithTitle:@"T1" body:@"B1" videoURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"sun" ofType:@"mp4"]] buttonText:nil action:nil];
+    
+    UIImage *thumbnail = [contentVC thumbnailImageForVideo:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"sun" ofType:@"mp4"]]];
+    UIImage *nilThumbnail = [contentVC thumbnailImageForVideo:nil];
+    
+    XCTAssertNotNil(thumbnail, @"The video thumbnail should exist.");
+    XCTAssertNil(nilThumbnail, @"The video thumbnail should not exist for a nil URL.");
 }
 
 - (void)testDefaultValues {

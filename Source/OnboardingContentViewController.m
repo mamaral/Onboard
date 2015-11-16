@@ -8,6 +8,7 @@
 
 #import "OnboardingContentViewController.h"
 #import "OnboardingViewController.h"
+#import <AVFoundation/AVFoundation.h>
 
 static NSString * const kDefaultOnboardingFont = @"Helvetica-Light";
 
@@ -29,9 +30,16 @@ static CGFloat const kMainPageControlHeight = 35;
 
 @interface OnboardingContentViewController ()
 
+@property (nonatomic, strong) MPMoviePlayerController *moviePlayerController;
+@property (nonatomic, strong) NSURL *videoURL;
+
 @end
 
 @implementation OnboardingContentViewController
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:UIApplicationWillEnterForegroundNotification];
+}
 
 + (instancetype)contentWithTitle:(NSString *)title body:(NSString *)body image:(UIImage *)image buttonText:(NSString *)buttonText action:(dispatch_block_t)action {
     OnboardingContentViewController *contentVC = [[self alloc] initWithTitle:title body:body image:image buttonText:buttonText action:action];
@@ -49,7 +57,27 @@ static CGFloat const kMainPageControlHeight = 35;
     return contentVC;
 }
 
++ (instancetype)contentWithTitle:(NSString *)title body:(NSString *)body videoURL:(NSURL *)videoURL buttonText:(NSString *)buttonText action:(dispatch_block_t)action {
+    OnboardingContentViewController *contentVC = [[self alloc] initWithTitle:title body:body videoURL:videoURL buttonText:buttonText action:action];
+    return contentVC;
+}
+
+- (instancetype)initWithTitle:(NSString *)title body:(NSString *)body videoURL:(NSURL *)videoURL  buttonText:(NSString *)buttonText action:(dispatch_block_t)action {
+    return [self initWithTitle:title body:body image:nil videoURL:videoURL buttonText:buttonText actionBlock:^(OnboardingViewController *onboardController) {
+        if(action) action();
+    }];
+}
+
++ (instancetype)contentWithTitle:(NSString *)title body:(NSString *)body videoURL:(NSURL *)videoURL  buttonText:(NSString *)buttonText actionBlock:(action_callback)actionBlock {
+    OnboardingContentViewController *contentVC = [[self alloc] initWithTitle:title body:body image:nil videoURL:videoURL buttonText:buttonText actionBlock:actionBlock];
+    return contentVC;
+}
+
 - (instancetype)initWithTitle:(NSString *)title body:(NSString *)body image:(UIImage *)image buttonText:(NSString *)buttonText actionBlock:(action_callback)actionBlock {
+    return [self initWithTitle:title body:body image:image videoURL:nil buttonText:buttonText actionBlock:actionBlock];
+}
+
+- (instancetype)initWithTitle:(NSString *)title body:(NSString *)body image:(UIImage *)image videoURL:(NSURL *)videoURL buttonText:(NSString *)buttonText actionBlock:(action_callback)actionBlock {
     self = [super init];
 
     // hold onto the passed in parameters, and set the action block to an empty block
@@ -59,6 +87,7 @@ static CGFloat const kMainPageControlHeight = 35;
     _body = body;
     _image = image;
     _buttonText = buttonText;
+    self.videoURL = videoURL;
 
     self.buttonActionHandler = actionBlock;
     
@@ -105,7 +134,10 @@ static CGFloat const kMainPageControlHeight = 35;
     self.viewDidAppearBlock = ^{};
     self.viewWillDisappearBlock = ^{};
     self.viewDidDisappearBlock = ^{};
-
+    
+    // Handle when the app enters the foreground.
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleAppEnteredForeground) name:UIApplicationWillEnterForegroundNotification object:nil];
+    
     return self;
 }
 
@@ -148,6 +180,12 @@ static CGFloat const kMainPageControlHeight = 35;
             self.viewDidAppearBlock();
         });
     }
+    
+    // if we have a video, start playing
+    if (self.moviePlayerController.playbackState != MPMoviePlaybackStatePlaying) {
+        self.moviePlayerController.currentPlaybackTime = 0.0;
+        [self.moviePlayerController play];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -170,6 +208,11 @@ static CGFloat const kMainPageControlHeight = 35;
             self.viewDidDisappearBlock();
         });
     }
+    
+    // if we have a video, stop playing
+    if (self.moviePlayerController.playbackState != MPMoviePlaybackStateStopped) {
+        [self.moviePlayerController stop];
+    }
 }
 
 - (void)setButtonActionHandler:(action_callback)actionBlock {
@@ -187,10 +230,30 @@ static CGFloat const kMainPageControlHeight = 35;
     CGFloat horizontalCenter = viewWidth / 2;
     CGFloat contentWidth = viewWidth * kContentWidthMultiplier;
     
-    // create the image view with the appropriate image, size, and center in on screen
-    _imageView = [[UIImageView alloc] initWithImage:_image];
-    [_imageView setFrame:CGRectMake(horizontalCenter - (self.iconWidth / 2), self.topPadding, self.iconWidth, self.iconHeight)];
-    [self.view addSubview:_imageView];
+    if (_image) {
+        
+        // create the image view with the appropriate image, size, and center in on screen
+        _imageView = [[UIImageView alloc] initWithImage:_image];
+        [_imageView setFrame:CGRectMake(horizontalCenter - (self.iconWidth / 2), self.topPadding, self.iconWidth, self.iconHeight)];
+        [self.view addSubview:_imageView];
+    
+    } else if (self.videoURL) {
+        
+        // or if we have a video create and configure the video player controller
+        self.moviePlayerController = [MPMoviePlayerController new];
+        self.moviePlayerController.contentURL = self.videoURL;
+        self.moviePlayerController.view.frame = self.view.frame;
+        self.moviePlayerController.repeatMode = MPMovieRepeatModeOne;
+        self.moviePlayerController.controlStyle = MPMovieControlStyleNone;
+        
+        UIImageView *thumbnailImageView = [[UIImageView alloc] initWithImage:[self thumbnailImageForVideo:self.videoURL]];
+        thumbnailImageView.frame = self.view.frame;
+        thumbnailImageView.contentMode = UIViewContentModeScaleAspectFit;
+        
+        [self.moviePlayerController.backgroundView addSubview:thumbnailImageView];
+        
+        [self.view addSubview:self.moviePlayerController.view];
+    }
     
     // create and configure the main text label sitting underneath the icon with the provided padding
     _mainTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_imageView.frame) + self.underIconPadding, contentWidth, 0)];
@@ -225,6 +288,31 @@ static CGFloat const kMainPageControlHeight = 35;
     }
 }
 
+- (UIImage *)thumbnailImageForVideo:(NSURL *)videoURL {
+    
+    AVURLAsset *asset = [[AVURLAsset alloc] initWithURL:videoURL options:nil];
+    AVAssetImageGenerator *assetIG = [[AVAssetImageGenerator alloc] initWithAsset:asset];
+    assetIG.appliesPreferredTrackTransform = YES;
+    assetIG.apertureMode = AVAssetImageGeneratorApertureModeEncodedPixels;
+    
+    NSError *error = nil;
+    CGImageRef thumbnailImageRef = [assetIG copyCGImageAtTime:CMTimeMake(0, 60) actualTime:NULL error:&error];
+    
+    if (!error) {
+        UIImage *thumbnailImage = [[UIImage alloc] initWithCGImage:thumbnailImageRef];
+        return thumbnailImage;
+    } else {
+        NSLog(@"thumbnailImageGenerationError %@", error);
+        return nil;
+    }
+}
+
+- (void)handleAppEnteredForeground {
+    //If the movie player is paused, as it does by default when backgrounded, start playing again.
+    if (self.moviePlayerController.playbackState == MPMoviePlaybackStatePaused) {
+        [self.moviePlayerController play];
+    }
+}
 
 #pragma mark - Transition alpha
 
@@ -234,7 +322,6 @@ static CGFloat const kMainPageControlHeight = 35;
     _subTextLabel.alpha = newAlpha;
     _actionButton.alpha = newAlpha;
 }
-
 
 #pragma mark - action button callback
 
