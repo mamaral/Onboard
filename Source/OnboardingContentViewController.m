@@ -116,6 +116,7 @@ static CGFloat const kMainPageControlHeight = 35;
     // default button properties
     self.buttonFontName = kDefaultOnboardingFont;
     self.buttonFontSize = kDefaultButtonFontSize;
+    self.buttonBorder = NO;
     
     // default padding values
     self.topPadding = kDefaultTopPadding;
@@ -128,6 +129,7 @@ static CGFloat const kMainPageControlHeight = 35;
     self.titleTextColor = DEFAULT_TEXT_COLOR;
     self.bodyTextColor = DEFAULT_TEXT_COLOR;
     self.buttonTextColor = DEFAULT_TEXT_COLOR;
+    self.buttonBorderColor = DEFAULT_TEXT_COLOR;
     
     // default blocks
     self.viewWillAppearBlock = ^{};
@@ -284,6 +286,10 @@ static CGFloat const kMainPageControlHeight = 35;
         [_actionButton setTitle:_buttonText forState:UIControlStateNormal];
         [_actionButton setTitleColor:self.buttonTextColor forState:UIControlStateNormal];
         [_actionButton addTarget:self action:@selector(handleButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+        if (self.buttonBorder) {
+            [[_actionButton layer] setBorderWidth:1.0f];
+            [[_actionButton layer] setBorderColor:self.buttonBorderColor.CGColor];
+        }
         [self.view addSubview:_actionButton];
     }
 }

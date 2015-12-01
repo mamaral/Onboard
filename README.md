@@ -85,6 +85,8 @@ onboardingVC.topPadding = 20;
 onboardingVC.underIconPadding = 10;
 onboardingVC.underTitlePadding = 15;
 onboardingVC.bottomPadding = 20;
+onboardingVC.buttonBorder = YES;
+onboardingVC.buttonBorderColor = [UIColor whiteColor];
 
 ```
 
