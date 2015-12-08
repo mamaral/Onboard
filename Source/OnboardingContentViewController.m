@@ -28,6 +28,10 @@ static CGFloat const kDefaultButtonFontSize = 24;
 static CGFloat const kActionButtonHeight = 50;
 static CGFloat const kMainPageControlHeight = 35;
 
+NSString * const kOnboardMainTextAccessibilityIdentifier = @"onboard main text";
+NSString * const kOnboardSubTextAccessibilityIdentifier = @"onboard sub text";
+NSString * const kOnboardActionButtonAccessibilityIdentifier = @"onboard action button";
+
 @interface OnboardingContentViewController ()
 
 @property (nonatomic, strong) MPMoviePlayerController *moviePlayerController;
@@ -257,6 +261,7 @@ static CGFloat const kMainPageControlHeight = 35;
     
     // create and configure the main text label sitting underneath the icon with the provided padding
     _mainTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_imageView.frame) + self.underIconPadding, contentWidth, 0)];
+    _mainTextLabel.accessibilityIdentifier = kOnboardMainTextAccessibilityIdentifier;
     _mainTextLabel.text = _titleText;
     _mainTextLabel.textColor = self.titleTextColor;
     _mainTextLabel.font = [UIFont fontWithName:self.titleFontName size:self.titleFontSize];
@@ -268,6 +273,7 @@ static CGFloat const kMainPageControlHeight = 35;
     
     // create and configure the sub text label
     _subTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_mainTextLabel.frame) + self.underTitlePadding, contentWidth, 0)];
+    _subTextLabel.accessibilityIdentifier = kOnboardSubTextAccessibilityIdentifier;
     _subTextLabel.text = _body;
     _subTextLabel.textColor = self.bodyTextColor;
     _subTextLabel.font = [UIFont fontWithName:self.bodyFontName size:self.bodyFontSize];
@@ -280,6 +286,7 @@ static CGFloat const kMainPageControlHeight = 35;
     // create the action button if we were given button text
     if (_buttonText) {
         _actionButton = [[UIButton alloc] initWithFrame:CGRectMake((CGRectGetMaxX(self.view.frame) / 2) - (contentWidth / 2), CGRectGetMaxY(self.view.frame) - self.underPageControlPadding - kMainPageControlHeight - kActionButtonHeight - self.bottomPadding, contentWidth, kActionButtonHeight)];
+        _actionButton.accessibilityIdentifier = kOnboardActionButtonAccessibilityIdentifier;
         _actionButton.titleLabel.font = [UIFont fontWithName:self.buttonFontName size:self.buttonFontSize];
         [_actionButton setTitle:_buttonText forState:UIControlStateNormal];
         [_actionButton setTitleColor:self.buttonTextColor forState:UIControlStateNormal];

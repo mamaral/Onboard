@@ -11,6 +11,10 @@
 
 @class OnboardingViewController;
 
+extern NSString * const kOnboardMainTextAccessibilityIdentifier;
+extern NSString * const kOnboardSubTextAccessibilityIdentifier;
+extern NSString * const kOnboardActionButtonAccessibilityIdentifier;
+
 typedef void (^action_callback)(OnboardingViewController *onboardController);
 
 @interface OnboardingContentViewController : UIViewController {
