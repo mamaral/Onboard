@@ -28,9 +28,9 @@ static CGFloat const kDefaultButtonFontSize = 24;
 static CGFloat const kActionButtonHeight = 50;
 static CGFloat const kMainPageControlHeight = 35;
 
-NSString * const kOnboardMainTextAccessibilityIdentifier = @"onboard main text";
-NSString * const kOnboardSubTextAccessibilityIdentifier = @"onboard sub text";
-NSString * const kOnboardActionButtonAccessibilityIdentifier = @"onboard action button";
+NSString * const kOnboardMainTextAccessibilityIdentifier = @"OnboardMainTextAccessibilityIdentifier";
+NSString * const kOnboardSubTextAccessibilityIdentifier = @"OnboardSubTextAccessibilityIdentifier";
+NSString * const kOnboardActionButtonAccessibilityIdentifier = @"OnboardActionButtonAccessibilityIdentifier";
 
 @interface OnboardingContentViewController ()
 
