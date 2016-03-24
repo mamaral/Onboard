@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F0321581CA3AD81007FD86A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F0321571CA3AD81007FD86A /* Default-568h@2x.png */; };
 		27009CFF1A05991300CFA5B5 /* sun.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 27009CFE1A05991300CFA5B5 /* sun.mp4 */; };
 		27009D011A059F6B00CFA5B5 /* sf-outer-limits.upright.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 27009D001A059F6B00CFA5B5 /* sf-outer-limits.upright.ttf */; };
 		27009D031A05A09E00CFA5B5 /* nasalization rg.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 27009D021A05A09E00CFA5B5 /* nasalization rg.ttf */; };
@@ -22,7 +23,6 @@
 		273D50B919A1A34F00E38DB2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 273D50B719A1A34F00E38DB2 /* InfoPlist.strings */; };
 		273D50BB19A1A34F00E38DB2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 273D50BA19A1A34F00E38DB2 /* main.m */; };
 		273D50BF19A1A34F00E38DB2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 273D50BE19A1A34F00E38DB2 /* AppDelegate.m */; };
-		273D50C119A1A34F00E38DB2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 273D50C019A1A34F00E38DB2 /* Images.xcassets */; };
 		273D50C819A1A34F00E38DB2 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 273D50C719A1A34F00E38DB2 /* XCTest.framework */; };
 		273D50C919A1A34F00E38DB2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 273D50AE19A1A34F00E38DB2 /* Foundation.framework */; };
 		273D50CA19A1A34F00E38DB2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 273D50B219A1A34F00E38DB2 /* UIKit.framework */; };
@@ -61,6 +61,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0F0321571CA3AD81007FD86A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../../Default-568h@2x.png"; sourceTree = "<group>"; };
 		27009CFE1A05991300CFA5B5 /* sun.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = sun.mp4; sourceTree = "<group>"; };
 		27009D001A059F6B00CFA5B5 /* sf-outer-limits.upright.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sf-outer-limits.upright.ttf"; sourceTree = "<group>"; };
 		27009D021A05A09E00CFA5B5 /* nasalization rg.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "nasalization rg.ttf"; sourceTree = "<group>"; };
@@ -80,7 +81,6 @@
 		273D50BC19A1A34F00E38DB2 /* Onboard-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Onboard-Prefix.pch"; sourceTree = "<group>"; };
 		273D50BD19A1A34F00E38DB2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		273D50BE19A1A34F00E38DB2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		273D50C019A1A34F00E38DB2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		273D50C619A1A34F00E38DB2 /* OnboardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OnboardTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		273D50C719A1A34F00E38DB2 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		273D50CF19A1A34F00E38DB2 /* OnboardTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OnboardTests-Info.plist"; sourceTree = "<group>"; };
@@ -217,6 +217,7 @@
 				273D50B719A1A34F00E38DB2 /* InfoPlist.strings */,
 				273D50BA19A1A34F00E38DB2 /* main.m */,
 				273D50BC19A1A34F00E38DB2 /* Onboard-Prefix.pch */,
+				0F0321571CA3AD81007FD86A /* Default-568h@2x.png */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -253,7 +254,6 @@
 			children = (
 				273D50BD19A1A34F00E38DB2 /* AppDelegate.h */,
 				273D50BE19A1A34F00E38DB2 /* AppDelegate.m */,
-				273D50C019A1A34F00E38DB2 /* Images.xcassets */,
 				274E5B161A8C552B009765AB /* Externals */,
 				273D50B519A1A34F00E38DB2 /* Supporting Files */,
 				273D50CD19A1A34F00E38DB2 /* OnboardTests */,
@@ -344,6 +344,7 @@
 				27B4BCE819BB5D9B0066EC81 /* headphones.png in Resources */,
 				270CB0C519BAC93700F051B3 /* space3.png in Resources */,
 				27B4BCED19BB5F6E0066EC81 /* purple.png in Resources */,
+				0F0321581CA3AD81007FD86A /* Default-568h@2x.png in Resources */,
 				5BFFBBB31BF847670083BEC3 /* video2.mp4 in Resources */,
 				27B4BCF119BB657F0066EC81 /* charcoal.png in Resources */,
 				27535AD219BBD1F00017811B /* yellowbg.png in Resources */,
@@ -354,7 +355,6 @@
 				27009CFF1A05991300CFA5B5 /* sun.mp4 in Resources */,
 				270CB0C319BAC93700F051B3 /* space1.png in Resources */,
 				27009D011A059F6B00CFA5B5 /* sf-outer-limits.upright.ttf in Resources */,
-				273D50C119A1A34F00E38DB2 /* Images.xcassets in Resources */,
 				27535AD019BBCA070017811B /* tree.png in Resources */,
 				270CB0C619BAC93700F051B3 /* space4.png in Resources */,
 				5BFFBBB21BF847670083BEC3 /* video1.mp4 in Resources */,
@@ -509,8 +509,6 @@
 		273D50D819A1A34F00E38DB2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Demo Files/Supporting Files/Onboard-Prefix.pch";
 				INFOPLIST_FILE = "Demo Files/Supporting Files/Onboard-Info.plist";
@@ -523,8 +521,6 @@
 		273D50D919A1A34F00E38DB2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Demo Files/Supporting Files/Onboard-Prefix.pch";
 				INFOPLIST_FILE = "Demo Files/Supporting Files/Onboard-Info.plist";
