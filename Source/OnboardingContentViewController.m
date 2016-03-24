@@ -45,35 +45,21 @@ NSString * const kOnboardActionButtonAccessibilityIdentifier = @"OnboardActionBu
     [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:UIApplicationWillEnterForegroundNotification];
 }
 
+// Non-attributed text, image, dispatch block
 + (instancetype)contentWithTitle:(NSString *)title body:(NSString *)body image:(UIImage *)image buttonText:(NSString *)buttonText action:(dispatch_block_t)action {
     OnboardingContentViewController *contentVC = [[self alloc] initWithTitle:title body:body image:image buttonText:buttonText action:action];
     return contentVC;
 }
 
 - (instancetype)initWithTitle:(NSString *)title body:(NSString *)body image:(UIImage *)image buttonText:(NSString *)buttonText action:(dispatch_block_t)action {
-    return [self initWithTitle:title body:body image:image buttonText:buttonText actionBlock:^(OnboardingViewController *onboardController) {
-        if(action) action();
+    return [self initWithTitle:title body:body image:image videoURL:nil buttonText:buttonText actionBlock:^(OnboardingViewController *onboardController) {
+        if (action) action();
     }];
 }
 
+// Non-attributed text, image, action callback
 + (instancetype)contentWithTitle:(NSString *)title body:(NSString *)body image:(UIImage *)image buttonText:(NSString *)buttonText actionBlock:(action_callback)actionBlock {
     OnboardingContentViewController *contentVC = [[self alloc] initWithTitle:title body:body image:image buttonText:buttonText actionBlock:actionBlock];
-    return contentVC;
-}
-
-+ (instancetype)contentWithTitle:(NSString *)title body:(NSString *)body videoURL:(NSURL *)videoURL buttonText:(NSString *)buttonText action:(dispatch_block_t)action {
-    OnboardingContentViewController *contentVC = [[self alloc] initWithTitle:title body:body videoURL:videoURL buttonText:buttonText action:action];
-    return contentVC;
-}
-
-- (instancetype)initWithTitle:(NSString *)title body:(NSString *)body videoURL:(NSURL *)videoURL  buttonText:(NSString *)buttonText action:(dispatch_block_t)action {
-    return [self initWithTitle:title body:body image:nil videoURL:videoURL buttonText:buttonText actionBlock:^(OnboardingViewController *onboardController) {
-        if(action) action();
-    }];
-}
-
-+ (instancetype)contentWithTitle:(NSString *)title body:(NSString *)body videoURL:(NSURL *)videoURL  buttonText:(NSString *)buttonText actionBlock:(action_callback)actionBlock {
-    OnboardingContentViewController *contentVC = [[self alloc] initWithTitle:title body:body image:nil videoURL:videoURL buttonText:buttonText actionBlock:actionBlock];
     return contentVC;
 }
 
@@ -81,16 +67,92 @@ NSString * const kOnboardActionButtonAccessibilityIdentifier = @"OnboardActionBu
     return [self initWithTitle:title body:body image:image videoURL:nil buttonText:buttonText actionBlock:actionBlock];
 }
 
-- (instancetype)initWithTitle:(NSString *)title body:(NSString *)body image:(UIImage *)image videoURL:(NSURL *)videoURL buttonText:(NSString *)buttonText actionBlock:(action_callback)actionBlock {
+// Non-attributed text, video, dispatch block
++ (instancetype)contentWithTitle:(NSString *)title body:(NSString *)body videoURL:(NSURL *)videoURL buttonText:(NSString *)buttonText action:(dispatch_block_t)action {
+    OnboardingContentViewController *contentVC = [[self alloc] initWithTitle:title body:body videoURL:videoURL buttonText:buttonText action:action];
+    return contentVC;
+}
+
+- (instancetype)initWithTitle:(NSString *)title body:(NSString *)body videoURL:(NSURL *)videoURL  buttonText:(NSString *)buttonText action:(dispatch_block_t)action {
+    return [self initWithTitle:title body:body image:nil videoURL:videoURL buttonText:buttonText actionBlock:^(OnboardingViewController *onboardController) {
+        if (action) action();
+    }];
+}
+
+// Non-attributed text, video, action callback
++ (instancetype)contentWithTitle:(NSString *)title body:(NSString *)body videoURL:(NSURL *)videoURL  buttonText:(NSString *)buttonText actionBlock:(action_callback)actionBlock {
+    OnboardingContentViewController *contentVC = [[self alloc] initWithTitle:title body:body videoURL:videoURL buttonText:buttonText actionBlock:actionBlock];
+    return contentVC;
+}
+
+- (instancetype)initWithTitle:(NSString *)title body:(NSString *)body videoURL:(NSURL *)videoURL  buttonText:(NSString *)buttonText actionBlock:(action_callback)actionBlock {
+    return [self initWithTitle:title body:body image:nil videoURL:videoURL buttonText:buttonText actionBlock:actionBlock];
+}
+
+// Non-attributed text, image and video, action callback
+- (instancetype)initWithTitle:(NSString *)title body:(NSString *)body image:(UIImage *)image videoURL:videoURL buttonText:(NSString *)buttonText actionBlock:(action_callback)actionBlock {
+    NSAttributedString *attributedTitle = title ? [[NSAttributedString alloc] initWithString:title] : nil;
+    NSAttributedString *attributedBody = body ? [[NSAttributedString alloc] initWithString:body] : nil;
+    NSAttributedString *attributedButtonText = buttonText ? [[NSAttributedString alloc] initWithString:buttonText] : nil;
+
+    return [self initWithAttributedTitle:attributedTitle attributedBody:attributedBody image:image videoURL:videoURL attributedButtonText:attributedButtonText actionBlock:actionBlock];
+}
+
+// Attributed text, image, dispatch block
++ (instancetype)contentWithAttributedTitle:(NSAttributedString *)attributedTitle attributedBody:(NSAttributedString *)attributedBody image:(UIImage *)image attributedButtonText:(NSAttributedString *)attributedButtonText action:(dispatch_block_t)action {
+    OnboardingContentViewController *contentVC = [[self alloc] initWithAttributedTitle:attributedTitle attributedBody:attributedBody image:image attributedButtonText:attributedButtonText action:action];
+    return contentVC;
+}
+
+- (instancetype)initWithAttributedTitle:(NSAttributedString *)attributedTitle attributedBody:(NSAttributedString *)attributedBody image:(UIImage *)image attributedButtonText:(NSAttributedString *)attributedButtonText action:(dispatch_block_t)action {
+    return [self initWithAttributedTitle:attributedTitle attributedBody:attributedBody image:image videoURL:nil attributedButtonText:attributedButtonText actionBlock:^(OnboardingViewController *onboardController) {
+        if (action) action();
+    }];
+}
+
+// Attributed text, image, action callback
++ (instancetype)contentWithAttributedTitle:(NSAttributedString *)attributedTitle attributedBody:(NSAttributedString *)attributedBody image:(UIImage *)image attributedButtonText:(NSAttributedString *)attributedButtonText actionBlock:(action_callback)actionBlock {
+    OnboardingContentViewController *contentVC = [[self alloc] initWithAttributedTitle:attributedTitle attributedBody:attributedBody image:image attributedButtonText:attributedButtonText actionBlock:actionBlock];
+    return contentVC;
+}
+
+- (instancetype)initWithAttributedTitle:(NSAttributedString *)attributedTitle attributedBody:(NSAttributedString *)attributedBody image:(UIImage *)image attributedButtonText:(NSAttributedString *)attributedButtonText actionBlock:(action_callback)actionBlock {
+    return [self initWithAttributedTitle:attributedTitle attributedBody:attributedBody image:image videoURL:nil attributedButtonText:attributedButtonText actionBlock:actionBlock];
+}
+
+// Attributed text, video, dispatch block
++ (instancetype)contentWithAttributedTitle:(NSAttributedString *)attributedTitle attributedBody:(NSAttributedString *)attributedBody videoURL:(NSURL *)videoURL attributedButtonText:(NSAttributedString *)attributedButtonText action:(dispatch_block_t)action {
+    OnboardingContentViewController *contentVC = [[self alloc] initWithAttributedTitle:attributedTitle attributedBody:attributedBody videoURL:videoURL attributedButtonText:attributedButtonText action:action];
+    return contentVC;
+}
+
+- (instancetype)initWithAttributedTitle:(NSAttributedString *)attributedTitle attributedBody:(NSAttributedString *)attributedBody videoURL:(NSURL *)videoURL  attributedButtonText:(NSAttributedString *)attributedButtonText action:(dispatch_block_t)action {
+    return [self initWithAttributedTitle:attributedTitle attributedBody:attributedBody image:nil videoURL:videoURL attributedButtonText:attributedButtonText actionBlock:^(OnboardingViewController *onboardController) {
+        if (action) action();
+    }];
+}
+
+// Attributed text, video, action callback
++ (instancetype)contentWithAttributedTitle:(NSAttributedString *)attributedTitle attributedBody:(NSAttributedString *)attributedBody videoURL:(NSURL *)videoURL  attributedButtonText:(NSAttributedString *)attributedButtonText actionBlock:(action_callback)actionBlock {
+    OnboardingContentViewController *contentVC = [[self alloc] initWithAttributedTitle:attributedTitle attributedBody:attributedBody videoURL:videoURL attributedButtonText:attributedButtonText actionBlock:actionBlock];
+    return contentVC;
+}
+
+- (instancetype)initWithAttributedTitle:(NSAttributedString *)attributedTitle attributedBody:(NSAttributedString *)attributedBody videoURL:(NSURL *)videoURL  attributedButtonText:(NSAttributedString *)attributedButtonText actionBlock:(action_callback)actionBlock {
+    return [self initWithAttributedTitle:attributedTitle attributedBody:attributedBody image:nil videoURL:videoURL attributedButtonText:attributedButtonText actionBlock:actionBlock];
+}
+
+// Attributed text, image and video, action callback
+- (instancetype)initWithAttributedTitle:(NSAttributedString *)attributedTitle attributedBody:(NSAttributedString *)attributedBody image:(UIImage *)image videoURL:videoURL attributedButtonText:(NSAttributedString *)attributedButtonText actionBlock:(action_callback)actionBlock {
     self = [super init];
 
     // hold onto the passed in parameters, and set the action block to an empty block
     // in case we were passed nil, so we don't have to nil-check the block later before
     // calling
-    _titleText = title;
-    _body = body;
+    _attributedTitleText = attributedTitle;
+    _attributedBody = attributedBody;
+    _attributedButtonText = attributedButtonText;
     _image = image;
-    _buttonText = buttonText;
     self.videoURL = videoURL;
 
     self.buttonActionHandler = actionBlock;
@@ -262,7 +324,7 @@ NSString * const kOnboardActionButtonAccessibilityIdentifier = @"OnboardActionBu
     // create and configure the main text label sitting underneath the icon with the provided padding
     _mainTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_imageView.frame) + self.underIconPadding, contentWidth, 0)];
     _mainTextLabel.accessibilityIdentifier = kOnboardMainTextAccessibilityIdentifier;
-    _mainTextLabel.text = _titleText;
+    _mainTextLabel.attributedText = _attributedTitleText;
     _mainTextLabel.textColor = self.titleTextColor;
     _mainTextLabel.font = [UIFont fontWithName:self.titleFontName size:self.titleFontSize];
     _mainTextLabel.numberOfLines = 0;
@@ -274,7 +336,7 @@ NSString * const kOnboardActionButtonAccessibilityIdentifier = @"OnboardActionBu
     // create and configure the sub text label
     _subTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_mainTextLabel.frame) + self.underTitlePadding, contentWidth, 0)];
     _subTextLabel.accessibilityIdentifier = kOnboardSubTextAccessibilityIdentifier;
-    _subTextLabel.text = _body;
+    _subTextLabel.attributedText = _attributedBody;
     _subTextLabel.textColor = self.bodyTextColor;
     _subTextLabel.font = [UIFont fontWithName:self.bodyFontName size:self.bodyFontSize];
     _subTextLabel.numberOfLines = 0;
@@ -284,11 +346,11 @@ NSString * const kOnboardActionButtonAccessibilityIdentifier = @"OnboardActionBu
     [self.view addSubview:_subTextLabel];
     
     // create the action button if we were given button text
-    if (_buttonText) {
+    if (_attributedButtonText) {
         _actionButton = [[UIButton alloc] initWithFrame:CGRectMake((CGRectGetMaxX(self.view.frame) / 2) - (contentWidth / 2), CGRectGetMaxY(self.view.frame) - self.underPageControlPadding - kMainPageControlHeight - kActionButtonHeight - self.bottomPadding, contentWidth, kActionButtonHeight)];
         _actionButton.accessibilityIdentifier = kOnboardActionButtonAccessibilityIdentifier;
+        [_actionButton setAttributedTitle:_attributedButtonText forState:UIControlStateNormal];
         _actionButton.titleLabel.font = [UIFont fontWithName:self.buttonFontName size:self.buttonFontSize];
-        [_actionButton setTitle:_buttonText forState:UIControlStateNormal];
         [_actionButton setTitleColor:self.buttonTextColor forState:UIControlStateNormal];
         [_actionButton addTarget:self action:@selector(handleButtonPressed) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:_actionButton];

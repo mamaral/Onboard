@@ -18,11 +18,11 @@ extern NSString * const kOnboardActionButtonAccessibilityIdentifier;
 typedef void (^action_callback)(OnboardingViewController *onboardController);
 
 @interface OnboardingContentViewController : UIViewController {
-    NSString *_titleText;
-    NSString *_body;
+    NSAttributedString *_attributedTitleText;
+    NSAttributedString *_attributedBody;
     UIImage *_image;
-    NSString *_buttonText;
-    
+    NSAttributedString *_attributedButtonText;
+
     UIImageView *_imageView;
     UILabel *_mainTextLabel;
     UILabel *_subTextLabel;
@@ -62,16 +62,43 @@ typedef void (^action_callback)(OnboardingViewController *onboardController);
 @property (nonatomic, copy) dispatch_block_t viewWillDisappearBlock;
 @property (nonatomic, copy) dispatch_block_t viewDidDisappearBlock;
 
+// Non-attributed text, image, dispatch block
 + (instancetype)contentWithTitle:(NSString *)title body:(NSString *)body image:(UIImage *)image buttonText:(NSString *)buttonText action:(dispatch_block_t)action;
 - (instancetype)initWithTitle:(NSString *)title body:(NSString *)body image:(UIImage *)image buttonText:(NSString *)buttonText action:(dispatch_block_t)action;
-+ (instancetype)contentWithTitle:(NSString *)title body:(NSString *)body image:(UIImage *)image buttonText:(NSString *)buttonText actionBlock:(action_callback)actionBlock;
 
+// Non-attributed text, image, action callback
++ (instancetype)contentWithTitle:(NSString *)title body:(NSString *)body image:(UIImage *)image buttonText:(NSString *)buttonText actionBlock:(action_callback)actionBlock;
+- (instancetype)initWithTitle:(NSString *)title body:(NSString *)body image:(UIImage *)image buttonText:(NSString *)buttonText actionBlock:(action_callback)actionBlock;
+
+// Non-attributed text, video, dispatch block
 + (instancetype)contentWithTitle:(NSString *)title body:(NSString *)body videoURL:(NSURL *)videoURL buttonText:(NSString *)buttonText action:(dispatch_block_t)action;
 - (instancetype)initWithTitle:(NSString *)title body:(NSString *)body videoURL:(NSURL *)videoURL  buttonText:(NSString *)buttonText action:(dispatch_block_t)action;
-+ (instancetype)contentWithTitle:(NSString *)title body:(NSString *)body videoURL:(NSURL *)videoURL  buttonText:(NSString *)buttonText actionBlock:(action_callback)actionBlock;
 
-- (instancetype)initWithTitle:(NSString *)title body:(NSString *)body image:(UIImage *)image buttonText:(NSString *)buttonText actionBlock:(action_callback)actionBlock;
+// Non-attributed text, video, action callback
++ (instancetype)contentWithTitle:(NSString *)title body:(NSString *)body videoURL:(NSURL *)videoURL  buttonText:(NSString *)buttonText actionBlock:(action_callback)actionBlock;
+- (instancetype)initWithTitle:(NSString *)title body:(NSString *)body videoURL:(NSURL *)videoURL  buttonText:(NSString *)buttonText actionBlock:(action_callback)actionBlock;
+
+// Non-attributed text, image and video, action callback
 - (instancetype)initWithTitle:(NSString *)title body:(NSString *)body image:(UIImage *)image videoURL:videoURL buttonText:(NSString *)buttonText actionBlock:(action_callback)actionBlock;
+
+// Attributed text, image, dispatch block
++ (instancetype)contentWithAttributedTitle:(NSAttributedString *)attributedTitle attributedBody:(NSAttributedString *)attributedBody image:(UIImage *)image attributedButtonText:(NSAttributedString *)attributedButtonText action:(dispatch_block_t)action;
+- (instancetype)initWithAttributedTitle:(NSAttributedString *)attributedTitle attributedBody:(NSAttributedString *)attributedBody image:(UIImage *)image attributedButtonText:(NSAttributedString *)attributedButtonText action:(dispatch_block_t)action;
+
+// Attributed text, image, action callback
++ (instancetype)contentWithAttributedTitle:(NSAttributedString *)attributedTitle attributedBody:(NSAttributedString *)attributedBody image:(UIImage *)image attributedButtonText:(NSAttributedString *)attributedButtonText actionBlock:(action_callback)actionBlock;
+- (instancetype)initWithAttributedTitle:(NSAttributedString *)attributedTitle attributedBody:(NSAttributedString *)attributedBody image:(UIImage *)image attributedButtonText:(NSAttributedString *)attributedButtonText actionBlock:(action_callback)actionBlock;
+
+// Attributed text, video, dispatch block
++ (instancetype)contentWithAttributedTitle:(NSAttributedString *)attributedTitle attributedBody:(NSAttributedString *)attributedBody videoURL:(NSURL *)videoURL attributedButtonText:(NSAttributedString *)attributedButtonText action:(dispatch_block_t)action;
+- (instancetype)initWithAttributedTitle:(NSAttributedString *)attributedTitle attributedBody:(NSAttributedString *)attributedBody videoURL:(NSURL *)videoURL  attributedButtonText:(NSAttributedString *)attributedButtonText action:(dispatch_block_t)action;
+
+// Attributed text, video, action callback
++ (instancetype)contentWithAttributedTitle:(NSAttributedString *)attributedTitle attributedBody:(NSAttributedString *)attributedBody videoURL:(NSURL *)videoURL  attributedButtonText:(NSAttributedString *)attributedButtonText actionBlock:(action_callback)actionBlock;
+- (instancetype)initWithAttributedTitle:(NSAttributedString *)attributedTitle attributedBody:(NSAttributedString *)attributedBody videoURL:(NSURL *)videoURL  attributedButtonText:(NSAttributedString *)attributedButtonText actionBlock:(action_callback)actionBlock;
+
+// Attributed text, image and video, action callback
+- (instancetype)initWithAttributedTitle:(NSAttributedString *)attributedTitle attributedBody:(NSAttributedString *)attributedBody image:(UIImage *)image videoURL:videoURL attributedButtonText:(NSAttributedString *)attributedButtonText actionBlock:(action_callback)actionBlock;
 
 - (void)updateAlphas:(CGFloat)newAlpha;
 
