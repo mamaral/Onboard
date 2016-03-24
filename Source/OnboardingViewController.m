@@ -421,10 +421,10 @@ static NSString * const kSkipButtonText = @"Skip";
     
     // these cases have some funky results given the way this method is called, like stuff
     // just disappearing, so we want to do nothing in these cases
-    if (_upcomingPage == _currentPage || percentComplete == 0) {
+    if (percentComplete == 0) {
         return;
     }
-    
+
     // set the next page's alpha to be the percent complete, so if we're 90% of the way
     // scrolling towards the next page, its content's alpha should be 90%
     [_upcomingPage updateAlphas:percentComplete];
@@ -434,7 +434,7 @@ static NSString * const kSkipButtonText = @"Skip";
     [_currentPage updateAlphas:percentCompleteInverse];
 
     // determine if we're transitioning to or from our last page
-    BOOL transitioningToLastPage = (_upcomingPage == self.viewControllers.lastObject);
+    BOOL transitioningToLastPage = (_currentPage != self.viewControllers.lastObject && _upcomingPage == self.viewControllers.lastObject);
     BOOL transitioningFromLastPage = (_currentPage == self.viewControllers.lastObject) && (_upcomingPage == self.viewControllers[self.viewControllers.count - 2]);
     
     // fade the page control to and from the last page
