@@ -1,6 +1,7 @@
 #Onboard
 
 [![Build Status](https://travis-ci.org/mamaral/Onboard.svg?branch=master)](https://travis-ci.org/mamaral/Onboard)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org)
 ![Badge w/ Version](https://img.shields.io/cocoapods/v/Onboard.svg)
 
@@ -63,7 +64,7 @@ let onboardingVC = OnboardingViewController(backgroundImage: UIImage(named: "bac
 let bundle = NSBundle.mainBundle()
 let moviePath = bundle.pathForResource("yourVid", ofType: "mp4")
 let movieURL = NSURL(fileURLWithPath: moviePath!)
-    
+
 let onboardingVC = OnboardingViewController(backgroundVideoURL: movieUrl, contents: [firstPage, secondPage, thirdPage])
 ```
 
