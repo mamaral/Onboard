@@ -277,6 +277,18 @@ static NSString * const kSkipButtonText = @"Skip";
     }
 }
 
+- (void)setButtonBorderColor:(UIColor *)buttonBorderColor {
+    for (OnboardingContentViewController *contentVC in self.viewControllers) {
+        contentVC.buttonBorderColor = buttonBorderColor;
+    }
+}
+
+- (void)setButtonBorder:(BOOL)buttonBorder {
+    for (OnboardingContentViewController *contentVC in self.viewControllers) {
+        contentVC.buttonBorder = buttonBorder;
+    }
+}
+
 - (void)setFontName:(NSString *)fontName {
     for (OnboardingContentViewController *contentVC in self.viewControllers) {
         contentVC.titleFontName = fontName;

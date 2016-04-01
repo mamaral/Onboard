@@ -120,6 +120,7 @@ NSString * const kOnboardActionButtonAccessibilityIdentifier = @"OnboardActionBu
     // default button properties
     self.buttonFontName = kDefaultOnboardingFont;
     self.buttonFontSize = kDefaultButtonFontSize;
+    self.buttonBorder = NO;
     
     // default padding values
     self.topPadding = kDefaultTopPadding;
@@ -132,6 +133,7 @@ NSString * const kOnboardActionButtonAccessibilityIdentifier = @"OnboardActionBu
     self.titleTextColor = DEFAULT_TEXT_COLOR;
     self.bodyTextColor = DEFAULT_TEXT_COLOR;
     self.buttonTextColor = DEFAULT_TEXT_COLOR;
+    self.buttonBorderColor = DEFAULT_TEXT_COLOR;
     
     // default blocks
     self.viewWillAppearBlock = ^{};
@@ -291,6 +293,10 @@ NSString * const kOnboardActionButtonAccessibilityIdentifier = @"OnboardActionBu
         [_actionButton setTitle:_buttonText forState:UIControlStateNormal];
         [_actionButton setTitleColor:self.buttonTextColor forState:UIControlStateNormal];
         [_actionButton addTarget:self action:@selector(handleButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+        if (self.buttonBorder) {
+            [[_actionButton layer] setBorderWidth:1.0f];
+            [[_actionButton layer] setBorderColor:self.buttonBorderColor.CGColor];
+        }
         [self.view addSubview:_actionButton];
     }
 }
