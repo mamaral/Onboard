@@ -39,6 +39,7 @@ typedef void (^action_callback)(OnboardingViewController *onboardController);
 @property (nonatomic, strong) UIColor *titleTextColor;
 @property (nonatomic, strong) UIColor *bodyTextColor;
 @property (nonatomic, strong) UIColor *buttonTextColor;
+@property (nonatomic, strong) UIColor *backgroundColor;
 
 @property (nonatomic, strong) NSString *titleFontName;
 @property (nonatomic) CGFloat titleFontSize;

@@ -224,8 +224,10 @@ NSString * const kOnboardActionButtonAccessibilityIdentifier = @"OnboardActionBu
 }
 
 - (void)generateView {
+    // If no background color specified,
     // we want our background to be clear so we can see through it to the image provided
-    self.view.backgroundColor = [UIColor clearColor];
+    self.view.backgroundColor = self.backgroundColor ?
+        self.backgroundColor : [UIColor clearColor];
     
     // do some calculation for some common values we'll need, namely the width of the view,
     // the center of the width, and the content width we want to fill up, which is some
