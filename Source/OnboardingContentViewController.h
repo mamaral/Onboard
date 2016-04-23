@@ -39,7 +39,7 @@ typedef void (^action_callback)(OnboardingViewController *onboardController);
 @property (nonatomic, strong) UIColor *titleTextColor;
 @property (nonatomic, strong) UIColor *bodyTextColor;
 @property (nonatomic, strong) UIColor *buttonTextColor;
-@property (nonatomic, strong) UIColor *backgroundColor;
+@property (nonatomic, strong) UIColor *buttonBackgroundColor;
 
 @property (nonatomic, strong) NSString *titleFontName;
 @property (nonatomic) CGFloat titleFontSize;
@@ -48,7 +48,10 @@ typedef void (^action_callback)(OnboardingViewController *onboardController);
 @property (nonatomic) CGFloat bodyFontSize;
 
 @property (nonatomic, strong) NSString *buttonFontName;
+@property (nonatomic) CGFloat buttonBorderRadius;
 @property (nonatomic) CGFloat buttonFontSize;
+@property (nonatomic) CGFloat buttonPaddingWidth;
+@property (nonatomic) CGFloat buttonHeight;
 
 @property (nonatomic) CGFloat topPadding;
 @property (nonatomic) CGFloat underIconPadding;

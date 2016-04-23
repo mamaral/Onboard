@@ -277,6 +277,12 @@ static NSString * const kSkipButtonText = @"Skip";
     }
 }
 
+- (void)setButtonBackgroundColor:(UIColor *)buttonBackgroundColor {
+    for (OnboardingContentViewController *contentVC in self.viewControllers) {
+        contentVC.buttonBackgroundColor = buttonBackgroundColor;
+    }
+}
+
 - (void)setFontName:(NSString *)fontName {
     for (OnboardingContentViewController *contentVC in self.viewControllers) {
         contentVC.titleFontName = fontName;
@@ -320,7 +326,23 @@ static NSString * const kSkipButtonText = @"Skip";
         contentVC.buttonFontSize = bodyFontSize;
     }
 }
+- (void)setButtonBorderRadius:(CGFloat)buttonBorderRadius {
+    for (OnboardingContentViewController *contentVC in self.viewControllers) {
+        contentVC.buttonBorderRadius = buttonBorderRadius;
+    }
+}
 
+- (void)setButtonPaddingWidth:(CGFloat)buttonPaddingWidth{
+    for (OnboardingContentViewController *contentVC in self.viewControllers) {
+        contentVC.buttonPaddingWidth = buttonPaddingWidth;
+    }
+}
+
+- (void)setButtonHeight:(CGFloat)buttonHeight{
+    for (OnboardingContentViewController *contentVC in self.viewControllers) {
+        contentVC.buttonHeight = buttonHeight;
+    }
+}
 - (void)setTopPadding:(CGFloat)topPadding {
     for (OnboardingContentViewController *contentVC in self.viewControllers) {
         contentVC.topPadding = topPadding;
