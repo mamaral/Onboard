@@ -97,7 +97,7 @@
 
 
 /**
- * @brief The padding between the bottom of the superview and the bottom of the page control.
+ * @brief The padding between the bottom of the screen and the bottom of the page control.
  */
 @property (nonatomic) CGFloat underPageControlPadding;
 
@@ -136,7 +136,9 @@
 - (void)moveNextPage;
 
 
-// The following properties are all deprecated, and will be removed
+// The following properties are all deprecated, and will be removed in the next release of Onboard.
+//
+//
 @property (nonatomic) BOOL hidePageControl __attribute__((deprecated("Modify the pageControl property directly. This property will be removed in the next update.")));
 
 @property (nonatomic) CGFloat iconSize __attribute__((deprecated("Modify the content view controller's iconSize directly. This property will be removed in the next update.")));

@@ -47,35 +47,35 @@ NSString * const kOnboardActionButtonAccessibilityIdentifier = @"OnboardActionBu
 }
 
 + (instancetype)contentWithTitle:(NSString *)title body:(NSString *)body image:(UIImage *)image buttonText:(NSString *)buttonText action:(dispatch_block_t)action {
-    OnboardingContentViewController *contentVC = [[self alloc] initWithTitle:title body:body image:image buttonText:buttonText action:action];
-    return contentVC;
+    return [[self alloc] initWithTitle:title body:body image:image buttonText:buttonText action:action];
 }
 
 - (instancetype)initWithTitle:(NSString *)title body:(NSString *)body image:(UIImage *)image buttonText:(NSString *)buttonText action:(dispatch_block_t)action {
     return [self initWithTitle:title body:body image:image buttonText:buttonText actionBlock:^(OnboardingViewController *onboardController) {
-        if(action) action();
+        if (action) {
+            action();
+        }
     }];
 }
 
 + (instancetype)contentWithTitle:(NSString *)title body:(NSString *)body image:(UIImage *)image buttonText:(NSString *)buttonText actionBlock:(action_callback)actionBlock {
-    OnboardingContentViewController *contentVC = [[self alloc] initWithTitle:title body:body image:image buttonText:buttonText actionBlock:actionBlock];
-    return contentVC;
+    return [[self alloc] initWithTitle:title body:body image:image buttonText:buttonText actionBlock:actionBlock];
 }
 
 + (instancetype)contentWithTitle:(NSString *)title body:(NSString *)body videoURL:(NSURL *)videoURL buttonText:(NSString *)buttonText action:(dispatch_block_t)action {
-    OnboardingContentViewController *contentVC = [[self alloc] initWithTitle:title body:body videoURL:videoURL buttonText:buttonText action:action];
-    return contentVC;
+    return [[self alloc] initWithTitle:title body:body videoURL:videoURL buttonText:buttonText action:action];
 }
 
 - (instancetype)initWithTitle:(NSString *)title body:(NSString *)body videoURL:(NSURL *)videoURL  buttonText:(NSString *)buttonText action:(dispatch_block_t)action {
     return [self initWithTitle:title body:body image:nil videoURL:videoURL buttonText:buttonText actionBlock:^(OnboardingViewController *onboardController) {
-        if(action) action();
+        if (action) {
+            action();
+        }
     }];
 }
 
 + (instancetype)contentWithTitle:(NSString *)title body:(NSString *)body videoURL:(NSURL *)videoURL  buttonText:(NSString *)buttonText actionBlock:(action_callback)actionBlock {
-    OnboardingContentViewController *contentVC = [[self alloc] initWithTitle:title body:body image:nil videoURL:videoURL buttonText:buttonText actionBlock:actionBlock];
-    return contentVC;
+    return [[self alloc] initWithTitle:title body:body image:nil videoURL:videoURL buttonText:buttonText actionBlock:actionBlock];
 }
 
 - (instancetype)initWithTitle:(NSString *)title body:(NSString *)body image:(UIImage *)image buttonText:(NSString *)buttonText actionBlock:(action_callback)actionBlock {
