@@ -17,37 +17,30 @@ extern NSString * const kOnboardActionButtonAccessibilityIdentifier;
 
 typedef void (^action_callback)(OnboardingViewController *onboardController);
 
-@interface OnboardingContentViewController : UIViewController {
-    NSString *_titleText;
-    NSString *_body;
-    UIImage *_image;
-    NSString *_buttonText;
-    
-    UIImageView *_imageView;
-    UILabel *_mainTextLabel;
-    UILabel *_subTextLabel;
-    UIButton *_actionButton;
-}
+@interface OnboardingContentViewController : UIViewController
 
 @property (nonatomic) OnboardingViewController *delegate;
 
 @property (nonatomic) BOOL movesToNextViewController;
 
+@property (nonatomic, strong) UIImageView *iconImageView;
 @property (nonatomic) CGFloat iconHeight;
 @property (nonatomic) CGFloat iconWidth;
 
-@property (nonatomic, strong) UIColor *titleTextColor;
-@property (nonatomic, strong) UIColor *bodyTextColor;
-@property (nonatomic, strong) UIColor *buttonTextColor;
+@property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, strong) UIColor *titleTextColor __attribute__((deprecated("Set titleLabel.textColor instead.")));
+@property (nonatomic, strong) NSString *titleFontName __attribute__((deprecated("Set titleLabel.font instead.")));
+@property (nonatomic) CGFloat titleFontSize __attribute__((deprecated("Set titleLabel.font instead.")));
 
-@property (nonatomic, strong) NSString *titleFontName;
-@property (nonatomic) CGFloat titleFontSize;
+@property (nonatomic, strong) UILabel *bodyLabel;
+@property (nonatomic, strong) UIColor *bodyTextColor __attribute__((deprecated("Set bodyLabel.textColor instead.")));
+@property (nonatomic, strong) NSString *bodyFontName __attribute__((deprecated("Set bodyLabel.font instead.")));
+@property (nonatomic) CGFloat bodyFontSize __attribute__((deprecated("Set bodyLabel.font instead.")));
 
-@property (nonatomic, strong) NSString *bodyFontName;
-@property (nonatomic) CGFloat bodyFontSize;
-
-@property (nonatomic, strong) NSString *buttonFontName;
-@property (nonatomic) CGFloat buttonFontSize;
+@property (nonatomic, strong) UIButton *actionButton;
+@property (nonatomic, strong) UIColor *buttonTextColor __attribute__((deprecated("Modify the actionButton property directly.")));
+@property (nonatomic, strong) NSString *buttonFontName __attribute__((deprecated("Modify the actionButton property directly.")));
+@property (nonatomic) CGFloat buttonFontSize __attribute__((deprecated("Modify the actionButton property directly.")));
 
 @property (nonatomic) CGFloat topPadding;
 @property (nonatomic) CGFloat underIconPadding;
