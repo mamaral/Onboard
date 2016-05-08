@@ -25,37 +25,37 @@
 
 
 /**
- * @brief Determines whether or not the background will be masked.
+ * @brief Determines whether or not the background will be masked. The default value of this property is YES.
  */
 @property (nonatomic) BOOL shouldMaskBackground;
 
 
 /**
- * @brief Determines whether or not the background will be blurred.
+ * @brief Determines whether or not the background will be blurred. The default value of this property is NO;
  */
 @property (nonatomic) BOOL shouldBlurBackground;
 
 
 /**
- * @brief Determines whether or not the contents on screen will fade as the user swipes between pages.
+ * @brief Determines whether or not the contents on screen will fade as the user swipes between pages. The default value of this property is NO.
  */
 @property (nonatomic) BOOL shouldFadeTransitions;
 
 
 /**
- * @brief Determines whether or not the background will be masked.
+ * @brief Determines whether or not the background will be masked. The default value of this property is NO.
  */
 @property (nonatomic) BOOL fadePageControlOnLastPage;
 
 
 /**
- * @brief Determines whether or not the skip button will fade away on the last page.
+ * @brief Determines whether or not the skip button will fade away on the last page. The default value of this property is NO.
  */
 @property (nonatomic) BOOL fadeSkipButtonOnLastPage;
 
 
 /**
- * @brief Determines whether or not the ship button will be shown.
+ * @brief Determines whether or not the ship button will be shown. The default value of this property is NO.
  */
 @property (nonatomic) BOOL allowSkipping;
 
@@ -67,7 +67,7 @@
 
 
 /**
- * @brief Determines whether or not swiping is enabled between pages.
+ * @brief Determines whether or not swiping is enabled between pages. The default value of this property is YES.
  */
 @property (nonatomic) BOOL swipingEnabled;
 
