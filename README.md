@@ -75,13 +75,9 @@ With only a few lines of code you have a beautiful, end-to-end onboarding proces
 Customization
 =============
 
-The content pages can be customized by setting the provided padding, font, and size properties on either the pages individually (if you want something different on each) or on the OnboardingViewController itself, which will pass those properties to all of the content view controllers.
+The `iconImageView`, `titleLabel`, `bodyLabel`, and `actionButton` properties are exposed for customizing fonts, sizing, etc., and the spacing between elements on the content pages can be customized as well:
 
 ```objective-c
-OnboardingViewController *onboardingVC = [OnboardingViewController onboardWithBackgroundImage contents:yourContentsArray];
-onboardingVC.fontName = @"Helvetica-Light";
-onboardingVC.titleFontSize = 28;
-onboardingVC.bodyFontSize = 22;
 onboardingVC.topPadding = 20;
 onboardingVC.underIconPadding = 10;
 onboardingVC.underTitlePadding = 15;
