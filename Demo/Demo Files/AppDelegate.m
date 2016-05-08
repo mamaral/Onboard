@@ -30,11 +30,9 @@ static NSString * const kUserHasOnboardedKey = @"user_has_onboarded";
     // otherwise set the root view controller to the onboarding view controller
     else {
 //        self.window.rootViewController = [self generateFirstDemoVC];
-        self.window.rootViewController = [self generateSecondDemoVC];
-//        self.window.rootViewController = [self generateThirdDemoVC];
-//        self.window.rootViewController = [self generateFourthDemoVC];
-//        self.window.rootViewController = [self generateFifthDemoVC];
-        
+//        self.window.rootViewController = [self generateSecondDemoVC];
+        self.window.rootViewController = [self generateThirdDemoVC];
+
 //        __weak typeof(self) weakSelf = self;
 //        
 //        self.window.rootViewController = [[MyOnboardingViewController alloc] initWithCompletionHandler:^{
@@ -143,45 +141,6 @@ static NSString * const kUserHasOnboardedKey = @"user_has_onboarded";
 }
 
 - (OnboardingViewController *)generateThirdDemoVC {
-    OnboardingContentViewController *firstPage = [[OnboardingContentViewController alloc] initWithTitle:@"It's one small step for a man..." body:@"The first man on the moon, Buzz Aldrin, only had one photo taken of him while on the lunar surface due to an unexpected call from Dick Nixon." image:[UIImage imageNamed:@"space1"] buttonText:nil action:nil];
-    firstPage.bodyFontSize = 25;
-    
-    OnboardingContentViewController *secondPage = [[OnboardingContentViewController alloc] initWithTitle:@"The Drake Equation" body:@"In 1961, Frank Drake proposed a probabilistic formula to help estimate the number of potential active and radio-capable extraterrestrial civilizations in the Milky Way Galaxy." image:[UIImage imageNamed:@"space2"] buttonText:nil action:nil];
-    secondPage.bodyFontSize = 24;
-    
-    OnboardingContentViewController *thirdPage = [[OnboardingContentViewController alloc] initWithTitle:@"Cold Welding" body:@"Two pieces of metal without any coating on them will form into one piece in the vacuum of space." image:[UIImage imageNamed:@"space3"] buttonText:nil action:nil];
-    
-    OnboardingContentViewController *fourthPage = [[OnboardingContentViewController alloc] initWithTitle:@"Goodnight Moon" body:@"Every year the moon moves about 3.8cm further away from the Earth." image:[UIImage imageNamed:@"space4"] buttonText:@"See Ya Later!" action:nil];
-    
-    OnboardingViewController *onboardingVC = [[OnboardingViewController alloc] initWithBackgroundImage:[UIImage imageNamed:@"milky_way.jpg"] contents:@[firstPage, secondPage, thirdPage, fourthPage]];
-    onboardingVC.shouldMaskBackground = NO;
-    onboardingVC.shouldBlurBackground = YES;
-    return onboardingVC;
-}
-
-- (OnboardingViewController *)generateFourthDemoVC {
-    OnboardingContentViewController *firstPage = [[OnboardingContentViewController alloc] initWithTitle:@"\"If you can't explain it simply, you don't know it well enough.\"" body:@"                 - Einsten" image:[UIImage imageNamed:@""] buttonText:nil action:nil];
-    
-    OnboardingContentViewController *secondPage = [[OnboardingContentViewController alloc] initWithTitle:@"\"If you wish to make an apple pie from scratch, you must first invent the universe.\"" body:@"                 - Sagan" image:nil buttonText:nil action:nil];
-    secondPage.topPadding = 0;
-    
-    OnboardingContentViewController *thirdPage = [[OnboardingContentViewController alloc] initWithTitle:@"\"That which can be asserted without evidence, can be dismissed without evidence.\"" body:@"                 - Hitchens" image:nil buttonText:nil action:nil];
-    thirdPage.titleFontSize = 33;
-    thirdPage.bodyFontSize = 25;
-    
-    OnboardingContentViewController *fourthPage = [[OnboardingContentViewController alloc] initWithTitle:@"\"Scientists have become the bearers of the torch of discovery in our quest for knowledge.\"" body:@"                 - Hawking" image:nil buttonText:nil action:nil];
-    fourthPage.titleFontSize = 28;
-    fourthPage.bodyFontSize = 24;
-    
-    OnboardingViewController *onboardingVC = [[OnboardingViewController alloc] initWithBackgroundImage:[UIImage imageNamed:@"yellowbg"] contents:@[firstPage, secondPage, thirdPage, fourthPage]];
-    onboardingVC.shouldMaskBackground = NO;
-    onboardingVC.titleTextColor = [UIColor colorWithRed:57/255.0 green:57/255.0 blue:57/255.0 alpha:1.0];;
-    onboardingVC.bodyTextColor = [UIColor colorWithRed:244/255.0 green:64/255.0 blue:40/255.0 alpha:1.0];
-    onboardingVC.fontName = @"HelveticaNeue-Italic";
-    return onboardingVC;
-}
-
-- (OnboardingViewController *)generateFifthDemoVC {
     OnboardingContentViewController *firstPage = [[OnboardingContentViewController alloc] initWithTitle:@"Tri-tip bacon shankle" body:@"Bacon ipsum dolor amet cow filet mignon porchetta ham hamburger pork chop venison landjaeger ribeye drumstick beef ribs tongue." videoURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"video1" ofType:@"mp4"]] buttonText:nil action:nil];
     firstPage.topPadding = -15;
     firstPage.underTitlePadding = 160;

@@ -43,7 +43,7 @@ NSString * const kOnboardActionButtonAccessibilityIdentifier = @"OnboardActionBu
 @implementation OnboardingContentViewController
 
 - (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:UIApplicationWillEnterForegroundNotification];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 + (instancetype)contentWithTitle:(NSString *)title body:(NSString *)body image:(UIImage *)image buttonText:(NSString *)buttonText action:(dispatch_block_t)action {
@@ -123,12 +123,11 @@ NSString * const kOnboardActionButtonAccessibilityIdentifier = @"OnboardActionBu
     self.buttonActionHandler = actionBlock ?: ^(OnboardingViewController *controller){};
 
     // Movie player
-    if (videoURL != nil) {
+    if (videoURL) {
         self.videoURL = videoURL;
 
         self.moviePlayerController = [MPMoviePlayerController new];
         self.moviePlayerController.contentURL = self.videoURL;
-        self.moviePlayerController.view.frame = self.view.frame;
         self.moviePlayerController.repeatMode = MPMovieRepeatModeOne;
         self.moviePlayerController.controlStyle = MPMovieControlStyleNone;
 
@@ -167,27 +166,27 @@ NSString * const kOnboardActionButtonAccessibilityIdentifier = @"OnboardActionBu
     self.view.backgroundColor = [UIColor clearColor];
 
     // Add all our subviews
-    [self.view addSubview:self.iconImageView];
-    [self.view addSubview:self.titleLabel];
-    [self.view addSubview:self.bodyLabel];
-    [self.view addSubview:self.actionButton];
-
     if (self.videoURL != nil) {
         [self.moviePlayerController.backgroundView addSubview:self.thumbnailImageView];
         [self.view addSubview:self.moviePlayerController.view];
     }
+
+    [self.view addSubview:self.iconImageView];
+    [self.view addSubview:self.titleLabel];
+    [self.view addSubview:self.bodyLabel];
+    [self.view addSubview:self.actionButton];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    // if we have a delegate set, mark ourselves as the next page now that we're
+    // If we have a delegate set, mark ourselves as the next page now that we're
     // about to appear
     if (self.delegate) {
         [self.delegate setNextPage:self];
     }
     
-    // call our view will appear block
+    // Call our view will appear block
     if (self.viewWillAppearBlock) {
         dispatch_async(dispatch_get_main_queue(), ^{
             self.viewWillAppearBlock();
@@ -198,20 +197,20 @@ NSString * const kOnboardActionButtonAccessibilityIdentifier = @"OnboardActionBu
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    // if we have a delegate set, mark ourselves as the current page now that
+    // If we have a delegate set, mark ourselves as the current page now that
     // we've appeared
     if (self.delegate) {
         [self.delegate setCurrentPage:self];
     }
     
-    // call our view did appear block
+    // Call our view did appear block
     if (self.viewDidAppearBlock) {
         dispatch_async(dispatch_get_main_queue(), ^{
             self.viewDidAppearBlock();
         });
     }
     
-    // if we have a video, start playing
+    // If we have a video, start playing
     if (self.moviePlayerController.playbackState != MPMoviePlaybackStatePlaying) {
         self.moviePlayerController.currentPlaybackTime = 0.0;
         [self.moviePlayerController play];
@@ -221,7 +220,7 @@ NSString * const kOnboardActionButtonAccessibilityIdentifier = @"OnboardActionBu
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
 
-    // call our view will disappear block
+    // Call our view will disappear block
     if (self.viewWillDisappearBlock) {
         dispatch_async(dispatch_get_main_queue(), ^{
             self.viewWillDisappearBlock();
@@ -232,14 +231,14 @@ NSString * const kOnboardActionButtonAccessibilityIdentifier = @"OnboardActionBu
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
 
-    // call our view did disappear block
+    // Call our view did disappear block
     if (self.viewDidDisappearBlock) {
         dispatch_async(dispatch_get_main_queue(), ^{
             self.viewDidDisappearBlock();
         });
     }
     
-    // if we have a video, stop playing
+    // If we have a video, stop playing
     if (self.moviePlayerController.playbackState != MPMoviePlaybackStateStopped) {
         [self.moviePlayerController stop];
     }
@@ -250,6 +249,14 @@ NSString * const kOnboardActionButtonAccessibilityIdentifier = @"OnboardActionBu
 
 - (void)viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
+
+    if (self.videoURL) {
+        self.moviePlayerController.view.frame = self.view.frame;
+    }
+
+    if (self.thumbnailImageView) {
+        self.thumbnailImageView.frame = self.view.frame;
+    }
 
     CGFloat viewWidth = CGRectGetWidth(self.view.frame);
     CGFloat contentWidth = viewWidth * kContentWidthMultiplier;
@@ -270,10 +277,6 @@ NSString * const kOnboardActionButtonAccessibilityIdentifier = @"OnboardActionBu
     self.bodyLabel.frame = CGRectMake(xPadding, bodyYOrigin, contentWidth, CGRectGetHeight(self.bodyLabel.frame));
 
     self.actionButton.frame = CGRectMake((CGRectGetMaxX(self.view.frame) / 2) - (contentWidth / 2), CGRectGetMaxY(self.view.frame) - self.underPageControlPadding - kMainPageControlHeight - kActionButtonHeight - self.bottomPadding, contentWidth, kActionButtonHeight);
-
-    if (self.thumbnailImageView != nil) {
-        self.thumbnailImageView.frame = self.view.frame;
-    }
 }
 
 
@@ -293,7 +296,7 @@ NSString * const kOnboardActionButtonAccessibilityIdentifier = @"OnboardActionBu
     self.iconImageView.alpha = newAlpha;
     self.titleLabel.alpha = newAlpha;
     self.bodyLabel.alpha = newAlpha;
-    _actionButton.alpha = newAlpha;
+    self.actionButton.alpha = newAlpha;
 }
 
 
@@ -307,8 +310,8 @@ NSString * const kOnboardActionButtonAccessibilityIdentifier = @"OnboardActionBu
     }
     
     // call the provided action handler
-    if (_buttonActionHandler) {
-        _buttonActionHandler(self.delegate);
+    if (self.buttonActionHandler) {
+        self.buttonActionHandler(self.delegate);
     }
 }
 

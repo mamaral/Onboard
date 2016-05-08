@@ -19,16 +19,22 @@ static CGFloat const kDefaultSaturationDeltaFactor = 1.8;
 
 static NSString * const kSkipButtonText = @"Skip";
 
-@implementation OnboardingViewController {
-    NSURL *_videoURL;
-    UIPageViewController *_pageVC;
-    
-    OnboardingContentViewController *_currentPage;
-    OnboardingContentViewController *_upcomingPage;
-}
+
+@interface OnboardingViewController ()
+
+@property (nonatomic, strong) OnboardingContentViewController *currentPage;
+@property (nonatomic, strong) OnboardingContentViewController *upcomingPage;
+
+@property (nonatomic, strong) UIPageViewController *pageVC;
+@property (nonatomic, strong) NSURL *videoURL;
+
+@end
+
+
+@implementation OnboardingViewController
 
 - (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:UIApplicationWillEnterForegroundNotification];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark - Initializing with images
@@ -58,8 +64,8 @@ static NSString * const kSkipButtonText = @"Skip";
 - (instancetype)initWithBackgroundVideoURL:(NSURL *)backgroundVideoURL contents:(NSArray *)contents {
     self = [self initWithContents:contents];
     
-    // store the passed in video URL
-    _videoURL = backgroundVideoURL;
+    // Store the passed in video URL
+    self.videoURL = backgroundVideoURL;
     
     return self;
 }
@@ -70,10 +76,10 @@ static NSString * const kSkipButtonText = @"Skip";
 - (instancetype)initWithContents:(NSArray *)contents {
     self = [super init];
     
-    // store the passed in view controllers array
+    // Store the passed in view controllers array
     self.viewControllers = contents;
     
-    // set the default properties
+    // Set the default properties
     self.shouldMaskBackground = YES;
     self.shouldBlurBackground = NO;
     self.shouldFadeTransitions = NO;
@@ -85,7 +91,7 @@ static NSString * const kSkipButtonText = @"Skip";
     self.allowSkipping = NO;
     self.skipHandler = ^{};
     
-    // create the initial exposed components so they can be customized
+    // Create the initial exposed components so they can be customized
     self.pageControl = [UIPageControl new];
     self.pageControl.numberOfPages = self.viewControllers.count;
     self.pageControl.userInteractionEnabled = NO;
@@ -95,7 +101,7 @@ static NSString * const kSkipButtonText = @"Skip";
     [self.skipButton addTarget:self action:@selector(handleSkipButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     self.skipButton.titleLabel.adjustsFontSizeToFitWidth = YES;
 
-    // create the movie player controller
+    // Create the movie player controller
     self.moviePlayerController = [MPMoviePlayerController new];
     
     // Handle when the app enters the foreground.
