@@ -68,6 +68,8 @@ static NSString * const kSkipButtonText = @"Skip";
     if (self == nil) {
         return nil;
     }
+
+    self.videoURL = backgroundVideoURL;
     
     return self;
 }
