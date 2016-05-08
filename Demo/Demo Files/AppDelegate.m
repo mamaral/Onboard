@@ -29,9 +29,8 @@ static NSString * const kUserHasOnboardedKey = @"user_has_onboarded";
     
     // otherwise set the root view controller to the onboarding view controller
     else {
-//        self.window.rootViewController = [self generateFirstDemoVC];
-//        self.window.rootViewController = [self generateSecondDemoVC];
-        self.window.rootViewController = [self generateThirdDemoVC];
+        self.window.rootViewController = [self generateStandardOnboardingVC];
+//        self.window.rootViewController = [self generateMovieOnboardingVC];
 
 //        __weak typeof(self) weakSelf = self;
 //        
@@ -66,7 +65,7 @@ static NSString * const kUserHasOnboardedKey = @"user_has_onboarded";
     [self setupNormalRootViewController];
 }
 
-- (OnboardingViewController *)generateFirstDemoVC {
+- (OnboardingViewController *)generateStandardOnboardingVC {
     OnboardingContentViewController *firstPage = [OnboardingContentViewController contentWithTitle:@"What A Beautiful Photo" body:@"This city background image is so beautiful." image:[UIImage imageNamed:@"blue"] buttonText:@"Enable Location Services" action:^{
         [[[UIAlertView alloc] initWithTitle:nil message:@"Here you can prompt users for various application permissions, providing them useful information about why you'd like those permissions to enhance their experience, increasing your chances they will grant those permissions." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
     }];
@@ -98,7 +97,7 @@ static NSString * const kUserHasOnboardedKey = @"user_has_onboarded";
     return onboardingVC;
 }
 
-- (OnboardingViewController *)generateSecondDemoVC {
+- (OnboardingViewController *)generateMovieOnboardingVC {
     OnboardingContentViewController *firstPage = [[OnboardingContentViewController alloc] initWithTitle:@"Everything Under The Sun" body:@"The temperature of the photosphere is over 10,000°F." image:nil buttonText:nil action:nil];
     firstPage.topPadding = -15;
     firstPage.underTitlePadding = 160;
@@ -133,48 +132,6 @@ static NSString * const kUserHasOnboardedKey = @"user_has_onboarded";
     NSURL *movieURL = [NSURL fileURLWithPath:moviePath];
     
     OnboardingViewController *onboardingVC = [[OnboardingViewController alloc] initWithBackgroundVideoURL:movieURL contents:@[firstPage, secondPage, thirdPage]];
-    onboardingVC.shouldFadeTransitions = YES;
-    onboardingVC.shouldMaskBackground = NO;
-    onboardingVC.pageControl.currentPageIndicatorTintColor = [UIColor colorWithRed:239/255.0 green:88/255.0 blue:35/255.0 alpha:1.0];
-    onboardingVC.pageControl.pageIndicatorTintColor = [UIColor whiteColor];
-    return onboardingVC;
-}
-
-- (OnboardingViewController *)generateThirdDemoVC {
-    OnboardingContentViewController *firstPage = [[OnboardingContentViewController alloc] initWithTitle:@"Tri-tip bacon shankle" body:@"Bacon ipsum dolor amet cow filet mignon porchetta ham hamburger pork chop venison landjaeger ribeye drumstick beef ribs tongue." videoURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"video1" ofType:@"mp4"]] buttonText:nil action:nil];
-    firstPage.topPadding = -15;
-    firstPage.underTitlePadding = 160;
-    firstPage.titleTextColor = [UIColor colorWithRed:239/255.0 green:88/255.0 blue:35/255.0 alpha:1.0];
-    firstPage.titleFontName = @"SFOuterLimitsUpright";
-    firstPage.bodyTextColor = [UIColor colorWithRed:239/255.0 green:88/255.0 blue:35/255.0 alpha:1.0];
-    firstPage.bodyFontName = @"NasalizationRg-Regular";
-    firstPage.bodyFontSize = 18;
-    
-    OnboardingContentViewController *secondPage = [[OnboardingContentViewController alloc] initWithTitle:@"Ball tip hamburger" body:@"Bacon ipsum dolor amet kielbasa landjaeger ham fatback frankfurter pork beef pig strip steak pancetta tenderloin pork chop." videoURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"video2" ofType:@"mp4"]] buttonText:nil action:nil];
-    secondPage.titleFontName = @"SFOuterLimitsUpright";
-    secondPage.underTitlePadding = 170;
-    secondPage.topPadding = 0;
-    secondPage.titleTextColor = [UIColor colorWithRed:251/255.0 green:176/255.0 blue:59/255.0 alpha:1.0];
-    secondPage.bodyTextColor = [UIColor colorWithRed:251/255.0 green:176/255.0 blue:59/255.0 alpha:1.0];
-    secondPage.bodyFontName = @"NasalizationRg-Regular";
-    secondPage.bodyFontSize = 18;
-    
-    OnboardingContentViewController *thirdPage = [[OnboardingContentViewController alloc] initWithTitle:@"Sausage prosciutto flank capicola" body:@"Bacon ipsum dolor amet tail sausage salami filet mignon spare ribs hamburger." videoURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"video3" ofType:@"mp4"]] buttonText:@"Tap me" action:^{
-        [self handleOnboardingCompletion];
-    }];
-    thirdPage.topPadding = 10;
-    thirdPage.underTitlePadding = 160;
-    thirdPage.bottomPadding = -10;
-    thirdPage.titleFontName = @"SFOuterLimitsUpright";
-    thirdPage.titleTextColor = [UIColor colorWithRed:58/255.0 green:105/255.0 blue:136/255.0 alpha:1.0];
-    thirdPage.bodyTextColor = [UIColor colorWithRed:58/255.0 green:105/255.0 blue:136/255.0 alpha:1.0];
-    thirdPage.buttonTextColor = [UIColor colorWithRed:239/255.0 green:88/255.0 blue:35/255.0 alpha:1.0];
-    thirdPage.bodyFontName = @"NasalizationRg-Regular";
-    thirdPage.bodyFontSize = 15;
-    thirdPage.buttonFontName = @"SpaceAge";
-    thirdPage.buttonFontSize = 17;
-    
-    OnboardingViewController *onboardingVC = [[OnboardingViewController alloc] initWithBackgroundImage:[UIImage imageNamed:@"milky_way.jpg"] contents:@[firstPage, secondPage, thirdPage]];
     onboardingVC.shouldFadeTransitions = YES;
     onboardingVC.shouldMaskBackground = NO;
     onboardingVC.pageControl.currentPageIndicatorTintColor = [UIColor colorWithRed:239/255.0 green:88/255.0 blue:35/255.0 alpha:1.0];

@@ -41,6 +41,9 @@
 @property (nonatomic) BOOL stopMoviePlayerWhenDisappear;
 @property (nonatomic) MPMoviePlayerController *moviePlayerController;
 
+@property (nonatomic) CGFloat bottomPadding;
+@property (nonatomic) CGFloat underPageControlPadding;
+
 // Initializers
 + (instancetype)onboardWithBackgroundImage:(UIImage *)backgroundImage contents:(NSArray *)contents;
 - (instancetype)initWithBackgroundImage:(UIImage *)backgroundImage contents:(NSArray *)contents;
@@ -71,7 +74,5 @@
 @property (nonatomic) CGFloat topPadding __attribute__((deprecated("Modify the content view controller's topPadding directly.")));
 @property (nonatomic) CGFloat underIconPadding __attribute__((deprecated("Modify the content view controller's underIconPadding directly.")));
 @property (nonatomic) CGFloat underTitlePadding __attribute__((deprecated("Modify the content view controller's underTitlePadding directly.")));
-@property (nonatomic) CGFloat bottomPadding __attribute__((deprecated("Modify the content view controller's bottomPadding directly.")));
-@property (nonatomic) CGFloat underPageControlPadding __attribute__((deprecated("Modify the content view controller's underPageControlPadding directly.")));
 
 @end
