@@ -53,18 +53,17 @@ typedef void (^action_callback)(OnboardingViewController *onboardController);
 @property (nonatomic, copy) dispatch_block_t viewWillDisappearBlock;
 @property (nonatomic, copy) dispatch_block_t viewDidDisappearBlock;
 
+@property (nonatomic, strong) UIColor *titleTextColor __attribute__((deprecated("Set titleLabel.textColor instead. This property will be removed in the next update.")));
+@property (nonatomic, strong) NSString *titleFontName __attribute__((deprecated("Set titleLabel.font instead. This property will be removed in the next update.")));
+@property (nonatomic) CGFloat titleFontSize __attribute__((deprecated("Set titleLabel.font instead. This property will be removed in the next update.")));
 
-@property (nonatomic, strong) UIColor *titleTextColor __attribute__((deprecated("Set titleLabel.textColor instead.")));
-@property (nonatomic, strong) NSString *titleFontName __attribute__((deprecated("Set titleLabel.font instead.")));
-@property (nonatomic) CGFloat titleFontSize __attribute__((deprecated("Set titleLabel.font instead.")));
+@property (nonatomic, strong) UIColor *bodyTextColor __attribute__((deprecated("Set bodyLabel.textColor instead. This property will be removed in the next update.")));
+@property (nonatomic, strong) NSString *bodyFontName __attribute__((deprecated("Set bodyLabel.font instead. This property will be removed in the next update.")));
+@property (nonatomic) CGFloat bodyFontSize __attribute__((deprecated("Set bodyLabel.font instead. This property will be removed in the next update.")));
 
-@property (nonatomic, strong) UIColor *bodyTextColor __attribute__((deprecated("Set bodyLabel.textColor instead.")));
-@property (nonatomic, strong) NSString *bodyFontName __attribute__((deprecated("Set bodyLabel.font instead.")));
-@property (nonatomic) CGFloat bodyFontSize __attribute__((deprecated("Set bodyLabel.font instead.")));
-
-@property (nonatomic, strong) UIColor *buttonTextColor __attribute__((deprecated("Modify the actionButton property directly.")));
-@property (nonatomic, strong) NSString *buttonFontName __attribute__((deprecated("Modify the actionButton property directly.")));
-@property (nonatomic) CGFloat buttonFontSize __attribute__((deprecated("Modify the actionButton property directly.")));
+@property (nonatomic, strong) UIColor *buttonTextColor __attribute__((deprecated("Modify the actionButton property directly. This property will be removed in the next update.")));
+@property (nonatomic, strong) NSString *buttonFontName __attribute__((deprecated("Modify the actionButton property directly. This property will be removed in the next update.")));
+@property (nonatomic) CGFloat buttonFontSize __attribute__((deprecated("Modify the actionButton property directly. This property will be removed in the next update.")));
 
 
 + (instancetype)contentWithTitle:(NSString *)title body:(NSString *)body image:(UIImage *)image buttonText:(NSString *)buttonText action:(dispatch_block_t)action;

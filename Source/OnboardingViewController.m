@@ -365,8 +365,7 @@ static NSString * const kSkipButtonText = @"Skip";
     // return the previous view controller in the array unless we're at the beginning
     if (viewController == [self.viewControllers firstObject]) {
         return nil;
-    }
-    else {
+    } else {
         NSInteger priorPageIndex = [self.viewControllers indexOfObject:viewController] - 1;
         return self.viewControllers[priorPageIndex];
     }
@@ -376,8 +375,7 @@ static NSString * const kSkipButtonText = @"Skip";
     // return the next view controller in the array unless we're at the end
     if (viewController == [self.viewControllers lastObject]) {
         return nil;
-    }
-    else {
+    } else {
         NSInteger nextPageIndex = [_viewControllers indexOfObject:viewController] + 1;
         return self.viewControllers[nextPageIndex];
     }
