@@ -75,7 +75,7 @@ With only a few lines of code you have a beautiful, end-to-end onboarding proces
 Customization
 =============
 
-The `iconImageView`, `titleLabel`, `bodyLabel`, and `actionButton` properties are exposed for customizing fonts, sizing, etc., and the spacing between elements on the content pages can be customized
+The `iconImageView`, `titleLabel`, `bodyLabel`, and `actionButton` properties are exposed for customizing fonts, sizing, etc., and the spacing between elements on the content pages can be customized as well:
 
 ```objective-c
 onboardingVC.topPadding = 20;
