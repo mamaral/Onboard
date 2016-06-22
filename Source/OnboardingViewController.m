@@ -222,7 +222,14 @@ static NSString * const kSkipButtonText = @"Skip";
     
     // if we allow skipping, setup the skip button
     if (self.allowSkipping) {
-        self.skipButton.frame = CGRectMake(CGRectGetMaxX(self.view.frame) - kSkipButtonWidth, CGRectGetMaxY(self.view.frame) - self.underPageControlPadding - kSkipButtonHeight, kSkipButtonWidth, kSkipButtonHeight);
+        if (CGRectGetMaxX(self.view.frame) > CGRectGetMaxY(self.view.frame))
+        {
+            self.skipButton.frame = CGRectMake(CGRectGetMaxY(self.view.frame) - kSkipButtonWidth, CGRectGetMaxX(self.view.frame) - self.underPageControlPadding - kSkipButtonHeight, kSkipButtonWidth, kSkipButtonHeight);
+        }
+        else
+        {
+            self.skipButton.frame = CGRectMake(CGRectGetMaxX(self.view.frame) - kSkipButtonWidth, CGRectGetMaxY(self.view.frame) - self.underPageControlPadding - kSkipButtonHeight, kSkipButtonWidth, kSkipButtonHeight);
+        }
         [self.view addSubview:self.skipButton];
     }
     
