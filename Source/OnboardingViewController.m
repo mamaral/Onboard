@@ -8,6 +8,7 @@
 
 #import "OnboardingViewController.h"
 #import "OnboardingContentViewController.h"
+@import AVFoundation;
 @import Accelerate;
 
 static CGFloat const kPageControlHeight = 35;
@@ -26,6 +27,7 @@ static NSString * const kSkipButtonText = @"Skip";
 @property (nonatomic, strong) OnboardingContentViewController *upcomingPage;
 
 @property (nonatomic, strong) UIPageViewController *pageVC;
+@property (nonatomic, strong) AVPlayer *player;
 @property (nonatomic, strong) NSURL *videoURL;
 
 @end
@@ -107,12 +109,6 @@ static NSString * const kSkipButtonText = @"Skip";
     [self.skipButton setTitle:kSkipButtonText forState:UIControlStateNormal];
     [self.skipButton addTarget:self action:@selector(handleSkipButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     self.skipButton.titleLabel.adjustsFontSizeToFitWidth = YES;
-
-    // Create the movie player controller
-    self.moviePlayerController = [MPMoviePlayerController new];
-    
-    // Handle when the app enters the foreground.
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleAppEnteredForeground) name:UIApplicationWillEnterForegroundNotification object:nil];
     
     return self;
 }
@@ -131,26 +127,26 @@ static NSString * const kSkipButtonText = @"Skip";
     [super viewWillAppear:animated];
     
     // if we have a video URL, start playing
-    if (_videoURL) {
-        [self.moviePlayerController play];
+    if (self.videoURL) {
+        [self.player play];
     }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    
-    if (self.moviePlayerController.playbackState == MPMoviePlaybackStatePlaying && self.stopMoviePlayerWhenDisappear) {
-        [self.moviePlayerController stop];
+
+    if ((self.player.rate != 0.0) && (self.player.error == nil) && self.stopMoviePlayerWhenDisappear) {
+        [self.player pause];
     }
 }
 
 - (void)generateView {
     // create our page view controller
-    _pageVC = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
-    _pageVC.view.frame = self.view.frame;
-    _pageVC.view.backgroundColor = [UIColor whiteColor];
-    _pageVC.delegate = self;
-    _pageVC.dataSource = self.swipingEnabled ? self : nil;
+    self.pageVC = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
+    self.pageVC.view.frame = self.view.frame;
+    self.pageVC.view.backgroundColor = [UIColor whiteColor];
+    self.pageVC.delegate = self;
+    self.pageVC.dataSource = self.swipingEnabled ? self : nil;
     
     if (self.shouldBlurBackground) {
         [self blurBackground];
@@ -172,9 +168,9 @@ static NSString * const kSkipButtonText = @"Skip";
     // darkens it a bit for better contrast
     UIView *backgroundMaskView;
     if (self.shouldMaskBackground) {
-        backgroundMaskView = [[UIView alloc] initWithFrame:_pageVC.view.frame];
+        backgroundMaskView = [[UIView alloc] initWithFrame:self.pageVC.view.frame];
         backgroundMaskView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:kBackgroundMaskAlpha];
-        [_pageVC.view addSubview:backgroundMaskView];
+        [self.pageVC.view addSubview:backgroundMaskView];
     }
 
     // set ourself as the delegate on all of the content views, to handle fading
@@ -187,27 +183,29 @@ static NSString * const kSkipButtonText = @"Skip";
     _currentPage = [self.viewControllers firstObject];
     
     // more page controller setup
-    [_pageVC setViewControllers:@[_currentPage] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
-    _pageVC.view.backgroundColor = [UIColor clearColor];
-    [self addChildViewController:_pageVC];
-    [self.view addSubview:_pageVC.view];
-    [_pageVC didMoveToParentViewController:self];
-    [_pageVC.view sendSubviewToBack:backgroundMaskView];
+    [self.pageVC setViewControllers:@[self.currentPage] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+    self.pageVC.view.backgroundColor = [UIColor clearColor];
+    [self addChildViewController:self.pageVC];
+    [self.view addSubview:self.pageVC.view];
+    [self.pageVC didMoveToParentViewController:self];
+    [self.pageVC.view sendSubviewToBack:backgroundMaskView];
     
     // send the background image view to the back if we have one
     if (backgroundImageView) {
-        [_pageVC.view sendSubviewToBack:backgroundImageView];
+        [self.pageVC.view sendSubviewToBack:backgroundImageView];
     }
     
     // otherwise send the video view to the back if we have one
-    else if (_videoURL) {
-        self.moviePlayerController.contentURL = _videoURL;
-        self.moviePlayerController.view.frame = _pageVC.view.frame;
-        self.moviePlayerController.repeatMode = MPMovieRepeatModeOne;
-        self.moviePlayerController.controlStyle = MPMovieControlStyleNone;
+    else if (self.videoURL) {
+        self.player = [[AVPlayer alloc] initWithURL:self.videoURL];
+
+        self.moviePlayerController = [AVPlayerViewController new];
+        self.moviePlayerController.player = self.player;
+        self.moviePlayerController.view.frame = self.pageVC.view.frame;
+        self.moviePlayerController.showsPlaybackControls = NO;
         
-        [_pageVC.view addSubview:self.moviePlayerController.view];
-        [_pageVC.view sendSubviewToBack:self.moviePlayerController.view];
+        [self.pageVC.view addSubview:self.moviePlayerController.view];
+        [self.pageVC.view sendSubviewToBack:self.moviePlayerController.view];
     }
     
     // create and configure the page control
@@ -224,19 +222,11 @@ static NSString * const kSkipButtonText = @"Skip";
     // so we can set ourself as the delegate, this is sort of hackish but the only current
     // solution I am aware of using a page view controller
     if (self.shouldFadeTransitions) {
-        for (UIView *view in _pageVC.view.subviews) {
+        for (UIView *view in self.pageVC.view.subviews) {
             if ([view isKindOfClass:[UIScrollView class]]) {
                 [(UIScrollView *)view setDelegate:self];
             }
         }
-    }
-}
-
-- (void)handleAppEnteredForeground {
-    // If the movie player is paused, as it does by default when backgrounded, start
-    // playing again.
-    if (self.moviePlayerController.playbackState == MPMoviePlaybackStatePaused) {
-        [self.moviePlayerController play];
     }
 }
 
@@ -407,7 +397,7 @@ static NSString * const kSkipButtonText = @"Skip";
     NSUInteger indexOfNextPage = [self.viewControllers indexOfObject:_currentPage] + 1;
     
     if (indexOfNextPage < self.viewControllers.count) {
-        [_pageVC setViewControllers:@[self.viewControllers[indexOfNextPage]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+        [self.pageVC setViewControllers:@[self.viewControllers[indexOfNextPage]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
         [self.pageControl setCurrentPage:indexOfNextPage];
     }
 }
@@ -450,22 +440,22 @@ static NSString * const kSkipButtonText = @"Skip";
     // fade the page control to and from the last page
     if (self.fadePageControlOnLastPage) {
         if (transitioningToLastPage) {
-            _pageControl.alpha = percentCompleteInverse;
+            self.pageControl.alpha = percentCompleteInverse;
         }
 
         else if (transitioningFromLastPage) {
-            _pageControl.alpha = percentComplete;
+            self.pageControl.alpha = percentComplete;
         }
     }
 
     // fade the skip button to and from the last page
     if (self.fadeSkipButtonOnLastPage) {
         if (transitioningToLastPage) {
-            _skipButton.alpha = percentCompleteInverse;
+            self.skipButton.alpha = percentCompleteInverse;
         }
 
         else if (transitioningFromLastPage) {
-            _skipButton.alpha = percentComplete;
+            self.skipButton.alpha = percentComplete;
         }
     }
 }
