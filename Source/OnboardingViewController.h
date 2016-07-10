@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "OnboardingContentViewController.h"
-@import MediaPlayer;
+@import AVKit;
 
 @interface OnboardingViewController : UIViewController <UIPageViewControllerDataSource, UIPageViewControllerDelegate, UIScrollViewDelegate, OnboardingContentViewControllerDelegate>
 
@@ -93,7 +93,7 @@
 /**
  * @brief The movie player controller used to play background movies.
  */
-@property (nonatomic) MPMoviePlayerController *moviePlayerController;
+@property (nonatomic, strong) AVPlayerViewController *moviePlayerController;
 
 
 /**

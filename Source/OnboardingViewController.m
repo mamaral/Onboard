@@ -8,6 +8,7 @@
 
 #import "OnboardingViewController.h"
 #import "OnboardingContentViewController.h"
+@import AVFoundation;
 @import Accelerate;
 
 static CGFloat const kPageControlHeight = 35;
@@ -26,6 +27,7 @@ static NSString * const kSkipButtonText = @"Skip";
 @property (nonatomic, strong) OnboardingContentViewController *upcomingPage;
 
 @property (nonatomic, strong) UIPageViewController *pageVC;
+@property (nonatomic, strong) AVPlayer *player;
 @property (nonatomic, strong) NSURL *videoURL;
 
 @end
@@ -107,12 +109,6 @@ static NSString * const kSkipButtonText = @"Skip";
     [self.skipButton setTitle:kSkipButtonText forState:UIControlStateNormal];
     [self.skipButton addTarget:self action:@selector(handleSkipButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     self.skipButton.titleLabel.adjustsFontSizeToFitWidth = YES;
-
-    // Create the movie player controller
-    self.moviePlayerController = [MPMoviePlayerController new];
-    
-    // Handle when the app enters the foreground.
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleAppEnteredForeground) name:UIApplicationWillEnterForegroundNotification object:nil];
     
     return self;
 }
@@ -132,15 +128,15 @@ static NSString * const kSkipButtonText = @"Skip";
     
     // if we have a video URL, start playing
     if (self.videoURL) {
-        [self.moviePlayerController play];
+        [self.player play];
     }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    
-    if (self.moviePlayerController.playbackState == MPMoviePlaybackStatePlaying && self.stopMoviePlayerWhenDisappear) {
-        [self.moviePlayerController stop];
+
+    if ((self.player.rate != 0.0) && (self.player.error == nil) && self.stopMoviePlayerWhenDisappear) {
+        [self.player pause];
     }
 }
 
@@ -201,10 +197,12 @@ static NSString * const kSkipButtonText = @"Skip";
     
     // otherwise send the video view to the back if we have one
     else if (self.videoURL) {
-        self.moviePlayerController.contentURL = self.videoURL;
+        self.player = [[AVPlayer alloc] initWithURL:self.videoURL];
+
+        self.moviePlayerController = [AVPlayerViewController new];
+        self.moviePlayerController.player = self.player;
         self.moviePlayerController.view.frame = self.pageVC.view.frame;
-        self.moviePlayerController.repeatMode = MPMovieRepeatModeOne;
-        self.moviePlayerController.controlStyle = MPMovieControlStyleNone;
+        self.moviePlayerController.showsPlaybackControls = NO;
         
         [self.pageVC.view addSubview:self.moviePlayerController.view];
         [self.pageVC.view sendSubviewToBack:self.moviePlayerController.view];
@@ -229,14 +227,6 @@ static NSString * const kSkipButtonText = @"Skip";
                 [(UIScrollView *)view setDelegate:self];
             }
         }
-    }
-}
-
-- (void)handleAppEnteredForeground {
-    // If the movie player is paused, as it does by default when backgrounded, start
-    // playing again.
-    if (self.moviePlayerController.playbackState == MPMoviePlaybackStatePaused) {
-        [self.moviePlayerController play];
     }
 }
 
