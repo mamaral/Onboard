@@ -11,5 +11,6 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/mamaral/Onboard.git", :tag => "v2.2.1" }
   s.source_files  = "Source/OnboardingViewController.{h,m}", "Source/OnboardingContentViewController.{h,m}"
   s.requires_arc = true
+  s.ios.deployment_target = '8.0'
 
 end
