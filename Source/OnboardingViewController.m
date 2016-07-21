@@ -140,10 +140,17 @@ static NSString * const kSkipButtonText = @"Skip";
     }
 }
 
+- (void)viewWillLayoutSubviews {
+    [super viewWillLayoutSubviews];
+    self.pageVC.view.frame = self.view.frame;
+    self.moviePlayerController.view.frame = self.view.frame;
+    self.skipButton.frame = CGRectMake(CGRectGetMaxX(self.view.frame) - kSkipButtonWidth, CGRectGetMaxY(self.view.frame) - self.underPageControlPadding - kSkipButtonHeight, kSkipButtonWidth, kSkipButtonHeight);
+    self.pageControl.frame = CGRectMake(0, CGRectGetMaxY(self.view.frame) - self.underPageControlPadding - kPageControlHeight, self.view.frame.size.width, kPageControlHeight);
+}
+
 - (void)generateView {
     // create our page view controller
     self.pageVC = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
-    self.pageVC.view.frame = self.view.frame;
     self.pageVC.view.backgroundColor = [UIColor whiteColor];
     self.pageVC.delegate = self;
     self.pageVC.dataSource = self.swipingEnabled ? self : nil;
@@ -201,20 +208,17 @@ static NSString * const kSkipButtonText = @"Skip";
 
         self.moviePlayerController = [AVPlayerViewController new];
         self.moviePlayerController.player = self.player;
-        self.moviePlayerController.view.frame = self.pageVC.view.frame;
         self.moviePlayerController.showsPlaybackControls = NO;
         
         [self.pageVC.view addSubview:self.moviePlayerController.view];
         [self.pageVC.view sendSubviewToBack:self.moviePlayerController.view];
     }
     
-    // create and configure the page control
-    self.pageControl.frame = CGRectMake(0, CGRectGetMaxY(self.view.frame) - self.underPageControlPadding - kPageControlHeight, self.view.frame.size.width, kPageControlHeight);
+    // create the page control
     [self.view addSubview:self.pageControl];
     
     // if we allow skipping, setup the skip button
     if (self.allowSkipping) {
-        self.skipButton.frame = CGRectMake(CGRectGetMaxX(self.view.frame) - kSkipButtonWidth, CGRectGetMaxY(self.view.frame) - self.underPageControlPadding - kSkipButtonHeight, kSkipButtonWidth, kSkipButtonHeight);
         [self.view addSubview:self.skipButton];
     }
     
