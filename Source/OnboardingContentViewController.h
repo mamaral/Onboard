@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-@import MediaPlayer;
+@import AVKit;
 
 @class OnboardingViewController;
 @class OnboardingContentViewController;
@@ -134,6 +134,12 @@ typedef void (^action_callback)(OnboardingViewController *onboardController);
 
 
 /**
+ * @brief The movie player controller used to play background movies.
+ */
+@property (nonatomic, strong) AVPlayerViewController *moviePlayerController;
+
+
+/**
  * @brief Convenience class initializer for creating an onboarding content view controller.
  * @return An instance of OnboardingViewController with the provided information.
  */
@@ -193,21 +199,5 @@ typedef void (^action_callback)(OnboardingViewController *onboardController);
  * @brief Method used to update the alpha value for all floating subviews (image, title, body, etc.)
  */
 - (void)updateAlphas:(CGFloat)newAlpha;
-
-
-// The following properties are all deprecated, and will be removed in the next release of Onboard.
-//
-//
-@property (nonatomic, strong) UIColor *titleTextColor __attribute__((deprecated("Set titleLabel.textColor instead. This property will be removed in the next update.")));
-@property (nonatomic, strong) NSString *titleFontName __attribute__((deprecated("Set titleLabel.font instead. This property will be removed in the next update.")));
-@property (nonatomic) CGFloat titleFontSize __attribute__((deprecated("Set titleLabel.font instead. This property will be removed in the next update.")));
-
-@property (nonatomic, strong) UIColor *bodyTextColor __attribute__((deprecated("Set bodyLabel.textColor instead. This property will be removed in the next update.")));
-@property (nonatomic, strong) NSString *bodyFontName __attribute__((deprecated("Set bodyLabel.font instead. This property will be removed in the next update.")));
-@property (nonatomic) CGFloat bodyFontSize __attribute__((deprecated("Set bodyLabel.font instead. This property will be removed in the next update.")));
-
-@property (nonatomic, strong) UIColor *buttonTextColor __attribute__((deprecated("Modify the actionButton property directly. This property will be removed in the next update.")));
-@property (nonatomic, strong) NSString *buttonFontName __attribute__((deprecated("Modify the actionButton property directly. This property will be removed in the next update.")));
-@property (nonatomic) CGFloat buttonFontSize __attribute__((deprecated("Modify the actionButton property directly. This property will be removed in the next update.")));
 
 @end
