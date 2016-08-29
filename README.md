@@ -108,6 +108,8 @@ Apply a fade effect to the icons, text, and buttons, while transitioning between
 onboardingVC.shouldFadeTransitions = YES; // defaults to NO
 ```
 
+***Note:*** Ensure you do not cause the onboard view controller's view to be loaded prior to setting these properties, as these values only take effect when the view controller's `viewDidLoad` is called, so doing something like setting your `onboardingVC.view.backgroundColor = [UIColor whiteColor];` before setting this values would lead to the setting of these to not take effect.
+
 You can tweak these settings in a few different combinations to get your desired effect:
 
 ![demo](Screenshots/normal.png)
