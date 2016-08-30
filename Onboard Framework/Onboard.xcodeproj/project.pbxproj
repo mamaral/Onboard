@@ -7,22 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2880E10A1D75817C002E6808 /* OnboardingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5388B81CAC0D4800D57B29 /* OnboardingViewController.m */; };
+		2880E10B1D75817E002E6808 /* OnboardingContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5388B61CAC0D4800D57B29 /* OnboardingContentViewController.m */; };
 		BC5388B91CAC0D4800D57B29 /* OnboardingContentViewController_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = BC5388B41CAC0D4800D57B29 /* OnboardingContentViewController_Private.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BC5388BA1CAC0D4800D57B29 /* OnboardingContentViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = BC5388B51CAC0D4800D57B29 /* OnboardingContentViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		BC5388BB1CAC0D4800D57B29 /* OnboardingContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5388B61CAC0D4800D57B29 /* OnboardingContentViewController.m */; };
 		BC5388BC1CAC0D4800D57B29 /* OnboardingViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = BC5388B71CAC0D4800D57B29 /* OnboardingViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		BC5388BD1CAC0D4800D57B29 /* OnboardingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5388B81CAC0D4800D57B29 /* OnboardingViewController.m */; };
 		BC5388C11CAC0DED00D57B29 /* Onboard.h in Headers */ = {isa = PBXBuildFile; fileRef = BC5388C01CAC0DED00D57B29 /* Onboard.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		BC2029201CAC0BC9006EB1F3 /* Onboard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Onboard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC5388B21CAC0C1A00D57B29 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BC5388B41CAC0D4800D57B29 /* OnboardingContentViewController_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OnboardingContentViewController_Private.h; path = ../../Source/OnboardingContentViewController_Private.h; sourceTree = "<group>"; };
-		BC5388B51CAC0D4800D57B29 /* OnboardingContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OnboardingContentViewController.h; path = ../../Source/OnboardingContentViewController.h; sourceTree = "<group>"; };
-		BC5388B61CAC0D4800D57B29 /* OnboardingContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OnboardingContentViewController.m; path = ../../Source/OnboardingContentViewController.m; sourceTree = "<group>"; };
-		BC5388B71CAC0D4800D57B29 /* OnboardingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OnboardingViewController.h; path = ../../Source/OnboardingViewController.h; sourceTree = "<group>"; };
-		BC5388B81CAC0D4800D57B29 /* OnboardingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OnboardingViewController.m; path = ../../Source/OnboardingViewController.m; sourceTree = "<group>"; };
+		BC5388B41CAC0D4800D57B29 /* OnboardingContentViewController_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OnboardingContentViewController_Private.h; path = ../Source/OnboardingContentViewController_Private.h; sourceTree = "<group>"; };
+		BC5388B51CAC0D4800D57B29 /* OnboardingContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OnboardingContentViewController.h; path = ../Source/OnboardingContentViewController.h; sourceTree = "<group>"; };
+		BC5388B61CAC0D4800D57B29 /* OnboardingContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OnboardingContentViewController.m; path = ../Source/OnboardingContentViewController.m; sourceTree = "<group>"; };
+		BC5388B71CAC0D4800D57B29 /* OnboardingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OnboardingViewController.h; path = ../Source/OnboardingViewController.h; sourceTree = "<group>"; };
+		BC5388B81CAC0D4800D57B29 /* OnboardingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OnboardingViewController.m; path = ../Source/OnboardingViewController.m; sourceTree = "<group>"; };
 		BC5388C01CAC0DED00D57B29 /* Onboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Onboard.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -64,8 +64,9 @@
 				BC5388B71CAC0D4800D57B29 /* OnboardingViewController.h */,
 				BC5388B81CAC0D4800D57B29 /* OnboardingViewController.m */,
 			);
-			path = Source;
-			sourceTree = "<group>";
+			name = Source;
+			path = ../Source;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -108,7 +109,7 @@
 		BC2029171CAC0BC9006EB1F3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Mike Amaral";
 				TargetAttributes = {
 					BC20291F1CAC0BC9006EB1F3 = {
@@ -148,8 +149,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BC5388BB1CAC0D4800D57B29 /* OnboardingContentViewController.m in Sources */,
-				BC5388BD1CAC0D4800D57B29 /* OnboardingViewController.m in Sources */,
+				2880E10A1D75817C002E6808 /* OnboardingViewController.m in Sources */,
+				2880E10B1D75817E002E6808 /* OnboardingContentViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -170,8 +171,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -219,8 +222,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -250,6 +255,7 @@
 		BC2029291CAC0BC9006EB1F3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -266,6 +272,7 @@
 		BC20292A1CAC0BC9006EB1F3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
