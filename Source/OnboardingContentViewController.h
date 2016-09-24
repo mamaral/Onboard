@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 @import AVKit;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class OnboardingViewController;
 @class OnboardingContentViewController;
 
@@ -138,61 +140,62 @@ typedef void (^action_callback)(OnboardingViewController *onboardController);
  */
 @property (nonatomic, strong) AVPlayerViewController *moviePlayerController;
 
+NS_ASSUME_NONNULL_END
 
 /**
  * @brief Convenience class initializer for creating an onboarding content view controller.
  * @return An instance of OnboardingViewController with the provided information.
  */
-+ (instancetype)contentWithTitle:(NSString *)title body:(NSString *)body image:(UIImage *)image buttonText:(NSString *)buttonText action:(dispatch_block_t)action;
++ (nonnull instancetype)contentWithTitle:(nullable NSString *)title body:(nullable NSString *)body image:(nullable UIImage *)image buttonText:(nullable NSString *)buttonText action:(nullable dispatch_block_t)action;
 
 
 /**
  * @brief Initializer for creating an onboarding content view controller.
  * @return An instance of OnboardingViewController with the provided information.
  */
-- (instancetype)initWithTitle:(NSString *)title body:(NSString *)body image:(UIImage *)image buttonText:(NSString *)buttonText action:(dispatch_block_t)action;
+- (nonnull instancetype)initWithTitle:(nullable NSString *)title body:(nullable NSString *)body image:(nullable UIImage *)image buttonText:(nullable NSString *)buttonText action:(nullable dispatch_block_t)action;
 
 
 /**
  * @brief Convenience class initializer for creating an onboarding content view controller with an action_callback block.
  * @return An instance of OnboardingViewController with the provided information.
  */
-+ (instancetype)contentWithTitle:(NSString *)title body:(NSString *)body image:(UIImage *)image buttonText:(NSString *)buttonText actionBlock:(action_callback)actionBlock;
++ (nonnull instancetype)contentWithTitle:(nullable NSString *)title body:(nullable NSString *)body image:(nullable UIImage *)image buttonText:(nullable NSString *)buttonText actionBlock:(nullable action_callback)actionBlock;
 
 
 /**
  * @brief Convenience class initializer for creating an onboarding content view controller with a video.
  * @return An instance of OnboardingViewController with the provided information.
  */
-+ (instancetype)contentWithTitle:(NSString *)title body:(NSString *)body videoURL:(NSURL *)videoURL buttonText:(NSString *)buttonText action:(dispatch_block_t)action;
++ (nonnull instancetype)contentWithTitle:(nullable NSString *)title body:(nullable NSString *)body videoURL:(nullable NSURL *)videoURL buttonText:(nullable NSString *)buttonText action:(nullable dispatch_block_t)action;
 
 
 /**
  * @brief Initializer for creating an onboarding content view controller with a video.
  * @return An instance of OnboardingViewController with the provided information.
  */
-- (instancetype)initWithTitle:(NSString *)title body:(NSString *)body videoURL:(NSURL *)videoURL buttonText:(NSString *)buttonText action:(dispatch_block_t)action;
+- (nonnull instancetype)initWithTitle:(nullable NSString *)title body:(nullable NSString *)body videoURL:(nullable NSURL *)videoURL buttonText:(nullable NSString *)buttonText action:(nullable dispatch_block_t)action;
 
 
 /**
  * @brief Convenience class initializer for creating an onboarding content view controller with a video and an action_callback block.
  * @return An instance of OnboardingViewController with the provided information.
  */
-+ (instancetype)contentWithTitle:(NSString *)title body:(NSString *)body videoURL:(NSURL *)videoURL buttonText:(NSString *)buttonText actionBlock:(action_callback)actionBlock;
++ (nonnull instancetype)contentWithTitle:(nullable NSString *)title body:(nullable NSString *)body videoURL:(nullable NSURL *)videoURL buttonText:(nullable NSString *)buttonText actionBlock:(nullable action_callback)actionBlock;
 
 
 /**
  * @brief Initializer for creating an onboarding content view controller with a video and an action_callback block.
  * @return An instance of OnboardingViewController with the provided information.
  */
-- (instancetype)initWithTitle:(NSString *)title body:(NSString *)body image:(UIImage *)image buttonText:(NSString *)buttonText actionBlock:(action_callback)actionBlock;
+- (nonnull instancetype)initWithTitle:(nullable NSString *)title body:(nullable NSString *)body image:(nullable UIImage *)image buttonText:(nullable NSString *)buttonText actionBlock:(nullable action_callback)actionBlock;
 
 
 /**
  * @brief Initializer for creating an onboarding content view controller with a video and an action_callback block.
  * @return An instance of OnboardingViewController with the provided information.
  */
-- (instancetype)initWithTitle:(NSString *)title body:(NSString *)body image:(UIImage *)image videoURL:videoURL buttonText:(NSString *)buttonText actionBlock:(action_callback)actionBlock;
+- (nonnull instancetype)initWithTitle:(nullable NSString *)title body:(nullable NSString *)body image:(nullable UIImage *)image videoURL:(nullable NSURL *)videoURL buttonText:(nullable NSString *)buttonText actionBlock:(nullable action_callback)actionBlock;
 
 
 /**
