@@ -1,10 +1,10 @@
 #Onboard
 
-[![Build Status](https://travis-ci.org/mamaral/Onboard.svg?branch=master)](https://travis-ci.org/mamaral/Onboard)
+![Badge w/ Version](https://img.shields.io/cocoapods/v/Onboard.svg)
 [![CocoaPods](https://img.shields.io/cocoapods/dt/Onboard.svg?maxAge=3600)](https://cocoapods.org/pods/Onboard)
+[![Build Status](https://travis-ci.org/mamaral/Onboard.svg?branch=master)](https://travis-ci.org/mamaral/Onboard)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org)
-![Badge w/ Version](https://img.shields.io/cocoapods/v/Onboard.svg)
 
 ![demo](Screenshots/city.gif)
 ![demo](Screenshots/almanac.gif)
