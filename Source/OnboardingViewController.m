@@ -90,6 +90,7 @@ static NSString * const kSkipButtonText = @"Skip";
     self.viewControllers = contents;
     
     // Set the default properties
+    self.backgroundContentMode = UIViewContentModeScaleAspectFill;
     self.shouldMaskBackground = YES;
     self.shouldBlurBackground = NO;
     self.shouldFadeTransitions = NO;
@@ -164,11 +165,14 @@ static NSString * const kSkipButtonText = @"Skip";
     
     UIImageView *backgroundImageView;
     
-    // create the background image view and set it to aspect fill so it isn't skewed
+    // create the background image view and set the contentMode accordingly
     if (self.backgroundImage) {
         backgroundImageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
         backgroundImageView.clipsToBounds = YES;
-        backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
+        backgroundImageView.contentMode = self.backgroundContentMode;
+        if (self.backgroundContentMode == UIViewContentModeScaleToFill) {
+            backgroundImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        }
         [backgroundImageView setImage:self.backgroundImage];
         [self.view addSubview:backgroundImageView];
     }
@@ -180,6 +184,10 @@ static NSString * const kSkipButtonText = @"Skip";
     if (self.shouldMaskBackground) {
         backgroundMaskView = [[UIView alloc] initWithFrame:self.pageVC.view.frame];
         backgroundMaskView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:kBackgroundMaskAlpha];
+        backgroundMaskView.contentMode = self.backgroundContentMode;
+        if (self.backgroundContentMode == UIViewContentModeScaleToFill) {
+            backgroundMaskView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        }
         [self.pageVC.view addSubview:backgroundMaskView];
     }
 
