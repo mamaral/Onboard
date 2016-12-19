@@ -171,7 +171,7 @@ static NSString * const kSkipButtonText = @"Skip";
         backgroundImageView.clipsToBounds = YES;
         backgroundImageView.contentMode = self.backgroundContentMode;
         if (self.backgroundContentMode == UIViewContentModeScaleToFill) {
-            backgroundImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+            backgroundImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         }
         [backgroundImageView setImage:self.backgroundImage];
         [self.view addSubview:backgroundImageView];
