@@ -186,7 +186,7 @@ static NSString * const kSkipButtonText = @"Skip";
         backgroundMaskView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:kBackgroundMaskAlpha];
         backgroundMaskView.contentMode = self.backgroundContentMode;
         if (self.backgroundContentMode == UIViewContentModeScaleToFill) {
-            backgroundMaskView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+            backgroundMaskView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         }
         [self.pageVC.view addSubview:backgroundMaskView];
     }
