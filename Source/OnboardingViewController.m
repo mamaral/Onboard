@@ -93,6 +93,7 @@ static NSString * const kSkipButtonText = @"Skip";
     self.shouldMaskBackground = YES;
     self.shouldBlurBackground = NO;
     self.shouldFadeTransitions = NO;
+    self.shouldRotateToLandscape = YES;
     self.fadePageControlOnLastPage = NO;
     self.fadeSkipButtonOnLastPage = NO;
     self.swipingEnabled = YES;
@@ -237,6 +238,15 @@ static NSString * const kSkipButtonText = @"Skip";
     }
 }
 
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations{
+    if(_shouldRotateToLandscape){
+        return UIInterfaceOrientationMaskAll;
+
+    }else{
+        return UIInterfaceOrientationMaskPortrait + UIInterfaceOrientationMaskPortraitUpsideDown;
+    }
+}
+    
 
 #pragma mark - App life cycle
 

@@ -41,6 +41,12 @@
  */
 @property (nonatomic) BOOL shouldFadeTransitions;
 
+    
+/**
+ * @brief Determines whether or not the contents on screen will fade as the user swipes between pages. The default value of this property is NO.
+*/
+@property (nonatomic) BOOL shouldRotateToLandscape;
+
 
 /**
  * @brief Determines whether or not the background will be masked. The default value of this property is NO.
