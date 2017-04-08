@@ -29,13 +29,13 @@ Each onboarding experience is comprised of two primary components - the backgrou
 
 Create individual pages by creating instances of `OnboardingContentViewController`. Provide a title, body, image, text for an action button, and within the action block handle whatever you want to do when the users press the button. If you don't want a button, you can leave both the button text and action handler nil.
 
-####Objective-C
+#### Objective-C
 ```objective-c
 OnboardingContentViewController *firstPage = [OnboardingContentViewController contentWithTitle:@"Page Title" body:@"Page body goes here." image:[UIImage imageNamed:@"icon"] buttonText:@"Text For Button" action:^{
     // do something here when users press the button, like ask for location services permissions, register for push notifications, connect to social media, or finish the onboarding process
 }];
 ```
-####Swift
+#### Swift
 ```Swift
 let firstPage = OnboardingContentViewController(title: "Page Title", body: "Page body goes here.", image: UIImage(named: "icon"), buttonText: "Text For Button") { () -> Void in
     // do something here when users press the button, like ask for location services permissions, register for push notifications, connect to social media, or finish the onboarding process
@@ -44,7 +44,7 @@ let firstPage = OnboardingContentViewController(title: "Page Title", body: "Page
 
 Then create the `OnboardingViewController` by providing either a background image or a URL to a local video file in your project, and an array of content view controllers you just created. You can then present the view modally and get the onboarding process started!
 
-####Objective-C
+#### Objective-C
 ```objective-c
 // Image
 OnboardingViewController *onboardingVC = [OnboardingViewController onboardWithBackgroundImage:[UIImage imageNamed:@"background"] contents:@[firstPage, secondPage, thirdPage]];
@@ -56,7 +56,7 @@ NSURL *movieURL = [NSURL fileURLWithPath:moviePath];
 
 OnboardingViewController *onboardingVC = [OnboardingViewController onboardWithBackgroundVideoURL:movieURL contents:@[firstPage, secondPage, thirdPage]];
 ```
-####Swift
+#### Swift
 ```swift
 // Image
 let onboardingVC = OnboardingViewController(backgroundImage: UIImage(named: "background"), contents: [firstPage, secondPage, thirdPage])
