@@ -46,6 +46,7 @@
 - (void)testDefaultValues {
     // This tests that the default values on the onboarding view controller are set properly.
     OnboardingViewController *onboardingVC = [[OnboardingViewController alloc] initWithBackgroundImage:nil contents:nil];
+    XCTAssertTrue(onboardingVC.backgroundContentMode == UIViewContentModeScaleAspectFill, @"The background contentMode should be set to UIViewContentModeScaleAspectFill.");
     XCTAssertTrue(onboardingVC.shouldMaskBackground, @"The background should be masked by default.");
     XCTAssertFalse(onboardingVC.shouldBlurBackground, @"The background should not be blurred by default.");
 }

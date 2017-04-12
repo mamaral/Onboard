@@ -25,13 +25,19 @@
 
 
 /**
+ * @brief Sets the contentMode of the background image. Default is UIViewContentModeScaleAspectFill.
+ */
+@property (nonatomic) UIViewContentMode backgroundContentMode;
+
+
+/**
  * @brief Determines whether or not the background will be masked. The default value of this property is YES.
  */
 @property (nonatomic) BOOL shouldMaskBackground;
 
 
 /**
- * @brief Determines whether or not the background will be blurred. The default value of this property is NO;
+ * @brief Determines whether or not the background will be blurred. The default value of this property is NO.
  */
 @property (nonatomic) BOOL shouldBlurBackground;
 
@@ -110,8 +116,8 @@
 
 
 /**
- * @brief Initializer for onboarding with a backround video.
- * @return An instance of OnboardingViewController with the provided background video and content view controllers.
+ * @brief Initializer for onboarding with a backround image.
+ * @return An instance of OnboardingViewController with the provided background image and content view controllers.
  */
 - (instancetype)initWithBackgroundImage:(UIImage *)backgroundImage contents:(NSArray *)contents;
 
