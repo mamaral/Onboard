@@ -348,7 +348,7 @@ static NSString * const kSkipButtonText = @"Skip";
 
     // determine if we're transitioning to or from our last page
     BOOL transitioningToLastPage = (_currentPage != self.viewControllers.lastObject && _upcomingPage == self.viewControllers.lastObject);
-    BOOL transitioningFromLastPage = (_currentPage == self.viewControllers.lastObject) && (_upcomingPage == self.viewControllers[self.viewControllers.count - 2]);
+    BOOL transitioningFromLastPage = (self.viewControllers.count > 1) && (_currentPage == self.viewControllers.lastObject) && (_upcomingPage == self.viewControllers[self.viewControllers.count - 2]);
     
     // fade the page control to and from the last page
     if (self.fadePageControlOnLastPage) {
