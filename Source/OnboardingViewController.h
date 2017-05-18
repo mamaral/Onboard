@@ -135,4 +135,9 @@
  */
 - (void)moveNextPage;
 
+/**
+ * @brief Method to tell the onboarding view controller to automatically move to the previous page.
+ */
+- (void)movePreviousPage;
+
 @end
