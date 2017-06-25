@@ -13,7 +13,7 @@
 
 static CGFloat const kPageControlHeight = 35;
 static CGFloat const kSkipButtonWidth = 100;
-static CGFloat const kSkipButtonHeight = 44;
+static CGFloat const kSkipButtonHeight = 35;
 static CGFloat const kBackgroundMaskAlpha = 0.6;
 static CGFloat const kDefaultBlurRadius = 20;
 static CGFloat const kDefaultSaturationDeltaFactor = 1.8;
@@ -53,7 +53,7 @@ static NSString * const kSkipButtonText = @"Skip";
     }
 
     self.backgroundImage = backgroundImage;
-    
+
     return self;
 }
 
@@ -72,7 +72,7 @@ static NSString * const kSkipButtonText = @"Skip";
     }
 
     self.videoURL = backgroundVideoURL;
-    
+
     return self;
 }
 
@@ -85,10 +85,10 @@ static NSString * const kSkipButtonText = @"Skip";
     if (!self) {
         return nil;
     }
-    
+
     // Store the passed in view controllers array
     self.viewControllers = contents;
-    
+
     // Set the default properties
     self.shouldMaskBackground = YES;
     self.shouldBlurBackground = NO;
@@ -96,10 +96,10 @@ static NSString * const kSkipButtonText = @"Skip";
     self.fadePageControlOnLastPage = NO;
     self.fadeSkipButtonOnLastPage = NO;
     self.swipingEnabled = YES;
-    
+
     self.allowSkipping = NO;
     self.skipHandler = ^{};
-    
+
     // Create the initial exposed components so they can be customized
     self.pageControl = [UIPageControl new];
     self.pageControl.numberOfPages = self.viewControllers.count;
@@ -109,7 +109,7 @@ static NSString * const kSkipButtonText = @"Skip";
     [self.skipButton setTitle:kSkipButtonText forState:UIControlStateNormal];
     [self.skipButton addTarget:self action:@selector(handleSkipButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     self.skipButton.titleLabel.adjustsFontSizeToFitWidth = YES;
-    
+
     return self;
 }
 
@@ -120,14 +120,14 @@ static NSString * const kSkipButtonText = @"Skip";
     [super viewDidLoad];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleAppEnteredForeground) name:UIApplicationDidBecomeActiveNotification object:nil];
-    
+
     // now that the view has loaded, we can generate the content
     [self generateView];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
+
     // if we have a video URL, start playing
     if (self.videoURL) {
         [self.player play];
@@ -157,13 +157,13 @@ static NSString * const kSkipButtonText = @"Skip";
     self.pageVC.view.backgroundColor = [UIColor whiteColor];
     self.pageVC.delegate = self;
     self.pageVC.dataSource = self.swipingEnabled ? self : nil;
-    
+
     if (self.shouldBlurBackground) {
         [self blurBackground];
     }
-    
+
     UIImageView *backgroundImageView;
-    
+
     // create the background image view and set it to aspect fill so it isn't skewed
     if (self.backgroundImage) {
         backgroundImageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
@@ -172,7 +172,7 @@ static NSString * const kSkipButtonText = @"Skip";
         [backgroundImageView setImage:self.backgroundImage];
         [self.view addSubview:backgroundImageView];
     }
-    
+
     // as long as the shouldMaskBackground setting hasn't been set to NO, we want to
     // create a partially opaque view and add it on top of the image view, so that it
     // darkens it a bit for better contrast
@@ -191,7 +191,7 @@ static NSString * const kSkipButtonText = @"Skip";
 
     // set the initial current page as the first page provided
     _currentPage = [self.viewControllers firstObject];
-    
+
     // more page controller setup
     [self.pageVC setViewControllers:@[self.currentPage] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
     self.pageVC.view.backgroundColor = [UIColor clearColor];
@@ -199,12 +199,12 @@ static NSString * const kSkipButtonText = @"Skip";
     [self.view addSubview:self.pageVC.view];
     [self.pageVC didMoveToParentViewController:self];
     [self.pageVC.view sendSubviewToBack:backgroundMaskView];
-    
+
     // send the background image view to the back if we have one
     if (backgroundImageView) {
         [self.pageVC.view sendSubviewToBack:backgroundImageView];
     }
-    
+
     // otherwise send the video view to the back if we have one
     else if (self.videoURL) {
         self.player = [[AVPlayer alloc] initWithURL:self.videoURL];
@@ -212,19 +212,19 @@ static NSString * const kSkipButtonText = @"Skip";
         self.moviePlayerController = [AVPlayerViewController new];
         self.moviePlayerController.player = self.player;
         self.moviePlayerController.showsPlaybackControls = NO;
-        
+
         [self.pageVC.view addSubview:self.moviePlayerController.view];
         [self.pageVC.view sendSubviewToBack:self.moviePlayerController.view];
     }
-    
+
     // create the page control
     [self.view addSubview:self.pageControl];
-    
+
     // if we allow skipping, setup the skip button
     if (self.allowSkipping) {
         [self.view addSubview:self.skipButton];
     }
-    
+
     // if we want to fade the transitions, we need to tap into the underlying scrollview
     // so we can set ourself as the delegate, this is sort of hackish but the only current
     // solution I am aware of using a page view controller
@@ -295,7 +295,7 @@ static NSString * const kSkipButtonText = @"Skip";
     if (!completed) {
         return;
     }
-    
+
     // get the view controller we are moving towards, then get the index, then set it as the current page
     // for the page control dots
     UIViewController *viewController = [pageViewController.viewControllers lastObject];
@@ -305,7 +305,7 @@ static NSString * const kSkipButtonText = @"Skip";
 
 - (void)moveNextPage {
     NSUInteger indexOfNextPage = [self.viewControllers indexOfObject:_currentPage] + 1;
-    
+
     if (indexOfNextPage < self.viewControllers.count) {
         [self.pageVC setViewControllers:@[self.viewControllers[indexOfNextPage]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
         [self.pageControl setCurrentPage:indexOfNextPage];
@@ -331,7 +331,7 @@ static NSString * const kSkipButtonText = @"Skip";
     // scrollview's offset and the width of the screen
     CGFloat percentComplete = fabs(scrollView.contentOffset.x - self.view.frame.size.width) / self.view.frame.size.width;
     CGFloat percentCompleteInverse = 1.0 - percentComplete;
-    
+
     // these cases have some funky results given the way this method is called, like stuff
     // just disappearing, so we want to do nothing in these cases
     if (percentComplete == 0) {
@@ -341,7 +341,7 @@ static NSString * const kSkipButtonText = @"Skip";
     // set the next page's alpha to be the percent complete, so if we're 90% of the way
     // scrolling towards the next page, its content's alpha should be 90%
     [_upcomingPage updateAlphas:percentComplete];
-    
+
     // set the current page's alpha to the difference between 100% and this percent value,
     // so we're 90% scrolling towards the next page, the current content's alpha sshould be 10%
     [_currentPage updateAlphas:percentCompleteInverse];
@@ -349,7 +349,7 @@ static NSString * const kSkipButtonText = @"Skip";
     // determine if we're transitioning to or from our last page
     BOOL transitioningToLastPage = (_currentPage != self.viewControllers.lastObject && _upcomingPage == self.viewControllers.lastObject);
     BOOL transitioningFromLastPage = (_currentPage == self.viewControllers.lastObject) && (_upcomingPage == self.viewControllers[self.viewControllers.count - 2]);
-    
+
     // fade the page control to and from the last page
     if (self.fadePageControlOnLastPage) {
         if (transitioningToLastPage) {
@@ -386,13 +386,13 @@ static NSString * const kSkipButtonText = @"Skip";
         NSLog (@"*** error: image must be backed by a CGImage: %@", self.backgroundImage);
         return;
     }
-    
+
     UIColor *tintColor = [UIColor colorWithWhite:0.7 alpha:0.3];
     CGFloat blurRadius = kDefaultBlurRadius;
     CGFloat saturationDeltaFactor = kDefaultSaturationDeltaFactor;
     CGRect imageRect = { CGPointZero, self.backgroundImage.size };
     UIImage *effectImage = self.backgroundImage;
-    
+
     BOOL hasBlur = blurRadius > __FLT_EPSILON__;
     BOOL hasSaturationChange = fabs(saturationDeltaFactor - 1.) > __FLT_EPSILON__;
     if (hasBlur || hasSaturationChange) {
@@ -401,13 +401,13 @@ static NSString * const kSkipButtonText = @"Skip";
         CGContextScaleCTM(effectInContext, 1.0, -1.0);
         CGContextTranslateCTM(effectInContext, 0, -self.backgroundImage.size.height);
         CGContextDrawImage(effectInContext, imageRect, self.backgroundImage.CGImage);
-        
+
         vImage_Buffer effectInBuffer;
         effectInBuffer.data     = CGBitmapContextGetData(effectInContext);
         effectInBuffer.width    = CGBitmapContextGetWidth(effectInContext);
         effectInBuffer.height   = CGBitmapContextGetHeight(effectInContext);
         effectInBuffer.rowBytes = CGBitmapContextGetBytesPerRow(effectInContext);
-        
+
         UIGraphicsBeginImageContextWithOptions(self.backgroundImage.size, NO, [[UIScreen mainScreen] scale]);
         CGContextRef effectOutContext = UIGraphicsGetCurrentContext();
         vImage_Buffer effectOutBuffer;
@@ -415,7 +415,7 @@ static NSString * const kSkipButtonText = @"Skip";
         effectOutBuffer.width    = CGBitmapContextGetWidth(effectOutContext);
         effectOutBuffer.height   = CGBitmapContextGetHeight(effectOutContext);
         effectOutBuffer.rowBytes = CGBitmapContextGetBytesPerRow(effectOutContext);
-        
+
         if (hasBlur) {
             // A description of how to compute the box kernel width from the Gaussian
             // radius (aka standard deviation) appears in the SVG spec:
@@ -464,28 +464,28 @@ static NSString * const kSkipButtonText = @"Skip";
         if (!effectImageBuffersAreSwapped)
             effectImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
-        
+
         if (effectImageBuffersAreSwapped)
             effectImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
     }
-    
+
     // Set up output context.
     UIGraphicsBeginImageContextWithOptions(self.backgroundImage.size, NO, [[UIScreen mainScreen] scale]);
     CGContextRef outputContext = UIGraphicsGetCurrentContext();
     CGContextScaleCTM(outputContext, 1.0, -1.0);
     CGContextTranslateCTM(outputContext, 0, -self.backgroundImage.size.height);
-    
+
     // Draw base image.
     CGContextDrawImage(outputContext, imageRect, self.backgroundImage.CGImage);
-    
+
     // Draw effect image.
     if (hasBlur) {
         CGContextSaveGState(outputContext);
         CGContextDrawImage(outputContext, imageRect, effectImage.CGImage);
         CGContextRestoreGState(outputContext);
     }
-    
+
     // Add in color tint.
     if (tintColor) {
         CGContextSaveGState(outputContext);
@@ -493,11 +493,11 @@ static NSString * const kSkipButtonText = @"Skip";
         CGContextFillRect(outputContext, imageRect);
         CGContextRestoreGState(outputContext);
     }
-    
+
     // Output image is ready.
     UIImage *outputImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    
+
     self.backgroundImage = outputImage;
 }
 
