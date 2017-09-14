@@ -1,4 +1,4 @@
-#Onboard
+# Onboard
 
 ![Badge w/ Version](https://img.shields.io/cocoapods/v/Onboard.svg)
 [![CocoaPods](https://img.shields.io/cocoapods/dt/Onboard.svg?maxAge=3600)](https://cocoapods.org/pods/Onboard)
@@ -11,8 +11,12 @@
 ![demo](Screenshots/solar.gif)
 ![demo](Screenshots/tripnary.gif)
 
-#[Click Here For More Examples](examples.md)
+# [Click Here For More Examples](examples.md)
 
+Important
+=========
+
+Onboard is no longer under active development, and as such if you create any issues or submit pull requests, it's not very likely to be integrated. Thanks to all that helped make Onboard better over the last few years!
 
 Usage
 =====
