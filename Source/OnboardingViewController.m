@@ -145,10 +145,15 @@ static NSString * const kSkipButtonText = @"Skip";
 - (void)viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
 
+    CGFloat safedUnderPageControlPadding = self.underPageControlPadding;
+    if (@available(iOS 11.0, *)) {
+        safedUnderPageControlPadding += [self.view safeAreaInsets].bottom;
+    }
+    
     self.pageVC.view.frame = self.view.frame;
     self.moviePlayerController.view.frame = self.view.frame;
-    self.skipButton.frame = CGRectMake(CGRectGetMaxX(self.view.frame) - kSkipButtonWidth, CGRectGetMaxY(self.view.frame) - self.underPageControlPadding - kSkipButtonHeight, kSkipButtonWidth, kSkipButtonHeight);
-    self.pageControl.frame = CGRectMake(0, CGRectGetMaxY(self.view.frame) - self.underPageControlPadding - kPageControlHeight, self.view.frame.size.width, kPageControlHeight);
+    self.skipButton.frame = CGRectMake(CGRectGetMaxX(self.view.frame) - kSkipButtonWidth, CGRectGetMaxY(self.view.frame) - safedUnderPageControlPadding - kSkipButtonHeight, kSkipButtonWidth, kSkipButtonHeight);
+    self.pageControl.frame = CGRectMake(0, CGRectGetMaxY(self.view.frame) - safedUnderPageControlPadding - kPageControlHeight, self.view.frame.size.width, kPageControlHeight);
 }
 
 - (void)generateView {
