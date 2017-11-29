@@ -103,6 +103,12 @@
 
 
 /**
+ * @brief Determines whether or not disable UIPageViewController's bounce. The default value of this property is NO.
+ */
+@property (nonatomic) BOOL disableBounce;
+
+
+/**
  * @brief Convenience class initializer for onboarding with a backround image.
  * @return An instance of OnboardingViewController with the provided background image and content view controllers.
  */

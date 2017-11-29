@@ -96,6 +96,7 @@ static NSString * const kSkipButtonText = @"Skip";
     self.fadePageControlOnLastPage = NO;
     self.fadeSkipButtonOnLastPage = NO;
     self.swipingEnabled = YES;
+    self.disableBounce = NO;
     
     self.allowSkipping = NO;
     self.skipHandler = ^{};
@@ -374,6 +375,24 @@ static NSString * const kSkipButtonText = @"Skip";
 
         else if (transitioningFromLastPage) {
             self.skipButton.alpha = percentComplete;
+        }
+    }
+    
+    if (self.disableBounce) {
+        if (_currentPage == self.viewControllers.firstObject && scrollView.contentOffset.x <= scrollView.bounds.size.width) {
+            scrollView.contentOffset = CGPointMake(scrollView.bounds.size.width, 0);
+        } else if (_currentPage == self.viewControllers.lastObject && scrollView.contentOffset.x >= scrollView.bounds.size.width) {
+            scrollView.contentOffset = CGPointMake(scrollView.bounds.size.width, 0);
+        }
+    }
+}
+
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
+    if (self.disableBounce) {
+        if (_currentPage == self.viewControllers.firstObject && scrollView.contentOffset.x <= scrollView.bounds.size.width) {
+            *targetContentOffset = CGPointMake(scrollView.bounds.size.width, 0);
+        } else if (_currentPage == self.viewControllers.lastObject && scrollView.contentOffset.x >= scrollView.bounds.size.width) {
+            *targetContentOffset = CGPointMake(scrollView.bounds.size.width, 0);
         }
     }
 }
