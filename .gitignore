@@ -7,3 +7,4 @@
 *.xcuserstate
 project.xcworkspace/
 xcuserdata/
+/.swiftpm
