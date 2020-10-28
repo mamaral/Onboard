@@ -26,8 +26,11 @@ let package = Package(
             dependencies: [
             ],
             path: "Source",
-            exclude: ["Screenshots", "Onboard Framework", "Demo"],
-            publicHeadersPath: "."
+            exclude: [
+                "Screenshots",
+                "Onboard Framework",
+                "Demo"
+            ]
         )
     ]
 )
