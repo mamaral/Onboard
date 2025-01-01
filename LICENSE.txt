@@ -1,4 +1,4 @@
-Copyright (c) 2014 Michael Amaral
+Copyright (c) 2025 Michael Amaral
 
 MIT LICENSE
 
